@@ -72,12 +72,48 @@ if (!isProduction) {
 
   app.use((err, _req, res, _next) => {
     res.status(err.status || 500);
-    console.error(err);
+    // console.error(err);
+    let resBody = {}
+    if(!err.status){
+      resBody.message = "User already exists";
+      resBody.statusCode = 403;
+      // console.log(err)
+      resBody.errors = {[err.fields[0]]: err.errors[0]};
+          return     res.json({
+        "message" : resBody.message,
+        "statusCode" : resBody.statusCode,
+        "errors": resBody.errors
+
+        // stack: isProduction ? null : err.stack
+      });
+    }
+    console.log(err)
+    let errors = {}
+
+    for(let i = 0; i < err.errors.length; i++){
+      if(err.errors[i].includes('email')){
+        errors.email = err.errors[i]
+      }
+      if(err.errors[i].includes('username')){
+        errors.username = err.errors[i]
+      }
+      if(err.errors[i].includes('First')){
+        errors.firstName = err.errors[i]
+      }
+      if(err.errors[i].includes('Last')){
+        errors.lastName = err.errors[i]
+      }
+      if(err.errors[i].includes('Password')){
+        errors.password = err.errors[i]
+      }
+    }
     res.json({
-      title: err.title || 'Server Error',
-      message: err.message,
-      errors: err.errors,
-      stack: isProduction ? null : err.stack
+      // title: err.title || 'Server Error',
+      // message: err.message,
+      message: "Validation error",
+      statusCode: 400,
+      errors
+      // stack: isProduction ? null : err.stack
     });
   });
 

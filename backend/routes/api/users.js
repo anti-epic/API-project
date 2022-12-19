@@ -31,7 +31,7 @@ const validateSignup = [
     check('lastName')
       .exists({ checkFalsy: true })
       .isLength({ min: 1 })
-      .withMessage('First Name must be atleast one letter'),
+      .withMessage('Last Name must be atleast one letter'),
     handleValidationErrors
   ];
 
