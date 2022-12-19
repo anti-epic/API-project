@@ -41,7 +41,7 @@ router.post('/', validateLogin, async (req, res, next) => {
       });
     });
 
-    
+
 
 // Log out
 router.delete('/', (_req, res) => {
@@ -57,7 +57,12 @@ router.delete('/', (_req, res) => {
       user: user.toSafeObject()
     });
   }
-  else return res.json({ user: null });
+  else {
+    res.statusCode = 401
+  return  res.json({
+
+    "message": "Authentication required",
+  "statusCode": 401 })}
 });
 
 
