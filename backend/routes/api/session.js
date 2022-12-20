@@ -53,10 +53,9 @@ router.delete('/', (_req, res) => {
 
  router.get('/', restoreUser, (req, res) => {
   const { user } = req;
-  console.log(document.cookie)
   if (user) {
     return res.json({
-      user: user.toSafeObject(),
+      user: user.toSafeObject()
     });
   }
   else {

@@ -131,6 +131,12 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) =>{
 
 
 
+router.put('/api/spots/:spotId', requireAuth, async (req, res, next)=> {
+
+})
+
+
+
 
 
 module.exports = router;
