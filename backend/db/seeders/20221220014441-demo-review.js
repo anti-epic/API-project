@@ -19,13 +19,13 @@ module.exports = {
         "stars": 5
       },
       {
-        "spotId": 1,
+        "spotId": 3,
         "userId": 3,
         "review": "2good place",
-        "stars": 5
+        "stars": 2
       },
       {
-        "spotId": 1,
+        "spotId": 3,
         "userId": 2,
         "review": "3good place",
         "stars": 5
