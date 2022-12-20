@@ -1,11 +1,68 @@
 const express = require('express')
 const router = express.Router();
-// const { setTokenCookie, restoreUser } = require('../../utils/auth');
-// const { User } = require('../../db/models');
-// const { check } = require('express-validator');
-// const { handleValidationErrors } = require('../../utils/validation');
+const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
 
-const { Spot, Review, SpotImage } = require('../../db/models');
+const { Spot, Review, SpotImage, User } = require('../../db/models');
+
+
+
+
+
+
+
+const validateSpot = [
+    check('address')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 1 })
+      .withMessage('Street address is required'),
+    check('city')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 1 })
+      .withMessage('City is required'),
+    check('state')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 1 })
+      .withMessage('State is required'),
+    check('country')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 1 })
+      .withMessage('Country is required'),
+    check('lat')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 1 })
+      .withMessage('Latitude is not valid'),
+      check('lng')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 1 })
+      .withMessage('Longitude is not valid'),
+    check('name')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 1, max:50 })
+      .withMessage('Name must be less than 50 characters'),
+    check('description')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 1 })
+      .withMessage('Description is required'),
+    check('price')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 1 })
+      .withMessage('Price per day is required'),
+    handleValidationErrors
+  ];
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.get('/', async(req, res, next)=> {
    const spots = await Spot.findAll({
@@ -60,9 +117,15 @@ delete spot.Reviews
 
 
 
-router.post('/', async (req, res, next) =>{
+router.post('/', requireAuth, validateSpot, async (req, res, next) =>{
 
-    res.send("in here")
+    const {address, city, state, country, lat, lng, name, description, price} = req.body
+    const newSpot = await Spot.create({
+        address, city, state, country, lat, lng, name, description, price,
+        ownerId: req.user.dataValues.id
+    })
+    console.log(req.user.dataValues.id)
+    res.json(newSpot)
 })
 
 

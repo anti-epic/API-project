@@ -112,6 +112,33 @@ if (!isProduction) {
       if(err.errors[i].includes('Password')){
         errors.password = err.errors[i]
       }
+      if(err.errors[i].includes('Price per day is required')){
+        errors.price = err.errors[i]
+      }
+      if(err.errors[i].includes('Description is required')){
+        errors.description = err.errors[i]
+      }
+      if(err.errors[i].includes('Name must be less than 50 characters')){
+        errors.name = err.errors[i]
+      }
+       if(err.errors[i].includes('Longitude is not valid')){
+        errors.lng = err.errors[i]
+      }
+       if(err.errors[i].includes('Latitude is not valid')){
+        errors.lat = err.errors[i]
+      }
+       if(err.errors[i].includes('Country is required')){
+        errors.country = err.errors[i]
+      }
+       if(err.errors[i].includes('State is required')){
+        errors.state = err.errors[i]
+      }
+      if(err.errors[i].includes('City is required')){
+        errors.city = err.errors[i]
+      }
+      if(err.errors[i].includes('Street address is required')){
+        errors.address = err.errors[i]
+      }
 
     }
 
