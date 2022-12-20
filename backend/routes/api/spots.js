@@ -6,10 +6,8 @@ const router = express.Router();
 // const { handleValidationErrors } = require('../../utils/validation');
 
 const { Spot, Review, SpotImage } = require('../../db/models');
-const { User } = require('../../db/models');
 
 router.get('/', async(req, res, next)=> {
-
    const spots = await Spot.findAll({
     include: [{
         model: Review,
@@ -18,27 +16,18 @@ router.get('/', async(req, res, next)=> {
    },  {model: SpotImage}]
 });
 let spotsList = [];
-
 spots.forEach(spot => {
-    // console.log(spot)
-    // console.log(spot.toJSON())
-
-//    console.log(spot.SpotImages[0].previewImage)
-//    spot[previewImage] = spot.SpotImages[0].previewImage
     spotsList.push(spot.toJSON())
-
 })
 let avg = 0;
 let count = 0;
 spotsList.forEach(spot => {
     spot.SpotImages.forEach(image => {
-        console.log(image.url)
+        // console.log(image.url)
         if(image.preview === true){
             // console.log('in')
             spot.previewImage = image.url
         }
-
-
     })
 // console.log(spot.Reviews)
 spot.Reviews.forEach(review => {
@@ -47,7 +36,6 @@ spot.Reviews.forEach(review => {
         avg += Number(review.stars)
     }
 })
-console.log(typeof count)
     if(!spot.previewImage){
         spot.previewImage = "no preview image found"
     }
@@ -63,21 +51,21 @@ console.log(typeof count)
 delete spot.SpotImages
 delete spot.Reviews
 })
-
-
-
-
-
-
 // console.log(spotsList[0].SpotImages[0].previewImage)
-
 //    const allSpots = User.findAll();
-
-
     res.json({spotsList})
 
-
 })
+
+
+
+
+router.post('/', async (req, res, next) =>{
+
+    res.send("in here")
+})
+
+
 
 
 
