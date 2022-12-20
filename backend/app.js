@@ -71,7 +71,8 @@ if (!isProduction) {
   });
 
   app.use((err, _req, res, _next) => {
-    res.status(err.status || 500);
+    res.status(err.status || 403);
+
     // console.error(err);
     let resBody = {}
     if(!err.status){
@@ -91,10 +92,14 @@ if (!isProduction) {
     let errors = {}
 
     for(let i = 0; i < err.errors.length; i++){
-      if(err.errors[i].includes('email')){
+      if(err.errors[i].toLowerCase().includes('email') && err.errors[i].toLowerCase().includes('username') ){
+        errors.credential= err.errors[i];
+
+      }
+      else if(err.errors[i].includes('email') && !err.errors[i].includes('username')){
         errors.email = err.errors[i]
       }
-      if(err.errors[i].includes('username')){
+     else if(err.errors[i].includes('username') && !err.errors[i].includes('email')){
         errors.username = err.errors[i]
       }
       if(err.errors[i].includes('First')){
@@ -106,8 +111,21 @@ if (!isProduction) {
       if(err.errors[i].includes('Password')){
         errors.password = err.errors[i]
       }
+
     }
-    res.json({
+
+    if(err.status === 401){
+
+      return res.json({
+        "message": "Invalid credentials",
+        "statusCode" : err.status
+      })
+    }
+
+
+
+
+    return res.json({
       // title: err.title || 'Server Error',
       // message: err.message,
       message: "Validation error",
