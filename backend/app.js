@@ -79,7 +79,8 @@ if (!isProduction) {
       resBody.message = "User already exists";
       resBody.statusCode = 403;
       // console.log(err)
-      resBody.errors = {[err.fields[0]]: err.errors[0]};
+      resBody.errors = {[err.fields]: err.errors[0]};
+      // console.log(err.fields)
           return     res.json({
         "message" : resBody.message,
         "statusCode" : resBody.statusCode,
