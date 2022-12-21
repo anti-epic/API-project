@@ -286,6 +286,7 @@ else {
 // }
 
 // delete spotList.SpotImages
+spotList.numReviews = count;
 delete spotList.Reviews
 res.json(spotList)
 })
