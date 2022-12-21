@@ -186,6 +186,30 @@ res.statusCode = 403;
 
 })
 
+
+
+router.delete('/:id', requireAuth, async (req, res, next)=> {
+const {id} = req.params;
+deleteSpot = await Spot.findByPk(id)
+if(!deleteSpot){
+    next(err)
+}
+console.log(deleteSpot.ownerId)
+console.log(req.user.id)
+if(deleteSpot.ownerId === req.user.id){
+    await deleteSpot.destroy();
+  return  res.json({message : "Successfully deleted",
+                statusCode: res.statusCode })
+}
+
+
+res.statusCode = 403;
+res.json({error: "you do not have access to editing a spot you are not the owner of",
+statusCode: res.statusCode})
+})
+
+
+
 router.use((err, _req, res, _next) => {
     res.statusCode = 404;
     return res.json({
