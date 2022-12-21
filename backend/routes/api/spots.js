@@ -177,10 +177,11 @@ const {spotId} = req.params
         }
 
 
-
-    // return res.json({
-    //    error: "you do not have access to editing a spot you are not the owner of"
-    // })
+res.statusCode = 403;
+    return res.json({
+       error: "you do not have access to editing a spot you are not the owner of",
+       statusCode: res.statusCode
+    })
 
 
 })
