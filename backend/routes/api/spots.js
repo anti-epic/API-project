@@ -125,6 +125,7 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) =>{
         ownerId: req.user.dataValues.id
     })
     // console.log(req.user.dataValues.id)
+    res.statusCode = 201;
     res.json(newSpot)
 })
 
@@ -138,7 +139,11 @@ const {spotId} = req.params
     // console.log(updateSpot.ownerId, 'owner Id')
     // console.log(req.user.dataValues.id)
     if(!updateSpot){
-        next(err)
+        res.statusCode = 404;
+        res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": res.statusCode
+          })
     }
         if(updateSpot.ownerId === req.user.dataValues.id){
             const {price, description, name, lng, lat, country, state, city, address} = req.body
@@ -192,7 +197,11 @@ router.delete('/:id', requireAuth, async (req, res, next)=> {
 const {id} = req.params;
 deleteSpot = await Spot.findByPk(id)
 if(!deleteSpot){
-    next(err)
+    res.statusCode = 404;
+    res.json({
+        "message": "Spot couldn't be found",
+        "statusCode": res.statusCode
+      })
 }
 console.log(deleteSpot.ownerId)
 console.log(req.user.id)
@@ -210,14 +219,18 @@ statusCode: res.statusCode})
 
 
 
-router.use((err, _req, res, _next) => {
-    res.statusCode = 404;
-    return res.json({
-        message: "Spot couldn't be found",
-        statusCode: res.statusCode
+// router.use((err, _req, res, _next) => {
+//     // if(err){
+//     //     next(err)
+//     // }
+//     // console.log(err.errors, 'here')
+//     // res.statusCode = 404;
+//     // return res.json({
+//     //     message: "Spot couldn't be found",
+//     //     statusCode: res.statusCode
 
-      });
-})
+//     //   });
+// })
 
 
 
