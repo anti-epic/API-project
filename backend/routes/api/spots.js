@@ -5,6 +5,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const { Spot, Review, SpotImage, User } = require('../../db/models');
+const e = require('express');
 
 
 
@@ -128,6 +129,77 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) =>{
     res.statusCode = 201;
     res.json(newSpot)
 })
+
+
+router.get('/current', async (req, res, next) => {
+    const spots = await Spot.findAll({
+        include: [{
+            model: Review,
+            attributes: ['stars']
+
+       },
+       {model: SpotImage}
+    ],
+        where: { ownerId : req.user.dataValues.id }
+    })
+
+
+let spotsList = spots
+
+// console.log(spotsList)
+
+spotsList.forEach(spot => {
+    let avg = 0;
+let count = 0;
+//    console.log(spot.dataValues)
+   spot.dataValues.Reviews.forEach(review => {
+    if(review.stars !== undefined){
+        // console.log(count, 'in', review.stars)
+        count++
+        avg += Number(review.stars)
+    }
+})
+
+
+spot.dataValues.SpotImages.forEach(image => {
+
+    if(image.dataValues.preview === true){
+        spot.dataValues.previewImage = image.url
+    }
+    else {
+        let none ="no preview image found"
+        spot.dataValues.previewImage = none
+    }
+})
+
+
+if(!spot.dataValues.previewImage){
+    let none ="no preview image found"
+    spot.dataValues.previewImage = none
+}
+
+
+    if(count === 0){
+       let avgRating = "no reviews on this spot yet"
+       spot.dataValues.avgRating = avgRating
+    }
+    else {
+        let avgRating = avg / count;
+        spot.dataValues.avgRating = avgRating
+    }
+    delete spot.dataValues.SpotImages
+    delete spot.dataValues.Reviews
+})
+
+
+
+delete spotsList.Reviews
+res.json({spotsList})
+
+
+
+
+});
 
 
 
