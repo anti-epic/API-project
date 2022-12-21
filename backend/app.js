@@ -82,19 +82,23 @@ if (!isProduction) {
       // console.log(err)
       resBody.errors = {[err.fields]: err.errors[0]};
       // console.log(resBody.errors.email)
+      let errors = {}
       if(resBody.errors.email){
         // console.log('in')
-        resBody.errors = resBody.errors.email
+        errors = {"email" :resBody.errors.email}
+
       }
       if(resBody.errors.username){
         // console.log('in')
-        resBody.errors = resBody.errors.username
+        errors = {"username" : resBody.errors.username}
       }
-      // console.log(err.fields)
+      resBody.errors = {errors}
+      console.log('herer',resBody.errors)
           return     res.json({
         "message" : resBody.message,
         "statusCode" : resBody.statusCode,
-        "errors": resBody.errors
+        errors
+
 
         // stack: isProduction ? null : err.stack
       });
