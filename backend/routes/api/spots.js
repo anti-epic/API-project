@@ -232,6 +232,63 @@ statusCode: res.statusCode})
 //     //   });
 // })
 
+router.get('/:spotId', async (req,res,next)=> {
+    const {spotId} = req.params;
+
+    const spot = await Spot.findByPk(spotId,{
+        include: [{
+            model: Review,
+            attributes: ['stars']
+
+       },  {
+        model: SpotImage,
+        attributes: ['id', 'url', 'preview']
+    }, {
+        model: User,
+        attributes: ['id', 'firstName', 'lastName']
+    }]
+    })
+
+    if(!spot){
+        res.statusCode = 404
+    res.json({
+        "message": "Spot couldn't be found",
+        "statusCode": res.statusCode
+      })
+    }
+    let avg = 0;
+    let count = 0;
+let spotList = spot.toJSON()
+
+// console.log(spotList.Reviews)
+spotList.Reviews.forEach(review => {
+    // console.log(review)
+    if(review.stars !== undefined){
+        console.log(count, 'in')
+        count++
+        avg += Number(review.stars)
+    }
+
+})
+
+// console.log(spotList.SpotImages)
+
+if(count === 0){
+    spotList.avgRating ="no reviews on this spot yet"
+}
+else {
+    spotList.avgRating = avg / count;
+}
+
+// if(spot.SpotImages.image.preview === true){
+//     console.log('in image')
+//     spot.previewImage = image.url
+// }
+
+// delete spotList.SpotImages
+delete spotList.Reviews
+res.json(spotList)
+})
 
 
 
