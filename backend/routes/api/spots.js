@@ -124,17 +124,75 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) =>{
         address, city, state, country, lat, lng, name, description, price,
         ownerId: req.user.dataValues.id
     })
-    console.log(req.user.dataValues.id)
+    // console.log(req.user.dataValues.id)
     res.json(newSpot)
 })
 
 
 
 
-router.put('/api/spots/:spotId', requireAuth, async (req, res, next)=> {
+router.put('/:spotId', requireAuth, validateSpot, async (req, res, next)=> {
+const {spotId} = req.params
+    updateSpot = await Spot.findByPk(spotId)
+
+    // console.log(updateSpot.ownerId, 'owner Id')
+    // console.log(req.user.dataValues.id)
+    if(!updateSpot){
+        next(err)
+    }
+        if(updateSpot.ownerId === req.user.dataValues.id){
+            const {price, description, name, lng, lat, country, state, city, address} = req.body
+
+            if(price){
+                updateSpot.price = price;
+            }
+            if(description){
+                updateSpot.description = description;
+            }
+            if(name){
+                updateSpot.name = name;
+            }
+            if(lng){
+                updateSpot.lng = lng;
+            }
+            if(lat){
+                updateSpot.lat = lat;
+            }
+            if(country){
+                updateSpot.country = country;
+            }
+            if(state){
+                updateSpot.state = state;
+            }
+            if(city){
+                updateSpot.city = city;
+            }
+            if(address){
+                updateSpot.address = address;
+            }
+            await updateSpot.save()
+
+            // console.log(updateSpot)
+              return res.json({updateSpot})
+        }
+
+
+
+    // return res.json({
+    //    error: "you do not have access to editing a spot you are not the owner of"
+    // })
+
 
 })
 
+router.use((err, _req, res, _next) => {
+    res.statusCode = 404;
+    return res.json({
+        message: "Spot couldn't be found",
+        statusCode: res.statusCode
+
+      });
+})
 
 
 

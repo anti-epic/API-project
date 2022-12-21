@@ -139,6 +139,9 @@ if (!isProduction) {
       if(err.errors[i].includes('Street address is required')){
         errors.address = err.errors[i]
       }
+      if(err.errors[i].includes("The requested resource couldn't be found.")){
+        errors.message = err.errors[i]
+      }
 
     }
 
@@ -152,12 +155,12 @@ if (!isProduction) {
 
 
 
-
+    // console.log(res.statusCode, 'here')
     return res.json({
       // title: err.title || 'Server Error',
       // message: err.message,
       message: "Validation error",
-      statusCode: 400,
+      statusCode: res.statusCode,
       errors
       // stack: isProduction ? null : err.stack
     });
