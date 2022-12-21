@@ -73,13 +73,23 @@ if (!isProduction) {
   app.use((err, _req, res, _next) => {
     res.status(err.status || 403);
 
-    // console.error(err);
+    console.error(err);
     let resBody = {}
     if(!err.status){
+      // err.errors = []
       resBody.message = "User already exists";
       resBody.statusCode = 403;
       // console.log(err)
       resBody.errors = {[err.fields]: err.errors[0]};
+      // console.log(resBody.errors.email)
+      if(resBody.errors.email){
+        // console.log('in')
+        resBody.errors = resBody.errors.email
+      }
+      if(resBody.errors.username){
+        // console.log('in')
+        resBody.errors = resBody.errors.username
+      }
       // console.log(err.fields)
           return     res.json({
         "message" : resBody.message,
@@ -89,7 +99,7 @@ if (!isProduction) {
         // stack: isProduction ? null : err.stack
       });
     }
-    console.log(err)
+    // console.log(err)
     let errors = {}
 
     for(let i = 0; i < err.errors.length; i++){

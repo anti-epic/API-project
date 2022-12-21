@@ -23,7 +23,7 @@ const validateLogin = [
 // Log in
 router.post('/', validateLogin, async (req, res, next) => {
       const { credential, password } = req.body;
-  console.log(credential)
+  // console.log(credential)
       const user = await User.login({ credential, password });
 
       if (!user) {
@@ -53,9 +53,16 @@ router.delete('/', (_req, res) => {
 
  router.get('/', restoreUser, (req, res) => {
   const { user } = req;
+
+
   if (user) {
+    // console.log(req.cookies.token)
+      let cookie = req.cookies.token
+  // console.log(cookie)
+
     return res.json({
-      user: user.toSafeObject()
+      user: user.toSafeObject(),
+      token: cookie
     });
   }
   else {
