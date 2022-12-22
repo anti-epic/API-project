@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const {Booking } = require('../../db/models');
-const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
+const { requireAuth } = require('../../utils/auth');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -56,7 +56,7 @@ const {startDate, endDate} = req.body
 
     const currentEndDate = updateBooking.endDate
     if(currentEndDate.getTime() < date.getTime()){
-        res.statusCode = 403;
+        res.statusCode = 400;
         res.json({
 
                 "message": "Past bookings can't be modified",
@@ -86,9 +86,8 @@ const {startDate, endDate} = req.body
     })
 
     allBookingsForSpot.forEach(booking => {
-        const bookedStart = booking.dataValues.startDate.getTime()
-        const bookedEnd = booking.dataValues.endDate.getTime()
-        console.log(bookedEnd,bookedStart)
+
+        // console.log(bookedEnd,bookedStart)
         if(booking.dataValues.startDate){
             // console.log(booking.dataValues)
         const bookedStart = booking.dataValues.startDate.getTime()
@@ -148,11 +147,60 @@ const {startDate, endDate} = req.body
 
     // console.log(allBookingsForSpot)
 
-res.json(updateBooking)
+return res.json(updateBooking)
 
 })
 
 
+
+
+router.delete('/:bookingId',requireAuth, async (req, res, next) => {
+const {bookingId} = req.params;
+console.log(bookingId);
+console.log(req.user.id)
+const deleteBooking = await Booking.findByPk(bookingId);
+if(!deleteBooking){
+    res.statusCode = 404;
+    res.json({
+        "message": "Booking couldn't be found",
+        "statusCode": res.statusCode
+      })
+}
+const currentUser = req.user.id
+if(Number(deleteBooking.userId) !== currentUser){
+    res.statusCode = 401;
+    res.json({
+
+            "message": "You can only delete your bookings",
+            "statusCode": res.statusCode
+
+    })
+
+
+    const startDate = deleteBooking.startDate.getTime()
+    const currentDate = new Date().getTime();
+    console.log(currentDate)
+    if(startDate > currentDate){
+        res.statusCode = 403;
+        res.json({
+            "message": "Bookings that have been started can't be deleted",
+            "statusCode": res.statusCode
+        })
+    }
+
+}
+
+deleteBooking.destroy()
+res.statusCode = 200;
+return res.json({
+    "message": "Successfully deleted",
+    "statusCode": res.statusCode
+
+})
+
+
+
+})
 
 
 
