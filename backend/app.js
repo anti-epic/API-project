@@ -156,6 +156,12 @@ if (!isProduction) {
       if(err.errors[i].includes("The requested resource couldn't be found.")){
         errors.message = err.errors[i]
       }
+      if(err.errors[i].includes('Review text is required')){
+        errors.review = err.errors[i]
+      }
+      if(err.errors[i].includes('Stars must be an integer from 1 to 5')){
+        errors.stars = err.errors[i]
+      }
 
     }
 
