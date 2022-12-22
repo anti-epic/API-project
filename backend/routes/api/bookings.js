@@ -176,11 +176,11 @@ if(Number(deleteBooking.userId) !== currentUser){
 
     })
 
-
+}
     const startDate = deleteBooking.startDate.getTime()
     const currentDate = new Date().getTime();
-    console.log(currentDate)
-    if(startDate > currentDate){
+    // console.log(currentDate), 'HERE'
+    if(startDate < currentDate){
         res.statusCode = 403;
         res.json({
             "message": "Bookings that have been started can't be deleted",
@@ -188,7 +188,8 @@ if(Number(deleteBooking.userId) !== currentUser){
         })
     }
 
-}
+
+
 
 deleteBooking.destroy()
 res.statusCode = 200;
