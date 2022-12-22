@@ -5,7 +5,6 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const { Spot, Review, SpotImage, User, Booking } = require('../../db/models');
-const e = require('express');
 
 
 
