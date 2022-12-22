@@ -526,8 +526,6 @@ router.get('/:spotId/bookings',requireAuth, async (req, res, next) => {
     }
 
     const spotOwner = spot.ownerId
-
-
     if(spotOwner !== userId){
         res.json({
             Bookings
