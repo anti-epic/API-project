@@ -113,7 +113,53 @@ let spots
 })
 
 
+router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
+    const {reviewId} = req.params;
+    const {url} = req.body;
+    console.log(reviewId)
 
+    let review = await Review.findByPk(reviewId)
+    if(!review){
+        res.statusCode = 404;
+        res.json(
+            {
+                "message": "Review couldn't be found",
+                "statusCode": res.statusCode
+              }
+        )
+    }
+    if(review.userId !== req.user.id){
+        res.statusCode = 403;
+       res.json ({
+            "message": "Forbidden",
+            "statusCode": res.statusCode
+          })
+    }
+    // console.log(typeof review.userId,typeof req.user.id)
+    let reviewImages = await ReviewImage.findAll({
+        where: {reviewId: reviewId},
+    })
+    if(reviewImages.length > 9){
+        res.statusCode = 403;
+        res.json({
+
+                "message": "Maximum number of images for this resource was reached",
+                "statusCode": res.statusCode
+
+        })
+
+    }
+
+   let newReviewImage = await ReviewImage.create({
+    reviewId
+    ,url
+})
+
+
+    res.json({id: newReviewImage.id,
+        url: newReviewImage.url})
+
+});
 
 
 
