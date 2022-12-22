@@ -27,44 +27,97 @@ router.get('/',  async (req ,res ,next) => {
 router.get('/current', requireAuth,  async (req ,res ,next) => {
 
     const {id} = req.user
-    // console.log(id)
+
    let Bookings = await  Booking.findAll({
         where: {
-            userId: id
-        }, include: {
-            model: Spot, attributes: {exclude:['createdAt', 'updatedAt', 'description']},
-            include: {model: SpotImage, attributes:  ['preview', 'url']}
+            userId: id,
+
+        },
+        include: {
+
+            model: Spot,
+            attributes: {exclude:['createdAt', 'updatedAt', 'description']},
+
+       
 
         },
     })
-    let bookingsList = [];
+
+
+let spotsIds = []
+
     Bookings.forEach(booking => {
-        bookingsList.push(booking.toJSON())
+
+
+        spotsIds.push(booking.spotId)
+
+
+
     })
-    bookingsList.forEach(booking => {
 
 
+let Spots = [];
+for(let i = 0; i < spotsIds.length; i++){
+    let tempspotId = spotsIds[i]
+Spots[i] = await Spot.findAll({
+        where: {id: tempspotId},
+        attributes: {exclude:['createdAt', 'updatedAt', 'description']},
+        include: {model: SpotImage, attributes:  ['preview', 'url']}
+    })
+}
 
-        booking.Spot.SpotImages.forEach(image => {
+
+console.log(Bookings.length)
+for(let i = 0; i < Bookings.length; i++){
+    Bookings[i].dataValues.Spot = Spots[i][0];
+    console.log(Spots[i])
+
+
+    if(Spots[i][0].SpotImages){
+
+
+        Spots[i][0].SpotImages.forEach(image => {
         // console.log('init',typeof image.preview )
-        if(image.preview === false){
-            booking.previewImage = 'No preview Image available'
+        // console.log(image.dataValues, 'init')
+        // console.log(Bookings[i].dataValues.Spot.dataValues)
+
+        if(image.dataValues.preview === false){
+            Bookings[i].dataValues.Spot.dataValues.previewImage = 'No preview Image available'
         }
         else {
+            Bookings[i].dataValues.Spot.dataValues.previewImage = image.url
 
-            booking.Spot.previewImage = image.url
         }
+        console.log(Spots[i][0].SpotImages)
+        delete Spots[i][0].dataValues.SpotImages
     })
-    delete booking.Spot.SpotImages
- })
- Bookings = bookingsList
+
+}
+}
+
+//     console.log(Bookings)
+//     if(!Bookings){
+//         res.send(
+//             "you have no bookings yet"
+//         )
+//     }
+
+//     let bookingsList = [];
+//     Bookings.forEach(booking => {
+//         bookingsList.push(booking.toJSON())
+//     })
+//     bookingsList.forEach(booking => {
+
+
+//  })
+//  Bookings = bookingsList
 //  console.log(Bookings, 'here')
     res.json({
-        Bookings
+        Bookings,
 
     })
 
-    })
+ })
 
 router.put('/:bookingId',validateBookings, requireAuth, async (req ,res ,next) => {
 

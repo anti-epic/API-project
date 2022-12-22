@@ -227,7 +227,7 @@ if(newStartExactTime > newEndExactTime){
         const confirmedNewBookings = await Booking.create({
             startDate: newStart,
             endDate: newEnd,
-            spotId: spotId,
+            spotId: Number(spotId),
             userId: userId
         })
 
@@ -323,7 +323,7 @@ router.get('/current', async (req, res, next) => {
         where: { ownerId : req.user.dataValues.id }
     })
 
-
+console.log('in it')
 let spotsList = spots
 
 // console.log(spotsList)
