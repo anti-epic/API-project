@@ -201,8 +201,8 @@ const validateSpot = [
        },
         {model: SpotImage}
     ],
-       limit: size,
-        offset: (page - 1) * size
+    //    limit: size,
+    //     offset: (page - 1) * size
     });
     // if(!spots){
     //     return res.json({error:"no spots yet"})
