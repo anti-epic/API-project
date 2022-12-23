@@ -27,17 +27,23 @@ router.post('/', validateLogin, async (req, res, next) => {
       const user = await User.login({ credential, password });
 
       if (!user) {
-        const err = new Error('Login failed');
-        err.status = 401;
-        err.title = 'Login failed';
-        err.errors = ['The provided credentials were invalid.'];
-        return next();
+      return res.json({
+
+          "message": "Invalid credentials",
+          "statusCode": 401
+
+
+      })
       }
+      let cookie = req.cookies.token
+  // console.log(cookie)
+
 
       await setTokenCookie(res, user);
-
+      user.dataValues.token = cookie
       return res.json({
-     user
+     user,
+
 
 });
     });
@@ -50,28 +56,28 @@ router.delete('/', (_req, res) => {
           return res.json({ message: 'success' });
 });
 
-
+//get current user
  router.get('/', restoreUser, (req, res) => {
   const { user } = req;
 
 
   if (user) {
-    // console.log(req.cookies.token)
-      let cookie = req.cookies.token
-  // console.log(cookie)
 
     return res.json({
       user: user.toSafeObject(),
-      token: cookie
+
     });
   }
   else {
-    res.statusCode = 401
+    res.statusCode = 200
   return  res.json({
 
     "message": "Authentication required",
   "statusCode": 401 })}
 });
+
+
+
 
 
 module.exports = router;

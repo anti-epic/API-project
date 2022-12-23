@@ -125,7 +125,7 @@ let spots
         // console.log(Reviews[i].dataValues.Spot.SpotImages)
     }
 
-    res.json({Reviews})
+   return res.json({Reviews})
 })
 
 
@@ -137,7 +137,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
     let review = await Review.findByPk(reviewId)
     if(!review){
         res.statusCode = 404;
-        res.json(
+      return  res.json(
             {
                 "message": "Review couldn't be found",
                 "statusCode": res.statusCode
@@ -146,7 +146,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
     }
     if(review.userId !== req.user.id){
         res.statusCode = 403;
-       res.json ({
+     return  res.json ({
             "message": "Forbidden, you can not add a image to a review you didnt create",
             "statusCode": res.statusCode
           })
@@ -157,7 +157,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
     })
     if(reviewImages.length > 9){
         res.statusCode = 403;
-        res.json({
+      return  res.json({
 
                 "message": "Maximum number of images for this resource was reached",
                 "statusCode": res.statusCode
@@ -172,7 +172,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 })
 
 
-    res.json({id: newReviewImage.id,
+   return res.json({id: newReviewImage.id,
         url: newReviewImage.url})
 
 });
@@ -188,7 +188,7 @@ router.put('/:reviewId', validateUpdatedReview, requireAuth, async(req, res, nex
 
         if(!updateReview){
             res.statusCode = 404;
-            res.json({
+          return  res.json({
                 "message": "Review couldn't be found",
                 "statusCode":  res.statusCode
             })
@@ -206,7 +206,7 @@ router.put('/:reviewId', validateUpdatedReview, requireAuth, async(req, res, nex
         updateReview.review = review;
         updateReview.stars = stars;
         updateReview.save()
-res.json(updateReview)
+return res.json(updateReview)
 })
 
 
@@ -235,7 +235,7 @@ router.delete('/:reviewId',requireAuth, async(req,res,next)=> {
 
     review.destroy();
     res.statusCode = 200;
-   res.json({
+   return res.json({
     message: "Successfully deleted",
     statusCode: res.statusCode
    })

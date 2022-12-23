@@ -112,7 +112,7 @@ for(let i = 0; i < Bookings.length; i++){
 //  })
 //  Bookings = bookingsList
 //  console.log(Bookings, 'here')
-    res.json({
+    return res.json({
         Bookings,
 
     })
@@ -127,7 +127,7 @@ const {startDate, endDate} = req.body
 
     if(!updateBooking){
         res.statusCode = 404;
-        res.json({
+       return res.json({
             "message": "Booking couldn't be found",
             "statusCode": res.statusCode
           })
@@ -138,7 +138,7 @@ const {startDate, endDate} = req.body
     // console.log(currentUser, 'herer')
     if(userId !== currentUser){
         res.statusCode = 401;
-        res.json({
+       return res.json({
 
                 "message": "You can only modify your bookings",
                 "statusCode": res.statusCode
@@ -150,7 +150,7 @@ const {startDate, endDate} = req.body
     const currentEndDate = updateBooking.endDate
     if(currentEndDate.getTime() < date.getTime()){
         res.statusCode = 400;
-        res.json({
+      return  res.json({
 
                 "message": "Past bookings can't be modified",
                 "statusCode": res.statusCode
@@ -161,7 +161,7 @@ const {startDate, endDate} = req.body
     let endDateNumber = new Date(endDate)
     if(startDateNumber.getTime() > endDateNumber.getTime()){
         res.statusCode = 400;
-        res.json({
+      return  res.json({
             "message": "Validation error",
             "statusCode": res.statusCode,
             "errors": {
@@ -254,7 +254,7 @@ console.log(req.user.id)
 const deleteBooking = await Booking.findByPk(bookingId);
 if(!deleteBooking){
     res.statusCode = 404;
-    res.json({
+   return res.json({
         "message": "Booking couldn't be found",
         "statusCode": res.statusCode
       })
