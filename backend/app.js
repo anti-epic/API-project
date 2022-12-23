@@ -93,14 +93,11 @@ if (!isProduction) {
         errors = {"username" : resBody.errors.username}
       }
       resBody.errors = {errors}
-      console.log('herer',resBody.errors)
+      // console.log('herer',resBody.errors)
           return     res.json({
         "message" : resBody.message,
         "statusCode" : resBody.statusCode,
-        errors
-
-
-        // stack: isProduction ? null : err.stack
+        // errorsstack: isProduction ? null : err.stack
       });
     }
     console.log(err)
