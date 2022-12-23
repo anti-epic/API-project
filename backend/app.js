@@ -100,7 +100,7 @@ if (!isProduction) {
         // errorsstack: isProduction ? null : err.stack
       });
     }
-    console.log(err)
+    // console.log(err)
     let errors = {}
 
     for(let i = 0; i < err.errors.length; i++){
