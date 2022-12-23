@@ -75,34 +75,34 @@ if (!isProduction) {
 
     console.error(err);
     let resBody = {}
-    if(!err.status){
-      // err.errors = []
-      resBody.message = "User already exists";
-      resBody.statusCode = 403;
-      // console.log(err)
-      resBody.errors = {[err.fields]: err.errors[0]};
-      // console.log(resBody.errors.email)
-      let errors = {}
-      if(resBody.errors.email){
-        // console.log('in')
-        errors = {"email" :resBody.errors.email}
+    // if(!err.status){
+    //   // err.errors = []
+    //   resBody.message = "User already exists";
+    //   resBody.statusCode = 403;
+    //   // console.log(err)
+    //   resBody.errors = {[err.fields]: err.errors[0]};
+    //   // console.log(resBody.errors.email)
+    //   let errors = {}
+    //   if(resBody.errors.email){
+    //     // console.log('in')
+    //     errors = {"email" :resBody.errors.email}
 
-      }
-      if(resBody.errors.username){
-        // console.log('in')
-        errors = {"username" : resBody.errors.username}
-      }
-      resBody.errors = {errors}
-      console.log('herer',resBody.errors)
-          return     res.json({
-        "message" : resBody.message,
-        "statusCode" : resBody.statusCode,
-        errors
+    //   }
+    //   if(resBody.errors.username){
+    //     // console.log('in')
+    //     errors = {"username" : resBody.errors.username}
+    //   }
+    //   resBody.errors = {errors}
+    //   console.log('herer',resBody.errors)
+    //       return     res.json({
+    //     "message" : resBody.message,
+    //     "statusCode" : resBody.statusCode,
+    //     errors
 
 
-        // stack: isProduction ? null : err.stack
-      });
-    }
+    //     // stack: isProduction ? null : err.stack
+    //   });
+    // }
     console.log(err)
     let errors = {}
 
