@@ -202,9 +202,9 @@ router.post('/:spotId/reviews',validateReview, requireAuth, async(req, res, next
 
     const newReview = await Review.create({review, stars, spotId,userId})
     res.statusCode = 201;
-   return res.json({
+   return res.json(
         newReview
-    })
+    )
 })
 
 
@@ -431,6 +431,9 @@ if(minPrice && maxPrice){
    limit: size,
     offset: (page - 1) * size
 });
+if(!spots){
+    return res.json({error:"no spots yet"})
+}
 let spotsList = [];
 spots.forEach(spot => {
     spotsList.push(spot.toJSON())
@@ -738,7 +741,7 @@ router.get('/:spotId/bookings',requireAuth, async (req, res, next) => {
     // console.log(req.user.id)
 
     const userId = req.user.id;
-    const Bookings = await  Booking.findAll({
+    let Bookings = await  Booking.findAll({
         attributes: {exclude: ['userId','createdAt', 'updatedAt','id']},
         where: {
             spotId: spotId
@@ -766,17 +769,37 @@ router.get('/:spotId/bookings',requireAuth, async (req, res, next) => {
 
         })
     }
-    const ownersBookingsInfo = await  Booking.findAll({
+   let ownersBookingsInfo = await  Booking.findAll({
 
         where: {
             spotId: spotId
-        },
-    })
-    const owner = await User.findOne({spotOwner,
-    attributes: ['id','firstName', 'lastName']})
+        }
 
+})
+console.log('here')
+ownersBookingsInfo.forEach(booking => {
+    console.log(booking.dataValues.userId)
+
+
+})
+
+for(let i = 0; i < ownersBookingsInfo.length; i++){
+   let currentBookingUserId = ownersBookingsInfo[i].dataValues.userId;
+    let userInfo = await User.findByPk(currentBookingUserId, {
+        attributes: ['id', 'firstName', 'lastName']
+    });
+
+
+    ownersBookingsInfo[i].dataValues.User = userInfo.dataValues;
+
+}
+
+        console.log('here')
+    Bookings = ownersBookingsInfo;
+    // Bookings[0].User.push(owner)
+    // console.log(Bookings[0])
     if(spotOwner === userId){
-       return res.json({ owner, ownersBookingsInfo})
+       return res.json({Bookings})
     }
 
 })
