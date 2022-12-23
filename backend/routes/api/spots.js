@@ -194,15 +194,15 @@ const validateSpot = [
 
        let spots = await Spot.findAll({
         // where,
-    //     include: [{
-    //         model: Review,
-    //         attributes: ['stars']
+        include: [{
+            model: Review,
+            attributes: ['stars']
 
-    //    },
-        // {model: SpotImage}
-    // ],
-    //    limit: size,
-    //     offset: (page - 1) * size
+       },
+        {model: SpotImage}
+    ],
+       limit: size,
+        offset: (page - 1) * size
     });
     // if(!spots){
     //     return res.json({error:"no spots yet"})
