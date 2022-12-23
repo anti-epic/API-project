@@ -213,7 +213,7 @@ const validateSpot = [
     let count = 0;
     spotsList.forEach(spot => {
         spot.SpotImages.forEach(image => {
-            console.log(image.url)
+            // console.log(image.url)
             if(!image.preview){
                 spot.previewImage = "no preview image found"
             }
@@ -224,7 +224,7 @@ const validateSpot = [
         })
     // console.log(spot.Reviews)
     spot.Reviews.forEach(review => {
-        console.log(review.stars)
+        // console.log(review.stars)
         if(review.stars){
             count++
             avg += Number(review.stars)
@@ -252,9 +252,9 @@ const validateSpot = [
 
     spots = spotsList
        return res.json({
-            spotsList,
-        //     page,
-        // size
+        spots,
+            page,
+        size
     })
 
     })
