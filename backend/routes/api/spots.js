@@ -561,7 +561,8 @@ if(!spot.dataValues.previewImage){
 
 
 delete spotsList.Reviews
-return res.json({spotsList})
+let Spots = spotsList
+return res.json({Spots})
 
 
 
