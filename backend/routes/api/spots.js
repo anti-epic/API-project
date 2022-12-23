@@ -125,70 +125,70 @@ const validateSpot = [
   ];
 
 
-//   validateQuery,
-  router.get('/',  async(req, res, next)=> {
 
-    // let {page , size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+  router.get('/',validateQuery, async(req, res, next)=> {
 
-    // const where = {};
-    // page = parseInt(page);
-    // size = parseInt(size);
-    // if (Number.isNaN(page)) page = 0;
-    // if (Number.isNaN(size)) size = 20;
-    // if(page > 10) page = 10;
-    // if(size > 20) size = 20;
+    let {page , size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
 
-
-
-    // if(minLat){
-    //     minLat =  Number(minLat);
-    //     where.lat = {[Op.gte]: minLat}
-    // }
-
-    // if(maxLat){
-    //     maxLat =  Number(maxLat);
-    //     where.lat = { [Op.lte]: maxLat}
-    // }
-
-
-    // if(minLat && maxLat){
-    //     where.lat =   {[Op.between]: [minLat, maxLat]}
-    // }
+    const where = {};
+    page = parseInt(page);
+    size = parseInt(size);
+    if (Number.isNaN(page)) page = 0;
+    if (Number.isNaN(size)) size = 20;
+    if(page > 10) page = 10;
+    if(size > 20) size = 20;
 
 
 
+    if(minLat){
+        minLat =  Number(minLat);
+        where.lat = {[Op.gte]: minLat}
+    }
 
-    // if(minLng){
-    //     minLng =  Number(minLng);
-    //     where.lng = {[Op.gte]: minLng}
-    // }
-
-    // if(maxLng){
-    //     maxLng =  Number(maxLng);
-    //     where.lng = { [Op.lte]: maxLng}
-    // }
+    if(maxLat){
+        maxLat =  Number(maxLat);
+        where.lat = { [Op.lte]: maxLat}
+    }
 
 
-    // if(minLng && maxLng){
-    //     where.lng =   {[Op.between]: [minLng, maxLng]}
-    // }
+    if(minLat && maxLat){
+        where.lat =   {[Op.between]: [minLat, maxLat]}
+    }
 
 
 
 
+    if(minLng){
+        minLng =  Number(minLng);
+        where.lng = {[Op.gte]: minLng}
+    }
 
-    // if(minPrice){
-    //     minPrice =  Number(minPrice);
-    //     where.price = {[Op.gte]:minPrice}
-    // }
+    if(maxLng){
+        maxLng =  Number(maxLng);
+        where.lng = { [Op.lte]: maxLng}
+    }
 
-    // if(maxPrice){
-    //    maxPrice =  Number(maxPrice);
-    //     where.price = {[Op.lte] : maxPrice}
-    // }
-    // if(minPrice && maxPrice){
-    //     where.Price =   {[Op.between]: [minPrice, maxPrice]}
-    // }
+
+    if(minLng && maxLng){
+        where.lng =   {[Op.between]: [minLng, maxLng]}
+    }
+
+
+
+
+
+    if(minPrice){
+        minPrice =  Number(minPrice);
+        where.price = {[Op.gte]:minPrice}
+    }
+
+    if(maxPrice){
+       maxPrice =  Number(maxPrice);
+        where.price = {[Op.lte] : maxPrice}
+    }
+    if(minPrice && maxPrice){
+        where.Price =   {[Op.between]: [minPrice, maxPrice]}
+    }
 
 
 
@@ -201,8 +201,8 @@ const validateSpot = [
        },
         {model: SpotImage}
     ],
-    //    limit: size,
-    //     offset: (page - 1) * size
+       limit: size,
+        offset: (page - 1) * size
     });
 
     let spotsList = [];
@@ -213,7 +213,7 @@ const validateSpot = [
     let count = 0;
     spotsList.forEach(spot => {
         spot.SpotImages.forEach(image => {
-            // console.log(image.url)
+            console.log(image.url)
             if(!image.preview){
                 spot.previewImage = "no preview image found"
             }
@@ -224,11 +224,13 @@ const validateSpot = [
         })
     // console.log(spot.Reviews)
     spot.Reviews.forEach(review => {
-        if(review.stars !== undefined){
+        console.log(review.stars)
+        if(review.stars){
             count++
             avg += Number(review.stars)
         }
     })
+
         if(!spot.previewImage){
             spot.previewImage = "no preview image found"
         }
@@ -244,13 +246,13 @@ const validateSpot = [
     delete spot.SpotImages
     delete spot.Reviews
     })
-    console.log(spotsList[0].SpotImages[0].previewImage)
-       const allSpots = User.findAll();
+    // console.log(spotsList[0].SpotImages[0].previewImage)
+    //    const allSpots = User.findAll();
 
 
     spots = spotsList
        return res.json({
-            spots,
+            spotsList,
         //     page,
         // size
     })
