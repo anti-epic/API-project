@@ -67,6 +67,7 @@ const validateSpot = [
 
 
 
+
 router.post('/:spotId/reviews',validateReview, requireAuth, async(req, res, next)=> {
     const {spotId} = req.params;
     const {review, stars} = req.body
@@ -645,6 +646,8 @@ let reviewImages
 let Reviews = reviews
     res.json({Reviews})
 })
+
+
 
 
 module.exports = router;
