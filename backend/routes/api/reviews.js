@@ -147,7 +147,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
     if(review.userId !== req.user.id){
         res.statusCode = 403;
        res.json ({
-            "message": "Forbidden",
+            "message": "Forbidden, you can not add a image to a review you didnt create",
             "statusCode": res.statusCode
           })
     }

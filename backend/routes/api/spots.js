@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router();
 const {requireAuth } = require('../../utils/auth');
-const { check } = require('express-validator');
+const { check, query } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-
+const { Op } = require("sequelize");
 const { Spot, Review, SpotImage, User, Booking, ReviewImage } = require('../../db/models');
 
 
@@ -77,6 +77,57 @@ const validateSpot = [
 
     handleValidationErrors
   ];
+
+
+
+  const validateQuery = [
+    query('page')
+      .exists({ checkFalsy : true})
+      .optional({nullable: true})
+      .isFloat({ min: 0})
+      .withMessage('Page must be greater than or equal to 0'),
+    query('size')
+      .exists({ checkFalsy : false})
+      .optional({nullable: true})
+      .isFloat({ min: 0})
+      .withMessage('Size must be greater than or equal to 0'),
+    query('maxLat')
+      .exists({ checkFalsy : true })
+      .optional({nullable: true})
+      .isFloat()
+      .withMessage('Maximum latitude is invalid'),
+    query('minLat')
+      .exists({ checkFalsy : true })
+      .optional({nullable: true})
+      .isFloat()
+      .withMessage('Minimum latitude is invalid'),
+    query('maxLng')
+      .exists({ checkFalsy : true })
+      .optional({nullable: true})
+      .isFloat()
+      .withMessage('Maximum longitude is invalid'),
+      query('minLng')
+      .exists({ checkFalsy : true})
+      .optional({nullable: true})
+      .isFloat()
+      .withMessage('Minimum longitude is invalid'),
+    query('minPrice')
+      .exists({ checkFalsy : true })
+      .optional({nullable: true})
+      .isFloat({ min: 0})
+      .withMessage('Maximum price must be greater than or equal to 0'),
+    query('maxPrice')
+      .exists({ checkFalsy : true })
+      .optional({nullable: true})
+      .isFloat({ min: 0})
+      .withMessage('Minimum price must be greater than or equal to 0'),
+    handleValidationErrors
+  ];
+
+
+
+
+
 
 
 router.post('/:spotId/images', validateImage,requireAuth, async(req,res,next)=> {
@@ -161,7 +212,7 @@ router.post('/:spotId/reviews',validateReview, requireAuth, async(req, res, next
 
 
 
-  router.post('/:spotId/bookings',handleValidationErrors, async (req, res, next) => {
+  router.post('/:spotId/bookings',handleValidationErrors,requireAuth, async (req, res, next) => {
     const {spotId} = req.params;
     const userId = req.user.id
     const spot = await Spot.findByPk(spotId)
@@ -297,13 +348,88 @@ if(newStartExactTime > newEndExactTime){
 
 
 
-router.get('/', async(req, res, next)=> {
-   const spots = await Spot.findAll({
+router.get('/', validateQuery, async(req, res, next)=> {
+
+let {page , size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+
+const where = {};
+page = parseInt(page);
+size = parseInt(size);
+if (Number.isNaN(page)) page = 0;
+if (Number.isNaN(size)) size = 20;
+if(page > 10) page = 10;
+if(size > 20) size = 20;
+
+
+
+if(minLat){
+    minLat =  Number(minLat);
+    where.lat = {[Op.gte]: minLat}
+}
+
+if(maxLat){
+    maxLat =  Number(maxLat);
+    where.lat = { [Op.lte]: maxLat}
+}
+
+
+if(minLat && maxLat){
+    where.lat =   {[Op.between]: [minLat, maxLat]}
+}
+
+
+
+
+if(minLng){
+    minLng =  Number(minLng);
+    where.lng = {[Op.gte]: minLng}
+}
+
+if(maxLng){
+    maxLng =  Number(maxLng);
+    where.lng = { [Op.lte]: maxLng}
+}
+
+
+if(minLng && maxLng){
+    where.lng =   {[Op.between]: [minLng, maxLng]}
+}
+
+
+
+
+
+if(minPrice){
+    minPrice =  Number(minPrice);
+    where.price = {[Op.gte]:minPrice}
+}
+
+if(maxPrice){
+   maxPrice =  Number(maxPrice);
+    where.price = {[Op.lte] : maxPrice}
+}
+if(minPrice && maxPrice){
+    where.Price =   {[Op.between]: [minPrice, maxPrice]}
+}
+
+
+
+
+
+
+
+
+
+
+   let spots = await Spot.findAll({
+    where,
     include: [{
         model: Review,
         attributes: ['stars']
 
-   },  {model: SpotImage}]
+   },  {model: SpotImage}],
+   limit: size,
+    offset: (page - 1) * size
 });
 let spotsList = [];
 spots.forEach(spot => {
@@ -343,7 +469,13 @@ delete spot.Reviews
 })
 // console.log(spotsList[0].SpotImages[0].previewImage)
 //    const allSpots = User.findAll();
-    res.json({spotsList})
+
+
+spots = spotsList
+    res.json({
+        spots,
+        page,
+    size})
 
 })
 
@@ -363,7 +495,7 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) =>{
 })
 
 
-router.get('/current', async (req, res, next) => {
+router.get('/current', requireAuth, async (req, res, next) => {
     const spots = await Spot.findAll({
         include: [{
             model: Review,
@@ -502,13 +634,13 @@ const {id} = req.params;
 deleteSpot = await Spot.findByPk(id)
 if(!deleteSpot){
     res.statusCode = 404;
-    res.json({
+    return res.json({
         "message": "Spot couldn't be found",
         "statusCode": res.statusCode
       })
 }
-console.log(deleteSpot.ownerId)
-console.log(req.user.id)
+// console.log(deleteSpot.ownerId)
+// console.log(req.user.id)
 if(deleteSpot.ownerId === req.user.id){
     await deleteSpot.destroy();
   return  res.json({message : "Successfully deleted",
@@ -517,7 +649,7 @@ if(deleteSpot.ownerId === req.user.id){
 
 
 res.statusCode = 403;
-res.json({error: "you do not have access to editing a spot you are not the owner of",
+return res.json({error: "you do not have access to editing a spot you are not the owner of",
 statusCode: res.statusCode})
 })
 

@@ -38,7 +38,7 @@ router.get('/current', requireAuth,  async (req ,res ,next) => {
             model: Spot,
             attributes: {exclude:['createdAt', 'updatedAt', 'description']},
 
-       
+
 
         },
     })
@@ -259,12 +259,19 @@ if(!deleteBooking){
         "statusCode": res.statusCode
       })
 }
-const currentUser = req.user.id
-if(Number(deleteBooking.userId) !== currentUser){
-    res.statusCode = 401;
-    res.json({
 
-            "message": "You can only delete your bookings",
+const spotId = deleteBooking.dataValues.spotId
+const spot = await Spot.findByPk(spotId);
+const spotOwner = spot.dataValues.ownerId
+const currentUser = req.user.id
+const bookingUserId = deleteBooking.userId
+
+// console.log(spotOwner, currentUser, bookingUserId)
+if(bookingUserId !== currentUser && currentUser !== spotOwner){
+    res.statusCode = 401;
+  return  res.json({
+
+            "message": "You can only delete your bookings / or if you are the owner of the spot",
             "statusCode": res.statusCode
 
     })
@@ -275,7 +282,7 @@ if(Number(deleteBooking.userId) !== currentUser){
     // console.log(currentDate), 'HERE'
     if(startDate < currentDate){
         res.statusCode = 403;
-        res.json({
+      return  res.json({
             "message": "Bookings that have been started can't be deleted",
             "statusCode": res.statusCode
         })
@@ -283,7 +290,7 @@ if(Number(deleteBooking.userId) !== currentUser){
 
 
 
-
+console.log(spotOwner, currentUser, deleteBooking.userId)
 deleteBooking.destroy()
 res.statusCode = 200;
 return res.json({
