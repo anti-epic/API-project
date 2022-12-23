@@ -31,7 +31,7 @@ const validateSignup = [
     check('lastName')
       .exists({ checkFalsy: true })
       .isLength({ min: 1 })
-      .withMessage('First Name must be atleast one letter'),
+      .withMessage('Last Name must be atleast one letter'),
     handleValidationErrors
   ];
 
@@ -44,7 +44,11 @@ router.post('/', validateSignup, async (req, res) => {
       await setTokenCookie(res, user);
 
       return res.json({
-        user: user
+        "id": user.id,
+        "firstName": user.firstName,
+        "lastName": user.lastName,
+        "email": user.email,
+        "username": user.username
       });
     });
 

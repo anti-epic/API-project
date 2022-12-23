@@ -12,10 +12,10 @@ const validateLogin = [
     check('credential')
       .exists({ checkFalsy: true })
       .notEmpty()
-      .withMessage('Please provide a valid email or username.'),
+      .withMessage('Email or username is required'),
     check('password')
       .exists({ checkFalsy: true })
-      .withMessage('Please provide a password.'),
+      .withMessage('Password is required'),
     handleValidationErrors
   ];
 
@@ -23,7 +23,7 @@ const validateLogin = [
 // Log in
 router.post('/', validateLogin, async (req, res, next) => {
       const { credential, password } = req.body;
-
+  // console.log(credential)
       const user = await User.login({ credential, password });
 
       if (!user) {
@@ -31,17 +31,18 @@ router.post('/', validateLogin, async (req, res, next) => {
         err.status = 401;
         err.title = 'Login failed';
         err.errors = ['The provided credentials were invalid.'];
-        return next(err);
+        return next();
       }
 
       await setTokenCookie(res, user);
 
       return res.json({
-        user: user
-      });
+     user
+
+});
     });
 
-    
+
 
 // Log out
 router.delete('/', (_req, res) => {
@@ -52,12 +53,24 @@ router.delete('/', (_req, res) => {
 
  router.get('/', restoreUser, (req, res) => {
   const { user } = req;
+
+
   if (user) {
+    // console.log(req.cookies.token)
+      let cookie = req.cookies.token
+  // console.log(cookie)
+
     return res.json({
-      user: user.toSafeObject()
+      user: user.toSafeObject(),
+      token: cookie
     });
   }
-  else return res.json({ user: null });
+  else {
+    res.statusCode = 401
+  return  res.json({
+
+    "message": "Authentication required",
+  "statusCode": 401 })}
 });
 
 

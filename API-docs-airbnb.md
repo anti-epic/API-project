@@ -95,7 +95,7 @@ information.
   * Method: POST
   * URL: /api/session
   * Headers:
-    * Content-Type: application/json
+    * Content-Type: html/plain
   * Body:
 
     ```json
