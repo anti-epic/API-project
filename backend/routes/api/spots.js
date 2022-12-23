@@ -427,7 +427,8 @@ if(minPrice && maxPrice){
         model: Review,
         attributes: ['stars']
 
-   },  {model: SpotImage}],
+   },
+    {model: SpotImage}],
    limit: size,
     offset: (page - 1) * size
 });
@@ -443,7 +444,10 @@ let count = 0;
 spotsList.forEach(spot => {
     spot.SpotImages.forEach(image => {
         // console.log(image.url)
-        if(image.preview === true){
+        if(!image.preview){
+            spot.previewImage = "no preview image found"
+        }
+        else if(image.preview === true){
             // console.log('in')
             spot.previewImage = image.url
         }
@@ -510,7 +514,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
         where: { ownerId : req.user.dataValues.id }
     })
 
-console.log('in it')
+
 let spotsList = spots
 
 // console.log(spotsList)
