@@ -4,7 +4,7 @@ const {requireAuth } = require('../../utils/auth');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
-const { Spot, Review, SpotImage, User, Booking } = require('../../db/models');
+const { Spot, Review, SpotImage, User, Booking, ReviewImage } = require('../../db/models');
 
 
 
@@ -595,6 +595,56 @@ router.get('/:spotId/bookings',requireAuth, async (req, res, next) => {
 
 })
 
+
+
+
+router.get('/:spotId/reviews', async (req,res,next) => {
+
+    const {spotId} = req.params;
+    console.log(spotId)
+    let reviews = await Review.findAll({
+
+        where: {
+            spotId: spotId
+        },
+    })
+
+let user
+let reviewImages
+    for(let i = 0; i < reviews.length; i++){
+
+        let currReview = reviews[i];
+        console.log(currReview.dataValues)
+        let currUser = reviews[i].dataValues.userId
+        // console.log(currReview)
+        user = await User.findByPk(currUser, {
+            attributes: ['id', 'firstName', 'lastName']
+        })
+
+        currReview.dataValues.User = user.dataValues
+        // console.log(user.dataValues)
+
+        reviewImages = await ReviewImage.findAll({
+            where: {
+                reviewId: currReview.dataValues.id
+            }, attributes: ['id', 'url']
+        })
+        currReview.dataValues.ReviewImages = reviewImages
+
+    }
+
+
+    // console.log(reviews)
+    if(reviews.length === 0){
+        res.statusCode = 404;
+        res.json({
+            message: "Spot couldn't be found",
+            statusCode: res.statusCode
+        })
+    }
+let Reviews = reviews
+    res.json({Reviews})
+})
 
 
 module.exports = router;
