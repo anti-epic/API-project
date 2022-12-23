@@ -48,7 +48,8 @@ const {id} = req.user
 console.log(id)
     const Reviews = await Review.findAll({
         where: {userId: id},
-        include: {model: ReviewImage}
+        include: {model: ReviewImage,
+        attributes: ['id', 'url']}
 
     })
     const userInfo = await User.findByPk(id, {
@@ -109,6 +110,7 @@ let spots
    delete Reviews[i].dataValues.Spot.dataValues.createdAt
    delete Reviews[i].dataValues.Spot.dataValues.updatedAt
    delete Reviews[i].dataValues.Spot.dataValues.description
+
         })
 
 

@@ -65,7 +65,58 @@ const validateSpot = [
   ];
 
 
+  const validateImage = [
+    check('url')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 1 })
+      .withMessage('needs a image url'),
+    check('preview')
+      .exists({ checkFalsy: true })
+      .isBoolean()
+      .withMessage('needs to be true or false'),
 
+    handleValidationErrors
+  ];
+
+
+router.post('/:spotId/images', validateImage,requireAuth, async(req,res,next)=> {
+    const {spotId} = req.params;
+    const {url, preview} = req.body
+    let spot = await Spot.findByPk(spotId)
+
+    if(!spot){
+        res.statusCode = 404;
+       return res.json({
+            message: "Spot couldn't be found",
+            statusCode:  res.statusCode
+        })
+    }
+    // console.log(spot.dataValues.ownerId)
+    let currUser = req.user.id
+    // console.log(currUser)
+    let ownerId = spot.dataValues.ownerId;
+
+    if(currUser !== ownerId){
+        res.statusCode = 401;
+        return res.json({
+            message: "You must be the owner of the spot to add a image",
+            statusCode: res.statusCode
+        })
+    }
+    const spotImage = await SpotImage.create({
+        spotId,
+        url,
+        preview
+    })
+
+    res.json({
+        id: spotImage.id,
+        url: spotImage.url,
+        preview: spotImage.preview
+
+    })
+
+})
 
 
 router.post('/:spotId/reviews',validateReview, requireAuth, async(req, res, next)=> {
