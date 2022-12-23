@@ -7,6 +7,20 @@ const { handleValidationErrors } = require('../../utils/validation');
 const { Spot, Review, SpotImage, User, ReviewImage } = require('../../db/models');
 
 
+const validateUpdatedReview = [
+    check('review')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 1 })
+      .withMessage('Review text is required'),
+    check('stars')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 1, max:5 })
+      .withMessage('Stars must be an integer from 1 to 5'),
+
+    handleValidationErrors
+  ];
+
+
 
 
 
@@ -160,6 +174,38 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
         url: newReviewImage.url})
 
 });
+
+
+
+router.put('/:reviewId', validateUpdatedReview, requireAuth, async(req, res, next) => {
+    const { reviewId } = req.params
+    const {review, stars} = req.body
+    const currentUser = req.user.id
+    console.log(reviewId, currentUser)
+        let updateReview = await Review.findByPk(reviewId);
+
+        if(!updateReview){
+            res.statusCode = 404;
+            res.json({
+                "message": "Review couldn't be found",
+                "statusCode":  res.statusCode
+            })
+        }
+        let reviewOwner = updateReview.dataValues.userId
+        // console.log(updateReview.dataValues.userId)
+        if(currentUser !==  reviewOwner){
+            res.statusCode = 403;
+           return res.json({
+                "message": "You can not modify a review you did not make",
+                statusCode: res.statusCode
+
+            })
+        }
+        updateReview.review = review;
+        updateReview.stars = stars;
+        updateReview.save()
+res.json({updateReview})
+})
 
 
 
