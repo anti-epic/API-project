@@ -14,7 +14,7 @@ const validateUpdatedReview = [
       .withMessage('Review text is required'),
     check('stars')
       .exists({ checkFalsy: true })
-      .isLength({ min: 1, max:5 })
+      .isFloat({ min: 1, max: 5 })
       .withMessage('Stars must be an integer from 1 to 5'),
 
     handleValidationErrors
@@ -47,7 +47,7 @@ router.get('/current', requireAuth, async(req,res,next) =>{
 const {id} = req.user
 console.log(id)
     const Reviews = await Review.findAll({
-        where: {userid: id},
+        where: {userId: id},
         include: {model: ReviewImage}
 
     })
@@ -204,7 +204,7 @@ router.put('/:reviewId', validateUpdatedReview, requireAuth, async(req, res, nex
         updateReview.review = review;
         updateReview.stars = stars;
         updateReview.save()
-res.json({updateReview})
+res.json(updateReview)
 })
 
 
