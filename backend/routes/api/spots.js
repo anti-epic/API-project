@@ -428,7 +428,8 @@ if(minPrice && maxPrice){
         attributes: ['stars']
 
    },
-    {model: SpotImage}],
+    // {model: SpotImage}
+],
    limit: size,
     offset: (page - 1) * size
 });
@@ -442,16 +443,16 @@ spots.forEach(spot => {
 let avg = 0;
 let count = 0;
 spotsList.forEach(spot => {
-    spot.SpotImages.forEach(image => {
-        // console.log(image.url)
-        if(!image.preview){
-            spot.previewImage = "no preview image found"
-        }
-        else if(image.preview === true){
-            // console.log('in')
-            spot.previewImage = image.url
-        }
-    })
+    // spot.SpotImages.forEach(image => {
+    //     // console.log(image.url)
+    //     if(!image.preview){
+    //         spot.previewImage = "no preview image found"
+    //     }
+    //     else if(image.preview === true){
+    //         // console.log('in')
+    //         spot.previewImage = image.url
+    //     }
+    // })
 // console.log(spot.Reviews)
 spot.Reviews.forEach(review => {
     if(review.stars !== undefined){
@@ -471,7 +472,7 @@ spot.Reviews.forEach(review => {
     avg = 0;
     count = 0;
 // console.log(spotsList);
-delete spot.SpotImages
+// delete spot.SpotImages
 delete spot.Reviews
 })
 // console.log(spotsList[0].SpotImages[0].previewImage)
