@@ -423,13 +423,13 @@ if(minPrice && maxPrice){
 
    let spots = await Spot.findAll({
     where,
-    include: [{
-        model: Review,
-        attributes: ['stars']
+//     include: [{
+//         model: Review,
+//         attributes: ['stars']
 
-   },
+//    },
     // {model: SpotImage}
-],
+// ],
    limit: size,
     offset: (page - 1) * size
 });
