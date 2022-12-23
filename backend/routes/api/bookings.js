@@ -178,6 +178,14 @@ const {startDate, endDate} = req.body
 
     })
 
+
+
+    // if(!allBookingsForSpot){
+    //     res.json({err:'no bookings here'})
+    // }
+
+
+
     allBookingsForSpot.forEach(booking => {
 
         // console.log(bookedEnd,bookedStart)
