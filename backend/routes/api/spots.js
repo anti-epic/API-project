@@ -125,12 +125,11 @@ const validateSpot = [
   ];
 
 
-//   validateQuery,
-  router.get('/', async(req, res, next)=> {
+  router.get('/',  validateQuery, async(req, res, next)=> {
 
-    // let {page , size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+    let {page , size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
 
-    // const where = {};
+    const where = {};
     // page = parseInt(page);
     // size = parseInt(size);
     // if (Number.isNaN(page)) page = 0;
@@ -140,60 +139,60 @@ const validateSpot = [
 
 
 
-    // if(minLat){
-    //     minLat =  Number(minLat);
-    //     where.lat = {[Op.gte]: minLat}
-    // }
+    if(minLat){
+        minLat =  Number(minLat);
+        where.lat = {[Op.gte]: minLat}
+    }
 
-    // if(maxLat){
-    //     maxLat =  Number(maxLat);
-    //     where.lat = { [Op.lte]: maxLat}
-    // }
-
-
-    // if(minLat && maxLat){
-    //     where.lat =   {[Op.between]: [minLat, maxLat]}
-    // }
+    if(maxLat){
+        maxLat =  Number(maxLat);
+        where.lat = { [Op.lte]: maxLat}
+    }
 
 
-
-
-    // if(minLng){
-    //     minLng =  Number(minLng);
-    //     where.lng = {[Op.gte]: minLng}
-    // }
-
-    // if(maxLng){
-    //     maxLng =  Number(maxLng);
-    //     where.lng = { [Op.lte]: maxLng}
-    // }
-
-
-    // if(minLng && maxLng){
-    //     where.lng =   {[Op.between]: [minLng, maxLng]}
-    // }
+    if(minLat && maxLat){
+        where.lat =   {[Op.between]: [minLat, maxLat]}
+    }
 
 
 
 
+    if(minLng){
+        minLng =  Number(minLng);
+        where.lng = {[Op.gte]: minLng}
+    }
 
-    // if(minPrice){
-    //     minPrice =  Number(minPrice);
-    //     where.price = {[Op.gte]:minPrice}
-    // }
+    if(maxLng){
+        maxLng =  Number(maxLng);
+        where.lng = { [Op.lte]: maxLng}
+    }
 
-    // if(maxPrice){
-    //    maxPrice =  Number(maxPrice);
-    //     where.price = {[Op.lte] : maxPrice}
-    // }
-    // if(minPrice && maxPrice){
-    //     where.Price =   {[Op.between]: [minPrice, maxPrice]}
-    // }
+
+    if(minLng && maxLng){
+        where.lng =   {[Op.between]: [minLng, maxLng]}
+    }
+
+
+
+
+
+    if(minPrice){
+        minPrice =  Number(minPrice);
+        where.price = {[Op.gte]:minPrice}
+    }
+
+    if(maxPrice){
+       maxPrice =  Number(maxPrice);
+        where.price = {[Op.lte] : maxPrice}
+    }
+    if(minPrice && maxPrice){
+        where.Price =   {[Op.between]: [minPrice, maxPrice]}
+    }
 
 
 
        let spots = await Spot.findAll({
-        // where,
+        where,
         include: [{
             model: Review,
             attributes: ['stars']
@@ -204,50 +203,48 @@ const validateSpot = [
     //    limit: size,
     //     offset: (page - 1) * size
     });
-    // if(!spots){
-    //     return res.json({error:"no spots yet"})
-    // }
-    // let spotsList = [];
-    // spots.forEach(spot => {
-    //     spotsList.push(spot.toJSON())
-    // })
-    // let avg = 0;
-    // let count = 0;
-    // spotsList.forEach(spot => {
-    //     spot.SpotImages.forEach(image => {
-    //         // console.log(image.url)
-    //         if(!image.preview){
-    //             spot.previewImage = "no preview image found"
-    //         }
-    //         else if(image.preview === true){
-    //             // console.log('in')
-    //             spot.previewImage = image.url
-    //         }
-    //     })
-    // // console.log(spot.Reviews)
-    // spot.Reviews.forEach(review => {
-    //     if(review.stars !== undefined){
-    //         count++
-    //         avg += Number(review.stars)
-    //     }
-    // })
-    //     if(!spot.previewImage){
-    //         spot.previewImage = "no preview image found"
-    //     }
-    //     if(count === 0){
-    //         spot.avgRating ="no reviews on this spot yet"
-    //     }
-    //     else {
-    //         spot.avgRating = avg / count;
-    //     }
-    //     avg = 0;
-    //     count = 0;
-    // // console.log(spotsList);
-    // delete spot.SpotImages
-    // delete spot.Reviews
-    // })
-    // console.log(spotsList[0].SpotImages[0].previewImage)
-    //    const allSpots = User.findAll();
+
+    let spotsList = [];
+    spots.forEach(spot => {
+        spotsList.push(spot.toJSON())
+    })
+    let avg = 0;
+    let count = 0;
+    spotsList.forEach(spot => {
+        spot.SpotImages.forEach(image => {
+            // console.log(image.url)
+            if(!image.preview){
+                spot.previewImage = "no preview image found"
+            }
+            else if(image.preview === true){
+                // console.log('in')
+                spot.previewImage = image.url
+            }
+        })
+    // console.log(spot.Reviews)
+    spot.Reviews.forEach(review => {
+        if(review.stars !== undefined){
+            count++
+            avg += Number(review.stars)
+        }
+    })
+        if(!spot.previewImage){
+            spot.previewImage = "no preview image found"
+        }
+        if(count === 0){
+            spot.avgRating ="no reviews on this spot yet"
+        }
+        else {
+            spot.avgRating = avg / count;
+        }
+        avg = 0;
+        count = 0;
+    // console.log(spotsList);
+    delete spot.SpotImages
+    delete spot.Reviews
+    })
+    console.log(spotsList[0].SpotImages[0].previewImage)
+       const allSpots = User.findAll();
 
 
     // spots = spotsList
