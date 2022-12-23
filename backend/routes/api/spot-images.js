@@ -45,7 +45,7 @@ if(currUser !== spotsOwner){
 spotImage.destroy();
 
   res.statusCode = 200;
-    res.json({
+   return res.json({
       message: "Successfully deleted",
       statusCode: res.statusCode
     })

@@ -160,7 +160,7 @@ router.post('/:spotId/images', validateImage,requireAuth, async(req,res,next)=> 
         preview
     })
 
-    res.json({
+  return  res.json({
         id: spotImage.id,
         url: spotImage.url,
         preview: spotImage.preview
@@ -178,7 +178,7 @@ router.post('/:spotId/reviews',validateReview, requireAuth, async(req, res, next
     const spot = await Spot.findByPk(spotId);
     if(!spot){
         res.statusCode = 404;
-        res.json({
+      return  res.json({
 
                 "message": "Spot couldn't be found",
                 "statusCode": res.statusCode
@@ -192,7 +192,7 @@ router.post('/:spotId/reviews',validateReview, requireAuth, async(req, res, next
         // console.log(spotId, review.spotId)
        if(review.spotId === Number(spotId)){
         res.statusCode = 403;
-        res.json({
+      return res.json({
             "message": "User already has a review for this spot",
             "statusCode": res.statusCode
           })
@@ -202,7 +202,7 @@ router.post('/:spotId/reviews',validateReview, requireAuth, async(req, res, next
 
     const newReview = await Review.create({review, stars, spotId,userId})
     res.statusCode = 201;
-    res.json({
+   return res.json({
         newReview
     })
 })
@@ -259,7 +259,7 @@ router.post('/:spotId/reviews',validateReview, requireAuth, async(req, res, next
 
 if(newStartExactTime > newEndExactTime){
     res.statusCode = 400;
-    res.json({
+   return res.json({
         "message": "Validation error",
         "statusCode": res.statusCode,
         "errors": {
@@ -334,7 +334,7 @@ if(newStartExactTime > newEndExactTime){
             userId: userId
         })
 
-    res.json(
+   return res.json(
         confirmedNewBookings
 
     )
@@ -472,7 +472,7 @@ delete spot.Reviews
 
 
 spots = spotsList
-    res.json({
+   return res.json({
         spots,
         page,
     size})
@@ -491,7 +491,7 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) =>{
     })
     // console.log(req.user.dataValues.id)
     res.statusCode = 201;
-    res.json(newSpot)
+    return res.json(newSpot)
 })
 
 
@@ -558,7 +558,7 @@ if(!spot.dataValues.previewImage){
 
 
 delete spotsList.Reviews
-res.json({spotsList})
+return res.json({spotsList})
 
 
 
@@ -576,7 +576,7 @@ const {spotId} = req.params
     // console.log(req.user.dataValues.id)
     if(!updateSpot){
         res.statusCode = 404;
-        res.json({
+       return res.json({
             "message": "Spot couldn't be found",
             "statusCode": res.statusCode
           })
@@ -614,7 +614,7 @@ const {spotId} = req.params
             await updateSpot.save()
 
             // console.log(updateSpot)
-              return res.json({updateSpot})
+              return res.json(updateSpot)
         }
 
 
@@ -687,7 +687,7 @@ router.get('/:spotId', async (req,res,next)=> {
 
     if(!spot){
         res.statusCode = 404
-    res.json({
+   return res.json({
         "message": "Spot couldn't be found",
         "statusCode": res.statusCode
       })
@@ -722,9 +722,11 @@ else {
 // }
 
 // delete spotList.SpotImages
+spotList.Owner = spotList.User;
+delete spotList.User;
 spotList.numReviews = count;
-delete spotList.Reviews
-res.json(spotList)
+delete spotList.Reviews;
+return res.json(spotList)
 })
 
 
@@ -748,7 +750,7 @@ router.get('/:spotId/bookings',requireAuth, async (req, res, next) => {
     // console.log(spot.ownerId)
     if(!spot){
         res.statusCode = 404;
-        res.json({
+       return res.json({
 
                 "message": "Spot couldn't be found",
                 "statusCode": res.statusCode
@@ -758,7 +760,7 @@ router.get('/:spotId/bookings',requireAuth, async (req, res, next) => {
 
     const spotOwner = spot.ownerId
     if(spotOwner !== userId){
-        res.json({
+      return  res.json({
             Bookings
 
 
@@ -821,13 +823,13 @@ let reviewImages
     // console.log(reviews)
     if(reviews.length === 0){
         res.statusCode = 404;
-        res.json({
+       return res.json({
             message: "Spot couldn't be found",
             statusCode: res.statusCode
         })
     }
 let Reviews = reviews
-    res.json({Reviews})
+  return  res.json({Reviews})
 })
 
 
