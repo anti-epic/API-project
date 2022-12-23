@@ -345,72 +345,72 @@ if(newStartExactTime > newEndExactTime){
 
 
 
+// validateQuery,
+
+
+router.get('/',  async(req, res, next)=> {
+
+// let {page , size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+
+// const where = {};
+// page = parseInt(page);
+// size = parseInt(size);
+// if (Number.isNaN(page)) page = 0;
+// if (Number.isNaN(size)) size = 20;
+// if(page > 10) page = 10;
+// if(size > 20) size = 20;
 
 
 
-router.get('/', validateQuery, async(req, res, next)=> {
+// if(minLat){
+//     minLat =  Number(minLat);
+//     where.lat = {[Op.gte]: minLat}
+// }
 
-let {page , size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
-
-const where = {};
-page = parseInt(page);
-size = parseInt(size);
-if (Number.isNaN(page)) page = 0;
-if (Number.isNaN(size)) size = 20;
-if(page > 10) page = 10;
-if(size > 20) size = 20;
+// if(maxLat){
+//     maxLat =  Number(maxLat);
+//     where.lat = { [Op.lte]: maxLat}
+// }
 
 
-
-if(minLat){
-    minLat =  Number(minLat);
-    where.lat = {[Op.gte]: minLat}
-}
-
-if(maxLat){
-    maxLat =  Number(maxLat);
-    where.lat = { [Op.lte]: maxLat}
-}
-
-
-if(minLat && maxLat){
-    where.lat =   {[Op.between]: [minLat, maxLat]}
-}
-
-
-
-
-if(minLng){
-    minLng =  Number(minLng);
-    where.lng = {[Op.gte]: minLng}
-}
-
-if(maxLng){
-    maxLng =  Number(maxLng);
-    where.lng = { [Op.lte]: maxLng}
-}
-
-
-if(minLng && maxLng){
-    where.lng =   {[Op.between]: [minLng, maxLng]}
-}
+// if(minLat && maxLat){
+//     where.lat =   {[Op.between]: [minLat, maxLat]}
+// }
 
 
 
 
+// if(minLng){
+//     minLng =  Number(minLng);
+//     where.lng = {[Op.gte]: minLng}
+// }
 
-if(minPrice){
-    minPrice =  Number(minPrice);
-    where.price = {[Op.gte]:minPrice}
-}
+// if(maxLng){
+//     maxLng =  Number(maxLng);
+//     where.lng = { [Op.lte]: maxLng}
+// }
 
-if(maxPrice){
-   maxPrice =  Number(maxPrice);
-    where.price = {[Op.lte] : maxPrice}
-}
-if(minPrice && maxPrice){
-    where.Price =   {[Op.between]: [minPrice, maxPrice]}
-}
+
+// if(minLng && maxLng){
+//     where.lng =   {[Op.between]: [minLng, maxLng]}
+// }
+
+
+
+
+
+// if(minPrice){
+//     minPrice =  Number(minPrice);
+//     where.price = {[Op.gte]:minPrice}
+// }
+
+// if(maxPrice){
+//    maxPrice =  Number(maxPrice);
+//     where.price = {[Op.lte] : maxPrice}
+// }
+// if(minPrice && maxPrice){
+//     where.Price =   {[Op.between]: [minPrice, maxPrice]}
+// }
 
 
 
@@ -482,8 +482,9 @@ delete spot.Reviews
 spots = spotsList
    return res.json({
         spots,
-        page,
-    size})
+    //     page,
+    // size
+})
 
 })
 
