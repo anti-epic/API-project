@@ -147,7 +147,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
     if(review.userId !== req.user.id){
         res.statusCode = 403;
        res.json ({
-            "message": "Forbidden",
+            "message": "Forbidden, you can not add a image to a review you didnt create",
             "statusCode": res.statusCode
           })
     }
@@ -209,6 +209,37 @@ router.put('/:reviewId', validateUpdatedReview, requireAuth, async(req, res, nex
 res.json(updateReview)
 })
 
+
+router.delete('/:reviewId',requireAuth, async(req,res,next)=> {
+    const {reviewId} = req.params;
+    const currUser = req.user.id;
+    console.log(currUser)
+    let review = await Review.findByPk(reviewId)
+
+    if(!review){
+        res.statusCode = 404;
+      return  res.json({
+            "message": "Review couldn't be found",
+            "statusCode": res.statusCode
+        })
+    }
+    const ownerId = review.dataValues.userId
+
+    if(currUser !== ownerId){
+        res.statusCode = 403;
+      return  res.json({
+            message: "Forbidden, you can not delete a review you did not create",
+            statusCode:   res.statusCode
+        })
+    }
+
+    review.destroy();
+    res.statusCode = 200;
+   res.json({
+    message: "Successfully deleted",
+    statusCode: res.statusCode
+   })
+})
 
 
 module.exports = router;

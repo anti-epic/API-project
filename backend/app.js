@@ -162,6 +162,30 @@ if (!isProduction) {
       if(err.errors[i].includes('Stars must be an integer from 1 to 5')){
         errors.stars = err.errors[i]
       }
+      if(err.errors[i].includes('Page must be greater than or equal to 0')){
+        errors.page = err.errors[i]
+      }
+      if(err.errors[i].includes('Size must be greater than or equal to 0')){
+        errors.size = err.errors[i]
+      }
+      if(err.errors[i].includes('Maximum latitude is invalid')){
+        errors.maxLatitude = err.errors[i]
+      }
+      if(err.errors[i].includes('Minimum latitude is invalid')){
+        errors.minLatitude  = err.errors[i]
+      }
+      if(err.errors[i].includes('Maximum longitude is invalid')){
+        errors.maxLongitude = err.errors[i]
+      }
+      if(err.errors[i].includes('Minimum longitude is invalid')){
+        errors.minLongitude = err.errors[i]
+      }
+      if(err.errors[i].includes('Maximum price must be greater than or equal to 0')){
+        errors.minPrice = err.errors[i]
+      }
+      if(err.errors[i].includes('Minimum price must be greater than or equal to 0')){
+        errors.maxPrice = err.errors[i]
+      }
 
     }
 
