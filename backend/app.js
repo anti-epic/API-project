@@ -162,7 +162,12 @@ if (!isProduction) {
       if(err.errors[i].includes('Stars must be an integer from 1 to 5')){
         errors.stars = err.errors[i]
       }
-
+      if(err.errors[i].includes('needs to be true or false')){
+        errors.preview = err.errors[i]
+      }
+      if(err.errors[i].includes('needs a image url')){
+        errors.url = err.errors[i]
+      }
     }
 
     if(err.status === 401){
