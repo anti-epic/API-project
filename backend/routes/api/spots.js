@@ -263,8 +263,40 @@ router.get('/', validateQuery, async (req, res, next) => {
     // spots.forEach(spot => {
     //     spotsList.push(spot)
     // })
+
     let avg = 0;
     let count = 0;
+
+for(let i = 0; i < spots.length; i++){
+    let currentSpot = spots[i];
+    // console.log(currentSpot.dataValues.id)
+    let currentSpotId = currentSpot.dataValues.id
+    allCurrentReviews = await Review.findAll({where: {spotId: currentSpotId}})
+    // console.log(allCurrentReviews)
+    for(let j = 0; j < allCurrentReviews.length; j++){
+        let currentReviews = allCurrentReviews[j];
+        console.log(currentReviews.dataValues.stars)
+        if(currentReviews.dataValues.stars){
+            count++
+            avg += currentReviews.dataValues.stars
+        }
+    }
+
+
+
+    if(count === 0){
+        spots[i].dataValues.avgRating ="no reviews on this spot yet"
+    }
+    else {
+        spots[i].dataValues.avgRating = avg / count;
+    }
+
+}
+
+
+console.log(count, avg)
+
+
     // spotsList.forEach(spot => {
     //     spot.SpotImages.forEach(image => {
     //         // console.log(image.url)
