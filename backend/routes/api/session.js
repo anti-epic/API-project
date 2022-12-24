@@ -37,6 +37,9 @@ const validateLogin = [
 
         await setTokenCookie(res, user);
 
+        let cookie = req.cookies.token
+
+        user.dataValues.token = cookie
         return res.json({
           user: user
         });
