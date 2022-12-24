@@ -243,30 +243,16 @@ router.get('/', validateQuery, async (req, res, next) => {
         }
     }
 
+ const pagination = {}
+    if (page > 0 && size > 0) {
+        pagination.limit = size;
+        pagination.offset = size * (page - 1)
+    }
 
-    // let spots = await Spot.findAll({
-    //     where,
-    //     include: [
-    //         {
-    //             model: Review,
-    //             attributes: ['stars']
-
-    //         }, {
-    //             model: SpotImage
-    //         }
-    //     ],
-    //     limit: size,
-    //     offset: (page - 1) * size
-    // });
     let spots =await Spot.findAll({
         where,
-                limit: size,
-        offset: (page - 1) * size
+            ...pagination
     });
-    let spotsList = [];
-    // spots.forEach(spot => {
-    //     spotsList.push(spot)
-    // })
 
     let avg = 0;
     let count = 0;
@@ -369,8 +355,8 @@ console.log(count, avg)
     // spots = spotsList
 
 
-    return res.json({spots
-        // page, size
+    return res.json({spots,
+        page, size
     })
 
 
