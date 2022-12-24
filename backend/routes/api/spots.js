@@ -275,12 +275,38 @@ for(let i = 0; i < spots.length; i++){
     // console.log(allCurrentReviews)
     for(let j = 0; j < allCurrentReviews.length; j++){
         let currentReviews = allCurrentReviews[j];
-        console.log(currentReviews.dataValues.stars)
+        // console.log(currentReviews.dataValues.stars)
         if(currentReviews.dataValues.stars){
             count++
             avg += currentReviews.dataValues.stars
         }
+
     }
+  let allSpotImages = await SpotImage.findAll({
+        where: {spotId:currentSpotId}
+    })
+    for(let j = 0; j < allSpotImages.length; j++){
+        let currentSpotImage = allSpotImages[j]
+        // console.log(currentSpotImage.dataValues.preview)
+        if(currentSpotImage.dataValues.preview === true){
+            currentSpot.dataValues.previewImage = currentSpotImage.dataValues.url
+        }
+    }
+    if(!currentSpot.dataValues.previewImage){
+        currentSpot.dataValues.previewImage = "no preview image found"
+    }
+
+
+        
+
+
+
+
+
+
+
+
+
 
 
 
