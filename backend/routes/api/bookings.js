@@ -67,10 +67,9 @@ Spots[i] = await Spot.findAll({
 }
 
 
-console.log(Bookings.length)
 for(let i = 0; i < Bookings.length; i++){
     Bookings[i].dataValues.Spot = Spots[i][0];
-    console.log(Spots[i])
+    // console.log(Spots[i])
 
 
     if(Spots[i][0].SpotImages){
@@ -88,10 +87,13 @@ for(let i = 0; i < Bookings.length; i++){
             Bookings[i].dataValues.Spot.dataValues.previewImage = image.url
 
         }
-        console.log(Spots[i][0].SpotImages)
-        delete Spots[i][0].dataValues.SpotImages
-    })
+        // console.log(Spots[i][0].SpotImages)
 
+    })
+    if(!Bookings[i].dataValues.Spot.dataValues.previewImage){
+        Bookings[i].dataValues.Spot.dataValues.previewImage = 'No preview Image available'
+    }
+    delete Spots[i][0].dataValues.SpotImages
 }
 }
 

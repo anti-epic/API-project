@@ -72,9 +72,9 @@ router.delete('/', (_req, res) => {
   else {
     res.statusCode = 200
   return  res.json({
-
-    "message": "Authentication required",
-  "statusCode": 401 })}
+    "user": null
+  })
+}
 });
 
 
