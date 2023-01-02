@@ -87,7 +87,6 @@ const validateImage = [
         {min: 1}
     ).withMessage('needs a image url'),
     check('preview').exists(
-        {checkFalsy: true}
     ).isBoolean().withMessage('preview needs to be true or false'),
 
     handleValidationErrors
