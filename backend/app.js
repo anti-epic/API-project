@@ -71,9 +71,10 @@ if (!isProduction) {
   });
 
   app.use((err, _req, res, _next) => {
+
     res.status(err.status || 403);
 
-    console.error(err);
+
     let resBody = {}
 
 
@@ -231,7 +232,7 @@ if (!isProduction) {
 
 
 
-    // console.log(res.statusCode, 'here')
+
     return res.json({
       // title: err.title || 'Server Error',
       // message: err.message,
@@ -240,6 +241,7 @@ if (!isProduction) {
       errors
       // stack: isProduction ? null : err.stack
     });
+
   });
 
 

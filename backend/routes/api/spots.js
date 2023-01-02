@@ -53,14 +53,11 @@ const validateSpot = [
     ).withMessage('Country is required'),
     check('lat').exists(
         {checkFalsy: true}
-    ).isLength(
-        {min: 1}
-    ).withMessage('Latitude is not valid'),
+    ).isFloat()
+    .withMessage('Latitude is not valid'),
     check('lng').exists(
         {checkFalsy: true}
-    ).isLength(
-        {min: 1}
-    ).withMessage('Longitude is not valid'),
+    ).isFloat().withMessage('Longitude is not valid'),
     check('name').exists(
         {checkFalsy: true}
     ).isLength(
@@ -73,9 +70,7 @@ const validateSpot = [
     ).withMessage('Description is required'),
     check('price').exists(
         {checkFalsy: true}
-    ).isLength(
-        {min: 1}
-    ).withMessage('Price per day is required'),
+    ).isFloat().withMessage('Price per day is required'),
     handleValidationErrors
 ];
 
@@ -690,6 +685,8 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) => {
         description,
         price
     } = req.body
+
+    console.log(req.body)
     const newSpot = await Spot.create({
         address,
         city,
@@ -702,7 +699,7 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) => {
         price,
         ownerId: req.user.dataValues.id
     })
-    // console.log(req.user.dataValues.id)
+
     res.statusCode = 201;
     return res.json(newSpot)
 })
