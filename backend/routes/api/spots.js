@@ -13,6 +13,19 @@ const {
     ReviewImage
 } = require('../../db/models');
 
+const validateBookings = [
+    check('startDate')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 1 })
+      .withMessage('Must have a start date'),
+    check('endDate')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 1 })
+      .withMessage('must have a end date'),
+    handleValidationErrors
+  ];
+
+
 
 const validateReview = [
     check('review').exists(
@@ -413,7 +426,7 @@ router.post('/:spotId/reviews', validateReview, requireAuth, async (req, res, ne
 })
 
 
-router.post('/:spotId/bookings', handleValidationErrors, requireAuth, async (req, res, next) => {
+router.post('/:spotId/bookings',  validateBookings, requireAuth, async (req, res, next) => {
     const {spotId} = req.params;
     const userId = req.user.id
     let errorChecker = true
