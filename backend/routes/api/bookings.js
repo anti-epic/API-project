@@ -151,7 +151,7 @@ const {startDate, endDate} = req.body
 
     const currentEndDate = updateBooking.endDate
     if(currentEndDate.getTime() < date.getTime()){
-        res.statusCode = 400;
+        res.statusCode = 403;
       return  res.json({
 
                 "message": "Past bookings can't be modified",
