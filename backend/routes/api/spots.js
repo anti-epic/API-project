@@ -382,7 +382,7 @@ router.post('/:spotId/images', validateImage, requireAuth, async (req, res, next
     let ownerId = spot.dataValues.ownerId;
 
     if (currUser !== ownerId) {
-        res.statusCode = 401;
+        res.statusCode = 403;
         return res.json({message: "You must be the owner of the spot to add a image", statusCode: res.statusCode})
     }
     const spotImage = await SpotImage.create({spotId, url, preview})
@@ -1001,12 +1001,25 @@ router.get('/:spotId/reviews', async (req, res, next) => {
 
     const {spotId} = req.params;
     console.log(spotId)
+
+    let spotChecker = await Spot.findByPk(spotId);
+
+    if(!spotChecker){
+        res.statusCode = 404;
+        return res.json({message: "Spot couldn't be found", statusCode: res.statusCode})
+    }
+
+
     let reviews = await Review.findAll({
 
         where: {
             spotId: spotId
         }
     })
+
+
+
+
 
     let user
     let reviewImages
@@ -1034,10 +1047,10 @@ router.get('/:spotId/reviews', async (req, res, next) => {
     }
 
 
-    // console.log(reviews)
+
     if (reviews.length === 0) {
-        res.statusCode = 404;
-        return res.json({message: "Spot couldn't be found", statusCode: res.statusCode})
+        res.statusCode = 200;
+        return res.json({message: "This spot has no reviews", statusCode: res.statusCode})
     }
     let Reviews = reviews
     return res.json({Reviews})
