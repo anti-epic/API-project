@@ -238,8 +238,8 @@ if (!isProduction) {
       // message: err.message,
       message: "Validation error",
       statusCode: res.statusCode,
-      errors
-      // stack: isProduction ? null : err.stack
+      errors,
+      stack: isProduction ? null : err.stack
     });
 
   });
