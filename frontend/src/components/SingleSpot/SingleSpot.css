@@ -1,0 +1,20 @@
+.singleContainer {
+    display: grid;
+    justify-content: center;
+}
+h1 {
+    display: block;
+    text-align: start;
+    border-bottom: 0px;
+}
+
+
+
+.singleSpotImage {
+margin-top: 3%;
+justify-content: center;
+}
+
+.reviewsLink {
+    margin-right: 10%;
+}

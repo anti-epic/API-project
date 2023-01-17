@@ -11,9 +11,7 @@ function Navigation({ isLoaded }){
 
   return (
     <div className='container'>
-    <div className='aboveNav'>
-      We show total prices up front
-    </div>
+
 
     <ul className='navBar'>
       <li className="logo">

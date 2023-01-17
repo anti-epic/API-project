@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { NavLink, Route, useParams, Link } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import { useEffect, useState } from 'react';
 import {getSpots} from '../../store/spots';
@@ -25,9 +25,12 @@ const AllSpots = () => {
     }
 
     return (
+
         <div className='container'>
+
            <div className='spots-container'>
                 {spots.map((spot) => (
+                    <NavLink to={`/spots/${spot.id}`}>
                     <button className="spotButton">
                     <div className='cards'>
                         <img  className="cardImage" src={spot.previewImage}/>
@@ -41,6 +44,7 @@ const AllSpots = () => {
 
                     </div>
                     </button>
+                    </NavLink>
                 ))}
 
             </div>
