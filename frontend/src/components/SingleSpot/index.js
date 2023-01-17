@@ -21,7 +21,6 @@ if(spotObj.SpotImages){
   spotImagesFilter = Object.values(spotObj.SpotImages)
 
   spotImagesFilter.forEach((image) => {
-    console.log(image, 'image')
     if(image.url){
         spotImages.push(image.url)
     }
@@ -30,7 +29,6 @@ if(spotObj.SpotImages){
 
 
 
-console.log(spotImages, 'hereee')
 if(spotImages.length < 1){
     spotImages[0] = notFound
 }
@@ -54,8 +52,13 @@ return(
       <i className="fa-solid fa-star fa-2xs"></i> {Number(spotObj.avgStarRating).toFixed(2)} | <Link className="reviewsLink">{spotObj.numReviews} reviews </Link>
        {spotObj.city}, {spotObj.state}
         </div>
+    <div className='imageLayout'>
 
-       <img className='singleSpotImage'src={spotImages[0]}></img>
+        {spotImages.map((image) => (
+
+            <img className='singleSpotImage'src={image}></img>
+            ))}
+            </div>
     </div>
 )
 

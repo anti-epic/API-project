@@ -52,9 +52,8 @@ const spotReducer = (state = initialState, action) => {
     switch(action.type){
         case LOAD_SPOTS:
             console.log('in reducer')
-            const newState = {...state}
-            const allSpots = {}
-
+            const newState = {}
+     
             // console.log(action.spots, 'next');
             action.spots.spots.forEach(spot => {
                 newState[spot.id] = spot

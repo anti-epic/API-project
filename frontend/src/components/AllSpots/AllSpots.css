@@ -7,15 +7,15 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(4, 2.5fr);
-    grid-column-gap: 2%;
+    grid-column-gap: 1%;
     grid-row-gap: 3%;
 }
 .cards {
 
 
-    width:110%;
+    width:20em;
     height: 20em;
-    margin: 1%;
+
 }
 
 

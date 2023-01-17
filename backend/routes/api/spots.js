@@ -260,10 +260,12 @@ router.get('/', validateQuery, async (req, res, next) => {
             ...pagination
     });
 
-    let avg = 0;
+    let avg= 0;
     let count = 0;
 
 for(let i = 0; i < spots.length; i++){
+    avg = 0;
+    count = 0;
     let currentSpot = spots[i];
     // console.log(currentSpot.dataValues.id)
     let currentSpotId = currentSpot.dataValues.id
@@ -291,17 +293,6 @@ for(let i = 0; i < spots.length; i++){
     if(!currentSpot.dataValues.previewImage){
         currentSpot.dataValues.previewImage = "no preview image found"
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
