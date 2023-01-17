@@ -65,7 +65,7 @@ height: 50px;}
 .login {
     display: grid;
     grid-area: login;
-    border:2px solid red;
+    /* border:2px solid red; */
 align-content: left;
     margin: 0;
 
@@ -74,14 +74,14 @@ align-content: left;
 
 
 .menuButton i {
-    border-color: 1px sold red;
+    /* border-color: 1px sold red; */
 }
 .menuButton {
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
 }
 
 .menuButton button {
     display: grid;
-    border: 5px solid green;
+    /* border: 5px solid green; */
 
 }

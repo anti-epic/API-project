@@ -25,7 +25,7 @@ const AllSpots = () => {
     }
 
     return (
-        <div className='container'>test
+        <div className='container'>
            <div className='spots-container'>
                 {spots.map((spot) => (
                     <button className="spotButton">
