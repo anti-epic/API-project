@@ -14,29 +14,43 @@ function LoginFormModal() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(password.length < 1|| credential.length < 1){
+      return setErrors(['You must enter a Username/Email and a password']);
+    }
+    if(password && credential){
+
+
+
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password }))
       .then(closeModal)
       .catch(
         async (res) => {
           const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
+          if (data && data.message) {
+            return setErrors([data.message])
+          };
         }
       );
+    }
+
+    return setErrors(['You must enter a Username/Email and a password']);
+
   };
 
   return (
     <>
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
-        <ul>
+      <ul className="errorText">
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
         <label>
-          Username or Email
+
           <input
+              placeholder='Username or Email'
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
@@ -44,8 +58,8 @@ function LoginFormModal() {
           />
         </label>
         <label>
-          Password
           <input
+          placeholder="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

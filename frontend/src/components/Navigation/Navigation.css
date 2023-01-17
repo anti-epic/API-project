@@ -1,3 +1,87 @@
 .hidden {
     display:none;
 }
+
+.navBar{
+display: grid;
+grid-template-columns: 1fr 7%;
+border-top: 1px solid grey;
+border-bottom: 1px solid gray;
+grid-template-areas : "logo . login";
+justify-content: start;
+padding: 1%;
+margin: 0%;
+}
+
+.logo {
+    display: grid;
+    grid-area: logo;
+
+
+
+}
+.imgLogo {display:grid;
+
+    width:50px;
+height: 50px;}
+
+
+
+
+
+.aboveNav {
+    background-color: #f8f4f4;
+    text-align: center;
+    margin: 0%;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+}
+
+.container {
+    margin: 0%;
+    padding: 0%;
+    display: grid;
+}
+
+.navBar li {
+    display: grid;
+
+}
+html, body {
+
+    margin: 0;
+}
+
+
+asw:hover,
+asw:active,
+asw:visited {
+  text-decoration: none;
+    width:50px;
+height: 50px;}
+
+
+
+.login {
+    display: grid;
+    grid-area: login;
+    /* border:2px solid red; */
+align-content: left;
+    margin: 0;
+
+
+}
+
+
+.menuButton i {
+    /* border-color: 1px sold red; */
+}
+.menuButton {
+    /* border: 2px solid blue; */
+}
+
+.menuButton button {
+    display: grid;
+    /* border: 5px solid green; */
+
+}
