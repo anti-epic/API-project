@@ -1,0 +1,22 @@
+.editContainer{
+    display: grid;
+}
+
+
+.editForm {
+ display: grid;
+ justify-content: center;
+width:75%;
+    height: 250%;
+
+
+}
+
+.editForm input {
+    width: 450%;
+}
+
+
+.submitUpdatedInfo {
+    background-color: rgb(198,57,98);
+}

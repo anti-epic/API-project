@@ -27,7 +27,6 @@ if(spotObj.SpotImages){
 })
 }
 
-const updaterData = useSelector(state => state.spots[spotId])
 
 if(spotImages.length < 1){
     spotImages[0] = notFound
@@ -38,9 +37,9 @@ useEffect(() => {
 
 
 
+
 },[spotId])
 if(!spotObj){
-    console.log('nothing')
     return null
 }
 
@@ -56,10 +55,15 @@ return(
 
         {spotImages.map((image) => (
 
-            <img className='singleSpotImage'src={image}></img>
+            <img key={image.id} className='singleSpotImage'src={image}></img>
+
             ))}
             </div>
-            <div className='updateButton'><NavLink to={`/spots/${spotId}/edit`} spot={{updaterData}}>Update</NavLink></div>
+
+            <div className='updateButton'><NavLink to={`/spots/${spotId}/edit`}>Update</NavLink></div>
+
+            <div className='deleteButton'><NavLink to={`/spots/${spotId}/delete`}>Delete</NavLink></div>
+            {spotObj.description}
     </div>
 )
 

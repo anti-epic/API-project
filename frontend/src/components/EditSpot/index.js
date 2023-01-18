@@ -3,8 +3,9 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { editSpotThunk, getSpot } from '../../store/spots';
+import { editSpotThunk } from '../../store/spots';
 import { useHistory } from 'react-router-dom';
+import './editSpot.css'
 
 const EditSpot = ({}) => {
     const history = useHistory();
@@ -23,9 +24,7 @@ const EditSpot = ({}) => {
 
 console.log(spotObj, 'here4')
 
-useEffect(() => {
-    dispatch(getSpot(spotId))
-},[spotId])
+
 
 if(!spotObj){
     return null
@@ -42,6 +41,9 @@ const handleSubmit = async (e) => {
         name,
         description,
         price, 'end')
+
+
+
     const payload = {
 
         address,
@@ -61,10 +63,10 @@ const handleSubmit = async (e) => {
 
     return(
 
-    <div>hi
+    <div className='editContainer'>
 
-        {spotObj.id}
-        <form onSubmit={handleSubmit}>
+
+        <form className='editForm' onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder={address}
@@ -94,14 +96,14 @@ const handleSubmit = async (e) => {
           onChange={(e) => setCountry(e.target.value)}
           />
         <input
-          type="text"
+          type="number"
           placeholder={lat}
           required
           value={lat}
           onChange={(e) => setLat(e.target.value)}
           />
         <input
-          type="text"
+          type="number"
           placeholder={lng}
           required
           value={lng}
@@ -115,21 +117,21 @@ const handleSubmit = async (e) => {
           onChange={(e) => setName(e.target.value)}
           />
         <input
-          type="text"
+          type="textArea"
           placeholder={description}
           required
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           />
       <input
-          type="text"
+          type="number"
           placeholder={price}
           required
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           />
 
-        <input type='submit'></input>
+        <input className='submitUpdatedInfo' type='submit' value='Update Spot'></input>
 
         </form>
 
