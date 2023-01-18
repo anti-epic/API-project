@@ -8,7 +8,7 @@ import logo from "./logo.png"
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
-
+  // console.log(sessionUser, 'sessionuser')
   return (
     <div className='container'>
 
@@ -16,14 +16,22 @@ function Navigation({ isLoaded }){
     <ul className='navBar'>
       <li className="logo">
 
-        <NavLink exact to="/" style={{ textDecoration: 'none', color: 'blue', fontSize: '28px', fontWeight: 'bold' }}>
-
-
-       <img className='imgLogo'src={logo} style={{display: 'inline'}}></img>
-
-    Airbnb
+        <NavLink exact to="/" style={{ textDecoration: 'none', fontSize: '28px', fontWeight: 'bold' }}>
+       <div className='imgLogo'style={{display: 'inline'}}>
+       <i class="fa-solid fa-house-crack"></i>
+       </div>
+  <div className='logoText'>Airbnb</div>
         </NavLink>
       </li>
+      <div className='createSpotContainer'>
+      {sessionUser ? (
+        <NavLink className='createSpotButton' to='/spots/create'> Create a spot</NavLink>
+      ) : (
+<div> </div>
+      )
+
+    }
+    </div>
       <div className='menuButton'>
       {isLoaded && (
         <li className='login'>

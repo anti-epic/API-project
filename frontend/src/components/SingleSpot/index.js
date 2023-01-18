@@ -10,10 +10,12 @@ const SingleSpot = () => {
 
 const dispatch = useDispatch();
 const {spotId} = useParams();
-
+let sessionUser = useSelector(state => state.session.user);
 
 const spotObj = useSelector(state => state.spots)
-console.log(spotObj, 'initttt')
+
+if(!sessionUser) sessionUser = 'not logged in';
+
 let spotImagesFilter
 let spotImages = [];
 if(spotObj.SpotImages){
@@ -59,11 +61,18 @@ return(
 
             ))}
             </div>
+            {(sessionUser.id === spotObj[spotId].ownerId) ?
+            (<div>
+                <div className='updateButton'><NavLink to={`/spots/${spotId}/edit`}>Update</NavLink></div>
+                <div className='deleteButton'><NavLink to={`/spots/${spotId}/delete`}>Delete</NavLink></div>
+                </div>
+                ) :
+                (
+                    <div>
+                        {spotObj.description}
+                    </div>
 
-            <div className='updateButton'><NavLink to={`/spots/${spotId}/edit`}>Update</NavLink></div>
-
-            <div className='deleteButton'><NavLink to={`/spots/${spotId}/delete`}>Delete</NavLink></div>
-            {spotObj.description}
+            )}
     </div>
 )
 

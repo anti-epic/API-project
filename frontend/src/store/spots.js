@@ -5,7 +5,10 @@ import { csrfFetch } from "./csrf";
 const LOAD_SPOTS = '/spots/LOAD';
 const LOAD_SPOT = '/spot/LOAD';
 const EDIT_SPOT = '/spot/edit';
-const DELETE_SPOT = '/spot/DELETE'
+const DELETE_SPOT = '/spot/DELETE';
+const ADD_SPOT = '/spot/ADD';
+
+
 export const getSpots = () => async dispatch => {
     const response = await csrfFetch('/api/spots')
     console.log('in')
@@ -41,6 +44,24 @@ export const editSpotThunk = (payload, id) => async dispatch => {
     }
 
 }
+
+
+
+export const createSpotThunk = (payload) => async dispatch => {
+    console.log(payload, ' in add spot thunk')
+    const response = await csrfFetch(`/api/spots`, {
+        method: 'POST',
+        headers: {"CONTENT-TYPE" : "application/json"},
+        body: JSON.stringify(payload)
+    })
+    if(response.ok){
+
+        const data = await response.json();
+        dispatch(createSpot(data))
+    }
+
+}
+
 
 
 
@@ -90,6 +111,12 @@ const editSpot = (spot) => {
     }
 }
 
+const createSpot = (spot) => {
+    return {
+        type: ADD_SPOT,
+        spot
+    }
+}
 
 
 
@@ -125,6 +152,10 @@ const spotReducer = (state = initialState, action) => {
             console.log('in delete state');
             const deleteState = {...state}
             return deleteState
+        case ADD_SPOT:
+            const addSpotState = {...state};
+            addSpotState[action.spot.id] = action.spot;
+            return addSpotState
         default:
             return state
     }

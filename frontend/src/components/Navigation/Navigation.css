@@ -4,24 +4,27 @@
 
 .navBar{
 display: grid;
-grid-template-columns: 1fr 7%;
+grid-template-columns: 1fr 1fr 1fr .2fr;
 border-top: 1px solid grey;
 border-bottom: 1px solid gray;
-grid-template-areas : "logo . login";
+grid-template-areas : "logo createSpot . login";
 justify-content: start;
 padding: 1%;
 margin: 0%;
 }
 
-.logo {
-    display: grid;
-    grid-area: logo;
 
 
+.logoText {
+    display: inline;
+    align-content: center;
 
+    color: #FF385C;
 }
-.imgLogo {display:grid;
 
+
+
+.imgLogo {display:grid;
     width:50px;
 height: 50px;}
 
@@ -29,13 +32,6 @@ height: 50px;}
 
 
 
-.aboveNav {
-    background-color: #f8f4f4;
-    text-align: center;
-    margin: 0%;
-    padding-top: 1.5%;
-    padding-bottom: 1.5%;
-}
 
 .container {
     margin: 0%;
@@ -53,78 +49,84 @@ html, body {
 }
 
 
-asw:hover,
-asw:active,
-asw:visited {
-  text-decoration: none;
-    width:50px;
-height: 50px;}
-
-
-
-.login {
-    display: grid;
-    grid-area: login;
-    /* border:2px solid red; */
-align-content: left;
-    margin: 0;
-
-
-
-}
-
-
-.menuButton i {
-    /* border-color: 1px sold red; */
-
-    padding-top: 10%;
-
-}
 .menuButton {
     /* border: 2px solid blue; */
-    position: absolute;
-    right: 5%;
-    top:2.5%;
-    height: 20%;
-    overflow: hidden;
-    width:21%;
+display: grid;
+width: 6.5em;
+height: 3.3em;
+grid-area: login;
+border: 0px;
+background-color: white;
+align-content: center;
 
 
 }
 
-.menuButton button {
-    display: grid;
+.fa-house-crack {
+    color: #FF385C;
+}
 
+
+
+.menuButton button {
+    border:1px solid gray;
+    display: grid;
     /* border: 5px solid green; */
     border-radius: 25px;
 
 }
 .fa-user-circle {
-padding-left: 50%;
-top: -50%;
-position: relative;
+    justify-content: space-around;
+    display: grid;
+    justify-content: right;
 margin-bottom: 10%;
+color:grey;
+padding-right: 3%;
 
 }
 .fa-bars {
-    padding-right: 50%;
+        display: grid;
+        justify-content: left;
+        padding-left: 10%;
     margin-top: 15%;
+    color:grey;
+
 
 }
 
 .menuButtonOpen li {
-    padding: 1%;
+    padding: 10%;
     border-bottom: 1px solid gray;
     font-weight: bold;
 }
 .menuButtonOpen{
 position: absolute;
-top: 30%;
-left:35%;
+top: 9%;
+right: 2%;
 border: 1px solid gray;
-width:50%;
 overflow: hidden;
-padding: 4%;
-
+padding: 1%;
+border-radius: 25px;
+width: 13em;
+height: 14em;
 background-color: white;
+}
+
+
+.createSpotButton:link, .createSpotButton:active, .createSpotButton:hover  { text-decoration: none; }
+
+.createSpotButton {
+    display: grid;
+    grid-area: createSpot;
+    color: white;
+    border-radius: 25px;
+    width: 20em;
+    height: 2em;
+    justify-content: center;
+    align-content: center;
+    background-color: #FF385C;
+}
+
+.createSpotContainer {
+    display: grid;
 }

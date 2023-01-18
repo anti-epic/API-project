@@ -19,24 +19,26 @@ const AllSpots = () => {
     useEffect(() => {
         dispatch(getSpots())
       },[dispatch])
-    console.log(spots[1], 'lastone')
-    if(!spots){
-        return null
-    }
+    if(!spots) return null
 
-    return spots && (
+
+    return  spots && (
 
         <div className='container'>
 
            <div className='spots-container'>
                 {spots.map((spot) => (
-                    <NavLink key={spot.id} to={`/spots/${spot.id}`}>
+               spot ?(
+
+                   <NavLink key={spot.id} to={`/spots/${spot.id}`}>
                     <button  className="spotButton">
                     <div className='cards'>
                         <img  className="cardImage" src={spot.previewImage}/>
                         <div className='cardInfo' >
                             <div className="cityState">  {spot.city},{spot.state}</div>
-                            <div className="avgRating">     <i className="fa-solid fa-star fa-2xs"></i> {Number(spot.avgRating).toFixed(2)} </div>
+                            <div className="avgRating">     <i className="fa-solid fa-star fa-2xs"></i>
+                             {(typeof spot.avgRating === 'number') ? Number(spot.avgRating).toFixed(2)
+                                   : <div className='noReviews'>no reviews</div>                                     }</div>
                             <br></br>
                             <div className='priceLine'><div className="price">${spot.price}</div>night</div>
                         </div>
@@ -45,12 +47,12 @@ const AllSpots = () => {
                     </div>
                     </button>
                     </NavLink>
+                    ) : (<div></div>)
                 ))}
 
             </div>
     </div>
-
-    );
+    )
 
 }
 
