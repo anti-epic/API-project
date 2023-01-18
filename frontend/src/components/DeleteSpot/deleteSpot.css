@@ -1,0 +1,30 @@
+.deleteContainer{
+    display: grid;
+}
+
+
+.deleteForm {
+ display: grid;
+ justify-content: center;
+width:75%;
+    height: 250%;
+
+
+}
+
+.deleteHeader {
+    width:100%;
+    display: grid;
+    margin-left: 50%;
+    justify-content: center;
+  border: 1px solid black;
+}
+
+.deleteForm input {
+    width: 200%;
+}
+
+
+.deleteSpotButton {
+    background-color: rgb(198,57,98);
+}

@@ -20,7 +20,7 @@ const AllSpots = () => {
         dispatch(getSpots())
       },[dispatch])
     console.log(spots[1], 'lastone')
-    if(!spots){
+    if(!spots && !spots.spot){
         return null
     }
 
@@ -30,8 +30,8 @@ const AllSpots = () => {
 
            <div className='spots-container'>
                 {spots.map((spot) => (
-                    <NavLink to={`/spots/${spot.id}`}>
-                    <button className="spotButton">
+                    <NavLink key={spot.id} to={`/spots/${spot.id}`}>
+                    <button  className="spotButton">
                     <div className='cards'>
                         <img  className="cardImage" src={spot.previewImage}/>
                         <div className='cardInfo' >
