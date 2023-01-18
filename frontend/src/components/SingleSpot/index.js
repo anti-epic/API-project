@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, useParams} from 'react-router-dom';
+import {Link, useParams, NavLink} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import { useEffect, useState } from 'react';
 import {getSpot} from '../../store/spots';
@@ -13,7 +13,7 @@ const {spotId} = useParams();
 
 
 const spotObj = useSelector(state => state.spots)
-
+console.log(spotObj, 'initttt')
 let spotImagesFilter
 let spotImages = [];
 if(spotObj.SpotImages){
@@ -27,7 +27,7 @@ if(spotObj.SpotImages){
 })
 }
 
-
+const updaterData = useSelector(state => state.spots[spotId])
 
 if(spotImages.length < 1){
     spotImages[0] = notFound
@@ -59,6 +59,7 @@ return(
             <img className='singleSpotImage'src={image}></img>
             ))}
             </div>
+            <div className='updateButton'><NavLink to={`/spots/${spotId}/edit`} spot={{updaterData}}>Update</NavLink></div>
     </div>
 )
 
