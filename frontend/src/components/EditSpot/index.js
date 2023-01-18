@@ -22,7 +22,7 @@ const EditSpot = ({}) => {
     const [description, setDescription] = useState(spotObj.description);
     const [price, setPrice] = useState(spotObj.price)
 
-console.log(spotObj, 'here4')
+
 
 
 

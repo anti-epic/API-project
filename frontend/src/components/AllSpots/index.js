@@ -20,7 +20,7 @@ const AllSpots = () => {
         dispatch(getSpots())
       },[dispatch])
     console.log(spots[1], 'lastone')
-    if(!spots){
+    if(!spots && !spots.spot){
         return null
     }
 
