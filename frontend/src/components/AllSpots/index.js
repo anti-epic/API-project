@@ -20,11 +20,11 @@ const AllSpots = () => {
         dispatch(getSpots())
       },[dispatch])
     console.log(spots[1], 'lastone')
-    if(!spots && !spots.spot){
+    if(!spots){
         return null
     }
 
-    return (
+    return spots && (
 
         <div className='container'>
 

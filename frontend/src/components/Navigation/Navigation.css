@@ -70,18 +70,61 @@ align-content: left;
     margin: 0;
 
 
+
 }
 
 
 .menuButton i {
     /* border-color: 1px sold red; */
+
+    padding-top: 10%;
+
 }
 .menuButton {
     /* border: 2px solid blue; */
+    position: absolute;
+    right: 5%;
+    top:2.5%;
+    height: 20%;
+    overflow: hidden;
+    width:21%;
+
+
 }
 
 .menuButton button {
     display: grid;
-    /* border: 5px solid green; */
 
+    /* border: 5px solid green; */
+    border-radius: 25px;
+
+}
+.fa-user-circle {
+padding-left: 50%;
+top: -50%;
+position: relative;
+margin-bottom: 10%;
+
+}
+.fa-bars {
+    padding-right: 50%;
+    margin-top: 15%;
+
+}
+
+.menuButtonOpen li {
+    padding: 1%;
+    border-bottom: 1px solid gray;
+    font-weight: bold;
+}
+.menuButtonOpen{
+position: absolute;
+top: 30%;
+left:35%;
+border: 1px solid gray;
+width:50%;
+overflow: hidden;
+padding: 4%;
+
+background-color: white;
 }
