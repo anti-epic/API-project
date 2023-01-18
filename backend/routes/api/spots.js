@@ -63,13 +63,6 @@ const validateSpot = [
     ).isLength(
         {min: 1}
     ).withMessage('Country is required'),
-    check('lat').exists(
-        {checkFalsy: true}
-    ).isFloat()
-    .withMessage('Latitude is not valid'),
-    check('lng').exists(
-        {checkFalsy: true}
-    ).isFloat().withMessage('Longitude is not valid'),
     check('name').exists(
         {checkFalsy: true}
     ).isLength(
@@ -80,6 +73,12 @@ const validateSpot = [
     ).isLength(
         {min: 1}
     ).withMessage('Description is required'),
+    check('lat').exists(
+        {checkFalsy: false}
+    ).isFloat().withMessage('must be a number'),
+    check('lng').exists(
+        {checkFalsy: false}
+    ).isFloat().withMessage('must be a number'),
     check('price').exists(
         {checkFalsy: true}
     ).isFloat().withMessage('Price per day is required'),
@@ -677,6 +676,7 @@ router.post('/:spotId/bookings',  validateBookings, requireAuth, async (req, res
 
 router.post('/', requireAuth, validateSpot, async (req, res, next) => {
 
+
     const {
         address,
         city,
@@ -687,6 +687,7 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) => {
         name,
         description,
         price
+
     } = req.body
 
     console.log(req.body)

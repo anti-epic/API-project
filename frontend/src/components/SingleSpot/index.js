@@ -27,7 +27,15 @@ if(spotObj.SpotImages){
         spotImages.push(image.url)
     }
 })
+
+// for(let i = 0; i < 6; i++){
+//     if(spotImages.length < i){
+//         spotImages[i].push(notFound);
+//     }
+// }
 }
+
+
 
 
 if(spotImages.length < 1){
@@ -35,7 +43,6 @@ if(spotImages.length < 1){
 }
 useEffect(() => {
     dispatch(getSpot(spotId))
-
 
 
 
@@ -55,12 +62,21 @@ return(
         </div>
     <div className='imageLayout'>
 
-        {spotImages.map((image) => (
+        {/* {spotImages.map((image) => (
 
-            <img key={image.id} className='singleSpotImage'src={image}></img>
+          <img key={image.id} className='singleSpotImage'src={image}></img>
 
-            ))}
-            </div>
+            ))} */}
+
+<img  className='singleSpotImage item1'src={spotImages[0]}></img>
+<img  className='singleSpotImage item2'src={spotImages[1]}></img>
+<img  className='singleSpotImage item3'src={spotImages[2]}></img>
+<img  className='singleSpotImage item4'src={spotImages[3]}></img>
+<img  className='singleSpotImage item5'src={spotImages[4]}></img>
+<img  className='singleSpotImage item6'src={spotImages[5]}></img>
+
+
+    </div>
             {(sessionUser.id === spotObj[spotId].ownerId) ?
             (<div>
                 <div className='updateButton'><NavLink to={`/spots/${spotId}/edit`}>Update</NavLink></div>
