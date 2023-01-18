@@ -8,6 +8,7 @@ import AllSpots from './components/AllSpots';
 import SingleSpot from './components/SingleSpot'
 import  EditSpot  from "./components/EditSpot";
 import DeleteSpot from './components/DeleteSpot';
+import CreateSpot from './components/CreateSpot';
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route  exact path='/' component={AllSpots}  />
+          <Route exact path='/spots/create' component={CreateSpot} />
           <Route exact path='/spots/:spotId' component={SingleSpot} />
           <Route exact path='/spots/:spotId/edit' component={EditSpot} />
           <Route exact path='/spots/:spotId/delete' component={DeleteSpot} />
