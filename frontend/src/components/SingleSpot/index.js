@@ -18,7 +18,8 @@ const reviewObj = useSelector(state=> state.reviews)
 
 const reviews = Object.values(reviewObj)
 
-
+const reviewLength = reviews.length;
+// console.log(reviewLength, 'review length')
 
 if(!sessionUser) sessionUser = 'not logged in';
 
@@ -37,7 +38,6 @@ if(spotObj.SpotImages){
 if(spotImages.length < 5){
 
 for(let i = 0; i < 5; i++){
-    console.log(i, spotImages)
     if(!spotImages[i]){
         spotImages[i] = ('https://cdn.pixabay.com/photo/2016/08/11/23/48/mountains-1587287_960_720.jpg');
     }
@@ -59,7 +59,7 @@ useEffect(() => {
 
 
 
-},[spotId])
+},[spotId,reviews.length])
 if(!spotObj){
     return null
 }
@@ -68,7 +68,7 @@ if(!reviews){
 }
 
 
-console.log(sessionUser.id, 'here with sessionid')
+// console.log(sessionUser.id, 'here with sessionid')
 return(
     <div className='singleContainer'>
         <div>
