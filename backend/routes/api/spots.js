@@ -669,7 +669,7 @@ router.post('/:spotId/bookings',  validateBookings, requireAuth, async (req, res
 
 
 router.post('/', requireAuth,
-// validateSpot,
+validateSpot,
 async (req, res, next) => {
 
 
@@ -678,8 +678,8 @@ async (req, res, next) => {
         city,
         state,
         country,
-        // lat,
-        // lng,
+        lat,
+        lng,
         name,
         description,
         price
