@@ -109,7 +109,7 @@ return(
         <div className='reviews'>
         {reviews.map((review) => (
             <div className='individualReview'>
-                 <div className='userNameReview'>   <i class="fa-solid fa-user"></i> </div>
+                 <div className='userNameReview'>  <i class="fa-solid fa-user  fa-xl"> </i> {review.User.firstName} {review.User.lastName}</div>
            <div className='descriptionReview'>  {review.review} </div>
 
             </div>
