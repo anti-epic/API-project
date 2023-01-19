@@ -30,8 +30,7 @@ const handleSubmit = async (e) => {
         city,
         state,
         country,
-        lat,
-        lng,
+
         name,
         description,
         price, 'end')
@@ -39,20 +38,17 @@ const handleSubmit = async (e) => {
 
 
     const payload = {
-
         address,
         city,
         state,
         country,
-        lat,
-        lng,
         name,
         description,
         price
     }
     dispatch(createSpotThunk(payload));
- history.push(`/spots`);
-//  history.push(`/spots/${spotObj.id}`);
+ history.push(`/`);
+
 }
 
     return(
@@ -89,20 +85,7 @@ const handleSubmit = async (e) => {
           value={country}
           onChange={(e) => setCountry(e.target.value)}
           />
-        <input
-          type="number"
-          placeholder='lat'
-          required
-          value={lat}
-          onChange={(e) => setLat(e.target.value)}
-          />
-        <input
-          type="number"
-          placeholder='lng'
-          required
-          value={lng}
-          onChange={(e) => setLng(e.target.value)}
-          />
+
         <input
           type="text"
           placeholder='name'

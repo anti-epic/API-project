@@ -73,12 +73,6 @@ const validateSpot = [
     ).isLength(
         {min: 1}
     ).withMessage('Description is required'),
-    check('lat').exists(
-        {checkFalsy: false}
-    ).isFloat().withMessage('must be a number'),
-    check('lng').exists(
-        {checkFalsy: false}
-    ).isFloat().withMessage('must be a number'),
     check('price').exists(
         {checkFalsy: true}
     ).isFloat().withMessage('Price per day is required'),
@@ -674,7 +668,9 @@ router.post('/:spotId/bookings',  validateBookings, requireAuth, async (req, res
 // })
 
 
-router.post('/', requireAuth, validateSpot, async (req, res, next) => {
+router.post('/', requireAuth,
+// validateSpot,
+async (req, res, next) => {
 
 
     const {
@@ -682,22 +678,21 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) => {
         city,
         state,
         country,
-        lat,
-        lng,
+        // lat,
+        // lng,
         name,
         description,
         price
 
     } = req.body
 
-    console.log(req.body)
     const newSpot = await Spot.create({
         address,
         city,
         state,
         country,
-        lat,
-        lng,
+        // lat,
+        // lng,
         name,
         description,
         price,

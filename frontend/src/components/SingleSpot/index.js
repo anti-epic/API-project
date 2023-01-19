@@ -28,11 +28,17 @@ if(spotObj.SpotImages){
     }
 })
 
-// for(let i = 0; i < 6; i++){
-//     if(spotImages.length < i){
-//         spotImages[i].push(notFound);
-//     }
-// }
+if(spotImages.length < 5){
+
+for(let i = 0; i < 5; i++){
+    console.log(i, spotImages)
+    if(!spotImages[i]){
+        spotImages[i] = (notFound);
+    }
+}
+}
+
+
 }
 
 
@@ -56,24 +62,18 @@ if(!spotObj){
 return(
     <div className='singleContainer'>
         <div>
-       <h1>{spotObj.name}</h1>
-      <i className="fa-solid fa-star fa-2xs"></i> {Number(spotObj.avgStarRating).toFixed(2)} | <Link className="reviewsLink">{spotObj.numReviews} reviews </Link>
+       <h1 className='spotName'>{spotObj.name}</h1>
+      <i className="fa-solid fa-star fa-xs reviewCount"></i> {(typeof (spotObj.avgStarRating) === 'number') ?  Number(spotObj.avgStarRating).toFixed(2) : 'no ratings'} | <Link className="reviewsLink">{spotObj.numReviews} reviews </Link>
        {spotObj.city}, {spotObj.state}
         </div>
     <div className='imageLayout'>
-
-        {/* {spotImages.map((image) => (
-
-          <img key={image.id} className='singleSpotImage'src={image}></img>
-
-            ))} */}
 
 <img  className='singleSpotImage item1'src={spotImages[0]}></img>
 <img  className='singleSpotImage item2'src={spotImages[1]}></img>
 <img  className='singleSpotImage item3'src={spotImages[2]}></img>
 <img  className='singleSpotImage item4'src={spotImages[3]}></img>
 <img  className='singleSpotImage item5'src={spotImages[4]}></img>
-<img  className='singleSpotImage item6'src={spotImages[5]}></img>
+
 
 
     </div>
