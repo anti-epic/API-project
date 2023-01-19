@@ -34,7 +34,7 @@ export const editSpotThunk = (payload, id) => async dispatch => {
     console.log(id, ' in edit')
     const response = await csrfFetch(`/api/spots/${id}`, {
         method: 'PUT',
-        headers: {"CONTENT-TYPE" : "application/json"},
+        headers: {"Content-Type" : "application/json"},
         body: JSON.stringify(payload)
     })
     if(response.ok){
@@ -49,11 +49,9 @@ export const editSpotThunk = (payload, id) => async dispatch => {
 
 export const createSpotThunk = (payload) => async dispatch => {
     console.log(payload, ' in add spot thunk')
-        payload.price = Number(payload.price)
-        console.log(payload, ' in add spot thunk after')
     const response = await csrfFetch(`/api/spots`, {
         method: 'POST',
-        headers: {"CONTENT-TYPE" : "application/json"},
+        headers: {"Content-Type" : "application/json"},
         body: JSON.stringify(payload)
     })
     if(response.ok){

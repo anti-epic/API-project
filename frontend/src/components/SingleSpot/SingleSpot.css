@@ -1,22 +1,23 @@
-.singleContainer {
 
-
-
-}
-h1 {
+.spotName {
     display: block;
     text-align: start;
+    margin-left: 20%;
     border-bottom: 0px;
+    font-size: 28px;
 }
 
+.reviewCount {
+    margin-left: 20%;
+}
 
 .imageLayout {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(13, 1fr);
     grid-template-rows: repeat(8, 5vw);
-    grid-gap: 15px;
-    width:50%;
-    height: 50%;
+    grid-gap: 10px;
+
+    margin-left: 20%;
 }
 
 .singleSpotImage {
@@ -27,50 +28,45 @@ h1 {
 }
 
 .reviewsLink {
-    margin-right: 10%;
+margin-right:1%;
 
 }
+
+
+
 
 
 .item1 {
     grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column-end: 6;
     grid-row-start: 1;
-    grid-row-end: 3;
+    grid-row-end: 6;
 }
 
 .item2 {
-    grid-column-start: 3;
-    grid-column-end: 5;
+    grid-column-start: 6;
+    grid-column-end: 9;
     grid-row-start: 1;
     grid-row-end: 3;
 }
 
 .item3 {
-    grid-column-start: 5;
+    grid-column-start: 6;
     grid-column-end: 9;
-    grid-row-start: 1;
-    grid-row-end: 6;
-}
-
-.item4 {
-    grid-column-start: 1;
-    grid-column-end: 5;
     grid-row-start: 3;
     grid-row-end: 6;
 }
 
-.item5 {
-    grid-column-start: 1;
-    grid-column-end: 5;
-    grid-row-start: 6;
-    grid-row-end: 9;
+.item4 {
+    grid-column-start: 9;
+    grid-column-end: 12;
+    grid-row-start: 1;
+    grid-row-end: 3;
 }
 
-
-.item6 {
-    grid-column-start: 5;
-    grid-column-end: 9;
-    grid-row-start: 6;
-    grid-row-end: 9;
+.item5 {
+    grid-column-start: 9;
+    grid-column-end: 12;
+    grid-row-start: 3;
+    grid-row-end: 6;
 }

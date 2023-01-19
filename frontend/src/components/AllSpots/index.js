@@ -38,7 +38,8 @@ const AllSpots = () => {
                             <div className="cityState">  {spot.city},{spot.state}</div>
                             <div className="avgRating">     <i className="fa-solid fa-star fa-2xs"></i>
                              {(typeof spot.avgRating === 'number') ? Number(spot.avgRating).toFixed(2)
-                                   : <div className='noReviews'>no reviews</div>                                     }</div>
+                                   : <div className='noReviews'>no reviews</div>}
+                            </div>
                             <br></br>
                             <div className='priceLine'><div className="price">${spot.price}</div>night</div>
                         </div>
