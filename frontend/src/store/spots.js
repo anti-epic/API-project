@@ -11,17 +11,17 @@ const ADD_SPOT = '/spot/ADD';
 
 export const getSpots = () => async dispatch => {
     const response = await csrfFetch('/api/spots')
-    console.log('in')
+    // console.log('in')
     if (response.ok) {
         const spots = await response.json();
-        console.log(spots, 'here')
+        // console.log(spots, 'here')
         dispatch(loadSpots(spots));
       }
 
 };
 
 export const getSpot = (id) => async dispatch => {
-    console.log(id, 'by payload');
+    // console.log(id, 'by payload');
     const response = await csrfFetch(`/api/spots/${id}`)
     if(response.ok) {
 
@@ -31,7 +31,7 @@ export const getSpot = (id) => async dispatch => {
 }
 
 export const editSpotThunk = (payload, id) => async dispatch => {
-    console.log(id, ' in edit')
+    // console.log(id, ' in edit')
     const response = await csrfFetch(`/api/spots/${id}`, {
         method: 'PUT',
         headers: {"Content-Type" : "application/json"},
@@ -48,7 +48,7 @@ export const editSpotThunk = (payload, id) => async dispatch => {
 
 
 export const createSpotThunk = (payload) => async dispatch => {
-    console.log(payload, ' in add spot thunk')
+    // console.log(payload, ' in add spot thunk')
     const response = await csrfFetch(`/api/spots`, {
         method: 'POST',
         headers: {"Content-Type" : "application/json"},
@@ -67,7 +67,7 @@ export const createSpotThunk = (payload) => async dispatch => {
 
 
 export const deleteSpotThunk = (id) => async dispatch => {
-    console.log(id, ' in delete')
+    // console.log(id, ' in delete')
     const response = await csrfFetch(`/api/spots/${id}`, {
         method: 'DELETE',
     })
@@ -127,7 +127,7 @@ const initialState = {
 const spotReducer = (state = initialState, action) => {
     switch(action.type){
         case LOAD_SPOTS:
-            console.log('in reducer')
+            // console.log('in reducer')
             const newState = {}
 
             // console.log(action.spots, 'next');
@@ -137,19 +137,19 @@ const spotReducer = (state = initialState, action) => {
             // console.log('newState', newState)
             return {...newState}
         case LOAD_SPOT:
-            console.log('in single spot reducer')
+            // console.log('in single spot reducer')
             const newSpotState = {...state,...action.spot};
             // console.log(newSpotState, 'jere',action.spot)
-            console.log(action.spot, 'ss', newSpotState)
+            // console.log(action.spot, 'ss', newSpotState)
             return newSpotState
         case EDIT_SPOT:
-            console.log('edit spot before', state)
+            // console.log('edit spot before', state)
             const editState = {...state};
             editState[action.spot.id] = action.spot;
-            console.log('edit spot after', editState)
+            // console.log('edit spot after', editState)
             return editState
         case DELETE_SPOT:
-            console.log('in delete state');
+            // console.log('in delete state');
             const deleteState = {...state}
             return deleteState
         case ADD_SPOT:
