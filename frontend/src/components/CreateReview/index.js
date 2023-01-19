@@ -51,6 +51,8 @@ const handleSubmit = async (e) => {
       <input
           type="number"
           placeholder='stars'
+          min='1'
+          max='5'
           required
           value={stars}
           onChange={(e) => setStars(e.target.value)}

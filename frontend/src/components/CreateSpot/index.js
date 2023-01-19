@@ -103,6 +103,7 @@ const handleSubmit = async (e) => {
       <input
           type="number"
           placeholder='price'
+          min='0'
           required
           value={price}
           onChange={(e) => setPrice(e.target.value)}

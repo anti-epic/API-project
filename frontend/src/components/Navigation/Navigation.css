@@ -105,7 +105,7 @@ padding-right: 3%;
 position: absolute;
 top: 9%;
 right: 2%;
-border: 1px solid gray;
+box-shadow: 1px 1px 2px gray;
 overflow: hidden;
 padding: 1%;
 border-radius: 25px;
