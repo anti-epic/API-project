@@ -63,7 +63,7 @@ align-content: center;
 
 .menuButton button {
     border:1px solid gray;
-
+    cursor:pointer;
     /* border: 5px solid green; */
     border-radius: 25px;
 right:5%;
