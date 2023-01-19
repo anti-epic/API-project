@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import {getSpot} from '../../store/spots';
 import './SingleSpot.css';
 import notFound from './not-found.png'
+import { getReviews } from '../../store/reviews';
 
 const SingleSpot = () => {
 
@@ -13,6 +14,11 @@ const {spotId} = useParams();
 let sessionUser = useSelector(state => state.session.user);
 
 const spotObj = useSelector(state => state.spots)
+const reviewObj = useSelector(state=> state.reviews)
+
+const reviews = Object.values(reviewObj)
+
+
 
 if(!sessionUser) sessionUser = 'not logged in';
 
@@ -33,7 +39,7 @@ if(spotImages.length < 5){
 for(let i = 0; i < 5; i++){
     console.log(i, spotImages)
     if(!spotImages[i]){
-        spotImages[i] = (notFound);
+        spotImages[i] = ('https://cdn.pixabay.com/photo/2016/08/11/23/48/mountains-1587287_960_720.jpg');
     }
 }
 }
@@ -49,7 +55,7 @@ if(spotImages.length < 1){
 }
 useEffect(() => {
     dispatch(getSpot(spotId))
-
+    dispatch(getReviews(spotId))
 
 
 
@@ -63,9 +69,24 @@ return(
     <div className='singleContainer'>
         <div>
        <h1 className='spotName'>{spotObj.name}</h1>
-      <i className="fa-solid fa-star fa-xs reviewCount"></i> {(typeof (spotObj.avgStarRating) === 'number') ?  Number(spotObj.avgStarRating).toFixed(2) : 'no ratings'} | <Link className="reviewsLink">{spotObj.numReviews} reviews </Link>
+       <div className='spotData'>
+      <i className="fa-solid fa-star fa-xs"></i> {(typeof (spotObj.avgStarRating) === 'number') ?  Number(spotObj.avgStarRating).toFixed(2) : 'no ratings'} | <p className='reviewsNumber'>{spotObj.numReviews} reviews</p>
        {spotObj.city}, {spotObj.state}
+       </div>
         </div>
+
+        {(sessionUser.id === spotObj[spotId].ownerId) ?
+            (<div className='userUpdateDeleteSection'>
+              <NavLink className='updateButton' to={`/spots/${spotId}/edit`}>Update</NavLink>
+                <NavLink  className='deleteButton' to={`/spots/${spotId}/delete`}>Delete</NavLink>
+                </div>
+                ) :
+                (
+                    <div>
+                    </div>
+
+            )}
+
     <div className='imageLayout'>
 
 <img  className='singleSpotImage item1'src={spotImages[0]}></img>
@@ -76,20 +97,26 @@ return(
 
 
 
-    </div>
-            {(sessionUser.id === spotObj[spotId].ownerId) ?
-            (<div>
-                <div className='updateButton'><NavLink to={`/spots/${spotId}/edit`}>Update</NavLink></div>
-                <div className='deleteButton'><NavLink to={`/spots/${spotId}/delete`}>Delete</NavLink></div>
-                </div>
-                ) :
-                (
-                    <div>
-                        {spotObj.description}
-                    </div>
 
-            )}
     </div>
+        <div className='spotDescription'>{spotObj.description}</div>
+    <div className='reviewsContainer'>
+        <div className='createReviewContainer'>
+            <div className='singlePrice'>${spotObj.price} Night</div>
+        <NavLink to={`/spots/${spotId}/reviews`} className='addReviewText'>Create a review</NavLink>
+        </div>
+
+        <div className='reviews'>
+        {reviews.map((review) => (
+            <div className='individualReview'>
+                 <div className='userNameReview'>   <i class="fa-solid fa-user"></i> </div>
+           <div className='descriptionReview'>  {review.review} </div>
+
+            </div>
+        ))}
+        </div>
+    </div>
+</div>
 )
 
 }
