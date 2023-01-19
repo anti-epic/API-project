@@ -115,7 +115,9 @@ return(
         {reviews.map((review) => (
             review ?(
             <div className='individualReview'>
-                 <div className='userNameReview'>  <i class="fa-solid fa-user  fa-xl"> </i> </div>
+                 <div className='userNameReview'>  <i class="fa-solid fa-user  fa-xl"> </i>
+                 {review.User ? (review.User.firstName) : ('user')}
+                 </div>
            <div className='descriptionReview'>  {review.review} </div>
 
             </div>) : <div></div>
@@ -130,7 +132,7 @@ return(
     {reviews.map((review) => (
          review ?(
         <div className='individualReview'>
-             <div className='userNameReview'>  <i class="fa-solid fa-user  fa-xl"> </i> </div>
+             <div className='userNameReview'>  <i class="fa-solid fa-user  fa-xl"> </i> {review.User.firstName}</div>
        <div className='descriptionReview'>  {review.review} </div>
 
         </div>) : (<div></div>)
