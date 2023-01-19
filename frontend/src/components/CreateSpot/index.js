@@ -7,7 +7,7 @@ import { createSpotThunk } from '../../store/spots';
 import { useHistory } from 'react-router-dom';
 import './createSpot.css'
 
-const EditSpot = () => {
+const CreateSpot = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const [address, setAddress] = useState();
@@ -124,4 +124,4 @@ const handleSubmit = async (e) => {
 
 
 
-export default EditSpot
+export default CreateSpot

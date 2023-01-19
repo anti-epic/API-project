@@ -26,7 +26,7 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(deleteSpotThunk(spotId));
 
- history.push(`/spots`);
+ history.push(`/`);
 }
 
     return(

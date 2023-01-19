@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
-import logo from "./logo.png"
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
@@ -20,7 +19,7 @@ function Navigation({ isLoaded }){
        <div className='imgLogo'style={{display: 'inline'}}>
        <i class="fa-solid fa-house-crack"></i>
        </div>
-  <div className='logoText'>Airbnb</div>
+  <div className='logoText'>Airbrb</div>
         </NavLink>
       </li>
       <div className='createSpotContainer'>

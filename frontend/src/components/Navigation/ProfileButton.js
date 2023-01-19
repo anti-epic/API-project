@@ -4,11 +4,30 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
-
+import { useModal } from "../../context/Modal";
 function ProfileButton({ user }) {
+  const { closeModal } = useModal();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+
+
+
+  const handleSubmit = (e) => {
+    const credential = 'Demo-lition';
+    const password = 'password'
+    return dispatch(sessionActions.login({ credential, password }))
+      .then(closeModal)
+      .catch(
+        async (res) => {
+          const data = await res.json();
+        }
+      );
+
+
+  }
+
+
 
   const openMenu = () => {
     if (showMenu) return;
@@ -52,8 +71,8 @@ function ProfileButton({ user }) {
             <li>{user.username}</li>
             <li>{user.firstName} {user.lastName}</li>
             <li>{user.email}</li>
-            <li>
-              <button onClick={logout}>Log Out</button>
+            <li className='logoutButton'>
+              <button  onClick={logout}>Log Out</button>
             </li>
           </div>
         ) : (
@@ -72,8 +91,9 @@ function ProfileButton({ user }) {
                         <OpenModalMenuItem
 
               itemText="Demo User"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
+              onItemClick={handleSubmit}
+
+              // modalComponent={<SignupFormModal />}
 />
           </div>
         )}

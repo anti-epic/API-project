@@ -16,8 +16,6 @@ const EditSpot = ({}) => {
     const [city, setCity] = useState(spotObj.city);
     const [state, setState] = useState(spotObj.state);
     const [country, setCountry] = useState(spotObj.country);
-    const [lat, setLat] = useState(spotObj.lat);
-    const [lng, setLng] = useState(spotObj.lng);
     const [name, setName] = useState(spotObj.name);
     const [description, setDescription] = useState(spotObj.description);
     const [price, setPrice] = useState(spotObj.price)
@@ -38,8 +36,6 @@ const handleSubmit = async (e) => {
         city,
         state,
         country,
-        lat,
-        lng,
         name,
         description,
         price
@@ -82,20 +78,6 @@ console.log(spotObj, 'here')
           required
           value={country}
           onChange={(e) => setCountry(e.target.value)}
-          />
-        <input
-          type="number"
-          placeholder={lat}
-          required
-          value={lat}
-          onChange={(e) => setLat(e.target.value)}
-          />
-        <input
-          type="number"
-          placeholder={lng}
-          required
-          value={lng}
-          onChange={(e) => setLng(e.target.value)}
           />
         <input
           type="text"
@@ -162,20 +144,6 @@ console.log(spotObj, 'here')
         required
         value={country}
         onChange={(e) => setCountry(e.target.value)}
-        />
-      <input
-        type="number"
-        placeholder='lat'
-        required
-        value={lat}
-        onChange={(e) => setLat(e.target.value)}
-        />
-      <input
-        type="number"
-        placeholder='lng'
-        required
-        value={lng}
-        onChange={(e) => setLng(e.target.value)}
         />
       <input
         type="text"
