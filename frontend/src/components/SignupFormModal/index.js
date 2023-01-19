@@ -34,7 +34,7 @@ function SignupFormModal() {
     <>
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
-       <h2>Welcome to Airbnb</h2>
+       <h2>Welcome to Airbrb</h2>
         <ul className="errorText">
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
