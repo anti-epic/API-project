@@ -7,7 +7,7 @@ display: grid;
 border-top: 1px solid grey;
 border-bottom: 1px solid gray;
 grid-template-areas : "logo createSpot . login";
-justify-content: start;
+justify-content: space-between;
 padding: 1%;
 margin: 0%;
 }
@@ -127,6 +127,7 @@ background-color: white;
     justify-content: center;
     align-content: center;
     background-color: #FF385C;
+    margin-left: 50%;
 }
 
 .createSpotContainer {
