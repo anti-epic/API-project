@@ -138,6 +138,7 @@ background-color: white;
 .logoutButton button, .logoutButton button:hover {
     display: grid;
     border:0px;
+    box-shadow: 0px 0px;
     position: relative;
     background-color: white;
     font-size: 15px;
