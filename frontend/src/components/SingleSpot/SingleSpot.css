@@ -137,11 +137,11 @@
 }
 
 .reviews {
-    grid-area: "reviews";
-    width:40em;
-
     display: grid;
-    margin-top: 2em;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    padding-top: 2%;
+
 }
 
 .createReviewContainer {
@@ -202,4 +202,20 @@ padding: 2%;
     font-size: 12px;
 
     font-weight: bolder;
+}
+.singlePriceLoggedOut {
+    display: grid;
+    justify-content: end;
+    font-weight: bold;
+    width: 50%;
+    margin-left:38%;
+}
+
+
+.reviewsLoggedOut{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+
+    margin-left: 20%;
 }

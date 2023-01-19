@@ -63,8 +63,12 @@ useEffect(() => {
 if(!spotObj){
     return null
 }
+if(!reviews){
+    return null
+}
 
 
+console.log(sessionUser.id, 'here with sessionid')
 return(
     <div className='singleContainer'>
         <div>
@@ -100,6 +104,7 @@ return(
 
     </div>
         <div className='spotDescription'>{spotObj.description}</div>
+        {(sessionUser.id !== undefined) ? (
     <div className='reviewsContainer'>
         <div className='createReviewContainer'>
             <div className='singlePrice'>${spotObj.price} Night</div>
@@ -108,14 +113,30 @@ return(
 
         <div className='reviews'>
         {reviews.map((review) => (
+            review ?(
             <div className='individualReview'>
-                 <div className='userNameReview'>  <i class="fa-solid fa-user  fa-xl"> </i> {review.User.firstName} {review.User.lastName}</div>
+                 <div className='userNameReview'>  <i class="fa-solid fa-user  fa-xl"> </i> </div>
            <div className='descriptionReview'>  {review.review} </div>
 
-            </div>
+            </div>) : <div></div>
         ))}
         </div>
+    </div>)
+    : (  <div className='reviewsContainerLoggedOut'>
+
+        <div className='singlePriceLoggedOut'>${spotObj.price} Night</div>
+
+    <div className='reviewsLoggedOut'>
+    {reviews.map((review) => (
+         review ?(
+        <div className='individualReview'>
+             <div className='userNameReview'>  <i class="fa-solid fa-user  fa-xl"> </i> </div>
+       <div className='descriptionReview'>  {review.review} </div>
+
+        </div>) : (<div></div>)
+    ))}
     </div>
+</div>)}
 </div>
 )
 
