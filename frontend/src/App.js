@@ -10,7 +10,7 @@ import  EditSpot  from "./components/EditSpot";
 import DeleteSpot from './components/DeleteSpot';
 import CreateSpot from './components/CreateSpot';
 import CreateReview from './components/CreateReview';
-
+import DeleteReview from "./components/DeleteReview";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -29,6 +29,7 @@ function App() {
           <Route exact path='/spots/:spotId/edit' component={EditSpot} />
           <Route exact path='/spots/:spotId/delete' component={DeleteSpot} />
           <Route exact path ='/spots/:spotId/reviews' component={CreateReview} />
+          <Route exact path='/reviews/:reviewId' component={DeleteReview} />
         </Switch>
       )}
     </>

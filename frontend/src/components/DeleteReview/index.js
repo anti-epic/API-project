@@ -3,14 +3,14 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { deleteSpotThunk } from '../../store/spots';
+import { deleteReviewThunk } from '../../store/reviews';
 import { useHistory } from 'react-router-dom';
-import './deleteSpot.css';
+// import './deleteSpot.css';
 
-const DeleteSpot = ({}) => {
+const DeleteReview = ({}) => {
     const history = useHistory();
     const dispatch = useDispatch();
-   const {spotId} =  useParams();
+   const {reviewId} =  useParams();
     const spotObj = useSelector(state => state.spots);
 
 
@@ -24,7 +24,7 @@ if(!spotObj){
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(deleteSpotThunk(spotId));
+    dispatch(deleteReviewThunk(reviewId));
 
  history.push(`/`);
 }
@@ -35,7 +35,7 @@ const handleSubmit = async (e) => {
 
 
         <form className='deleteForm' onSubmit={handleSubmit}>
-       <h1 className='deleteHeader'> Once deleted you can never recover the spot </h1>
+       <h1 className='deleteHeader'> Are you sure you want to delete this review? </h1>
         <input className='deleteSpotButton'type='submit' value="DELETE FOREVER" />
         </form>
 
@@ -51,4 +51,4 @@ const handleSubmit = async (e) => {
 
 
 
-export default DeleteSpot
+export default DeleteReview

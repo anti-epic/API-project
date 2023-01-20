@@ -63,10 +63,10 @@ if(spotImages.length < 1){
 useEffect(() => {
     dispatch(getSpot(spotId))
     dispatch(getReviews(spotId))
-    console.log(alreadyReviewed, ' in dispatch bbefore')
+    // console.log(alreadyReviewed, ' in dispatch bbefore')
 
 
-    console.log(alreadyReviewed, ' in dispatch after')
+    // console.log(alreadyReviewed, ' in dispatch after')
 
 
 
@@ -146,7 +146,9 @@ return spotObj && (
                  {review.User ? (review.User.firstName) : ('user')}
                  </div>
            <div className='descriptionReview'>  {review.review} </div>
-
+           {sessionUser.id === review.userId ? (
+               <NavLink className='deleteButton' to={`/reviews/${review.id}`}>delete review</NavLink>
+           ) : <div></div>}
             </div>
         ))}
         </div>
