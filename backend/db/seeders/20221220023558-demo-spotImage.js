@@ -56,7 +56,7 @@ module.exports = {
       },
       {
         "spotId": 8,
-        "url": "https://www.deviantart.com/chakotay02/art/Tony-Stark-mansion-523515812",
+        "url": "https://cdn.pixabay.com/photo/2016/12/06/14/33/log-cabin-1886620_960_720.jpg",
         "preview": true
 
       },

@@ -77,22 +77,21 @@
     display: grid;
     justify-content: center;
     align-items: center;
-    margin-bottom: 104%;
-    border: 1px solid black;
     color:white;
     width: 18em;
-    margin-left:-15%;
     height: 3em;
     border-radius: 12px;
     background-color: #FF385C;
 }
 
 .singlePrice {
-    display: grid;
+    display: inline-block;
+    width:10em;
     font-size: 20px;
     margin-left: 2em;
     font-weight: bold;
     margin-bottom: 9em;
+    font-size: 22px;
 }
 
 
@@ -153,14 +152,15 @@
 .createReviewContainer {
     display: grid;
     grid-area: createReview;
-    grid-template-columns: 13% 10% 1fr;
+    grid-template-columns: 13% 1fr;
     align-items: center;
     border: 1px solid grey;
     border-radius: 25px;
     justify-content: end;
     margin-top: 3%;
-
+    width:80%;
     height: 15em;
+    margin-left:21%;
 }
 
 
@@ -215,6 +215,7 @@ padding: 2%;
     font-weight: bold;
     width: 50%;
     margin-left:38%;
+    font-size: 22px;
 }
 
 

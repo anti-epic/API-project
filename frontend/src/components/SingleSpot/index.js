@@ -79,7 +79,7 @@ if(!reviews){
 }
 
 const handleClick = (e) => {
-    
+
   e.preventDefault()
 }
 
@@ -125,7 +125,7 @@ return spotObj && (
             <div className='singlePrice'>${spotObj.price} Night</div>
      {alreadyReviewed === false ?(
 
-     <NavLink to={`/spots/${spotId}/reviews`} disabled='true' className='addReviewText'>Create a review</NavLink>
+     <NavLink to={`/spots/${spotId}/reviews`} className='addReviewText'>Create a review</NavLink>
      )
      :
      <NavLink to={`/spots/${spotId}/reviews`} style={{backgroundColor: "grey"}}   onClick={handleClick} disabled='true'  className='addReviewText'>Create a review</NavLink>}
