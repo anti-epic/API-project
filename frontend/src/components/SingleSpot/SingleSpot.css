@@ -151,17 +151,19 @@
 
 
 .spotDescription {
-    display: grid;
-    justify-content: center;
+    display: inline-block;
+    justify-content: start;
+    width: 80%;
     margin-top :2%;
     border-bottom: 1px solid grey;
-    width: 80%;
 
 }
 .info {
     font-size: 16px;
     margin-top: -1%;
+    padding-bottom: 2%;
     border-bottom: 1px solid grey;
+    width: 100%;
 }
 
 

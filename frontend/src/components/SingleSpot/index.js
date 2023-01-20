@@ -123,7 +123,7 @@ return spotObj && (
     <div className='reviewsContainer'>
     <div className='spotDescription'>
        <h3> {spotObj.name} hosted by {spotObj.Owner ? (spotObj.Owner.firstName) : ('Owner')}</h3>
-      <p className='info'>  { Math.floor(Math.random() * (10 - 4) + 4)} guests |   { Math.floor(Math.random() * (10 - 2) + 2)} bedrooms |   { Math.floor(Math.random() * (10 - 4) + 4)} beds |   { Math.floor(Math.random() * (4 - 2) + 2)} bath </p>
+      <div className='info'>  { Math.floor(Math.random() * (10 - 4) + 4)} guests |   { Math.floor(Math.random() * (10 - 2) + 2)} bedrooms |   { Math.floor(Math.random() * (10 - 4) + 4)} beds |   { Math.floor(Math.random() * (4 - 2) + 2)} bath </div>
         <br></br>
         {spotObj.description}</div>
         <div className='createReviewContainer'>
@@ -142,7 +142,7 @@ return spotObj && (
 
             <div  key={review.id} className='individualReview'>
                  <div className='userNameReview'>  <i class="fa-solid fa-user  fa-xl"> </i>
-                 
+
                  {review.User ? (review.User.firstName) : ('user')}
                  </div>
            <div className='descriptionReview'>  {review.review} </div>
