@@ -100,6 +100,7 @@ padding-right: 3%;
     padding: 10%;
     border-bottom: 1px solid gray;
     font-weight: bold;
+    cursor: pointer;
 }
 .menuButtonOpen{
 position: absolute;
@@ -112,6 +113,7 @@ border-radius: 25px;
 width: 13em;
 height: 14em;
 background-color: white;
+
 }
 
 
@@ -144,3 +146,7 @@ background-color: white;
     font-size: 15px;
     font-weight: bold;
 }
+
+
+
+
