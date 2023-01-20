@@ -79,21 +79,47 @@
     align-items: center;
     color:white;
     width: 18em;
+    margin-right:50%;
     height: 3em;
     border-radius: 12px;
     background-color: #FF385C;
 }
 
-.singlePrice {
-    display: inline-block;
-    width:10em;
-    font-size: 20px;
-    margin-left: 2em;
-    font-weight: bold;
-    margin-bottom: 9em;
-    font-size: 22px;
+
+
+
+
+
+
+
+
+
+
+
+
+.priceReviewsLine{
+    display:grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    font-weight: 100;
 }
 
+
+.singlePrice {
+    display: grid;
+
+    font-size: 20px;
+    font-weight: bold;
+    font-size: 20px;
+
+}
+.reviewsRatingBottom{
+    display: inline-block;
+    margin-left:20%;
+    /* margin-left: 70%;
+    margin-bottom: 88%; */
+}
 
 
 .userUpdateDeleteSection {
@@ -125,8 +151,19 @@
 
 
 .spotDescription {
-    display: grid;
-    justify-content: center;
+    display: inline-block;
+    justify-content: start;
+    width: 80%;
+    margin-top :2%;
+    border-bottom: 1px solid grey;
+
+}
+.info {
+    font-size: 16px;
+    margin-top: -1%;
+    padding-bottom: 2%;
+    border-bottom: 1px solid grey;
+    width: 100%;
 }
 
 
@@ -135,7 +172,7 @@
     grid-template-columns: 7fr 1fr;
     grid-template-areas: "reviews createReview";
     display: grid;
-    width:67.5%;
+    width:66.5%;
     margin-left:20%;
     justify-content: center;
     margin-top: 0%;
@@ -145,22 +182,21 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: center;
-    padding-top: 2%;
 
 }
 
 .createReviewContainer {
     display: grid;
     grid-area: createReview;
-    grid-template-columns: 13% 1fr;
     align-items: center;
     border: 1px solid grey;
     border-radius: 25px;
-    justify-content: end;
     margin-top: 3%;
-    width:80%;
-    height: 15em;
-    margin-left:21%;
+    width: 110%;
+    justify-content: center;
+    height: 10em;
+    margin-top:2em;
+
 }
 
 
@@ -206,23 +242,5 @@ padding: 2%;
 
 .formUser {
     font-size: 12px;
-
     font-weight: bolder;
-}
-.singlePriceLoggedOut {
-    display: grid;
-    justify-content: end;
-    font-weight: bold;
-    width: 50%;
-    margin-left:38%;
-    font-size: 22px;
-}
-
-
-.reviewsLoggedOut{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-content: center;
-
-    margin-left: 20%;
 }
