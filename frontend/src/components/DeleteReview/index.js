@@ -26,7 +26,7 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(deleteReviewThunk(reviewId));
 
- history.push(`/`);
+    history.push(`/spots/${spotObj.id}`);
 }
 
     return(
