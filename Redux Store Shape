@@ -27,7 +27,6 @@ store = {
         },
         ReviewImages: [imagesData],
       },
-      optionalOrderedList: [],
     },
     // When on the user's reviews, use the user slice.
     user: {
@@ -41,7 +40,6 @@ store = {
         },
         ReviewImages: [imagesData],
       },
-      optionalOrderedList: [],
     },
   },
   bookings: {
@@ -58,7 +56,6 @@ store = {
       [bookingId]: {
         bookingData,
       },
-      optionalOrderedList: [],
     },
   },
 };
