@@ -7,7 +7,7 @@ const LOAD_SPOT = '/spot/LOAD';
 const EDIT_SPOT = '/spot/edit';
 const DELETE_SPOT = '/spot/DELETE';
 const ADD_SPOT = '/spot/ADD';
-
+const ADD_IMAGE = '/spot/image/ADD';
 
 export const getSpots = () => async dispatch => {
     const response = await csrfFetch('/api/spots')
@@ -47,25 +47,6 @@ export const editSpotThunk = (payload, id) => async dispatch => {
 
 
 
-export const createSpotThunk = (payload) => async dispatch => {
-    // console.log(payload, ' in add spot thunk')
-    const response = await csrfFetch(`/api/spots`, {
-        method: 'POST',
-        headers: {"Content-Type" : "application/json"},
-        body: JSON.stringify(payload)
-    })
-    if(response.ok){
-
-        const data = await response.json();
-        dispatch(createSpot(data))
-    }
-
-}
-
-
-
-
-
 export const deleteSpotThunk = (id) => async dispatch => {
     // console.log(id, ' in delete')
     const response = await csrfFetch(`/api/spots/${id}`, {
@@ -80,6 +61,69 @@ export const deleteSpotThunk = (id) => async dispatch => {
 }
 
 
+
+
+
+
+
+export const createSpotThunk = (payload, url) => async dispatch => {
+    // console.log(payload, ' in add spot thunk')
+    const response = await csrfFetch(`/api/spots`, {
+        method: 'POST',
+        headers: {"Content-Type" : "application/json"},
+        body: JSON.stringify(payload)
+    })
+    if(response.ok){
+
+        const data = await response.json();
+        dispatch(createSpot(data))
+       console.log('testing double thunking', data)
+
+        const secondResponse = await csrfFetch(`/api/spots/${data.id}/images`, {
+            method: 'POST',
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(url)
+        })
+        if(secondResponse.ok){
+            const secondData = await secondResponse.json();
+            dispatch(addImage(secondData))
+
+        }
+    }
+
+
+
+}
+
+
+
+
+export const createImageForSpotThunk= (payload, id) => async dispatch => {
+    console.log(payload, id, ' in add image spot thunk')
+    const response = await csrfFetch(`/api/spots/${id}/images`, {
+        method: 'POST',
+        headers: {"Content-Type" : "application/json"},
+        body: JSON.stringify(payload)
+    })
+    if(response.ok){
+
+        const data = await response.json();
+        dispatch(addImage(data))
+    }
+
+}
+
+
+
+
+
+const addImage = (image) => {
+    console.log(image, 'in image not thunk');
+    return {
+        type: ADD_IMAGE,
+        image
+    }
+}
 
 
 
@@ -156,6 +200,9 @@ const spotReducer = (state = initialState, action) => {
             const addSpotState = {...state};
             addSpotState[action.spot.id] = action.spot;
             return addSpotState
+        case ADD_IMAGE:
+            const addImageState = {...state}
+            addImageState[action.image.spotId] = action.image
         default:
             return state
     }

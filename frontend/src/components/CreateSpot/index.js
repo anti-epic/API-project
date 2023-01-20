@@ -3,7 +3,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { createSpotThunk } from '../../store/spots';
+import { createSpotThunk, createImageForSpotThunk } from '../../store/spots';
 import { useHistory } from 'react-router-dom';
 import './createSpot.css'
 
@@ -19,7 +19,7 @@ const CreateSpot = () => {
     const [name, setName] = useState();
     const [description, setDescription] = useState();
     const [price, setPrice] = useState()
-
+    const [img, setImg] = useState("")
 
 
 
@@ -46,7 +46,23 @@ const handleSubmit = async (e) => {
         description,
         price
     }
-    dispatch(createSpotThunk(payload));
+
+    const imgPayload = {
+      url :img,
+      preview: true
+    }
+
+
+   const newSpot = await dispatch(createSpotThunk(payload, imgPayload));
+
+
+//     console.log(newSpot, 'here')
+
+//  const newImage = await  dispatch(createImageForSpotThunk(imgPayload, newSpot.id))
+//  .catch(async (res) => {
+//   const data = await res.json();
+
+// })
  history.push(`/`);
 
 }
@@ -100,6 +116,13 @@ const handleSubmit = async (e) => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           />
+          <input
+          placeholder='url img'
+                        type="url"
+                        value={img}
+                        onChange={(e) => setImg(e.target.value)}
+                        required
+                    />
       <input
           type="number"
           placeholder='price'
