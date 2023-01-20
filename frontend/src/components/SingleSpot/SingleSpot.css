@@ -100,10 +100,13 @@
 .userUpdateDeleteSection {
     display: grid;
     grid-template-columns: 10em 10em;
-    gap: 20px;
-    justify-content: end;
+    gap: 20%;
+    justify-content: space-around;
     margin-right: 20%;
     border-radius: 25px;
+    margin-left: 50%;
+    margin-bottom: .2%;
+    height: 2em;
 
 }
 
@@ -111,11 +114,14 @@
 .updateButton, .updateButton:hover, .updateButton:active, .updateButton:link, .updateButton:visited .deleteButton, .deleteButton:hover, .deleteButton:active, .deleteButton:link, .deleteButton:visited {
     text-decoration: none;
     display: grid;
+    column-gap: 1%;
     background-color: #FF385C;
     border-radius: 25px;
     justify-content: center;
     align-items: center;
-    color:white
+    color:white;
+    width:20em;
+
 }
 
 

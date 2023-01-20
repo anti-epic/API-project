@@ -138,7 +138,7 @@ const spotReducer = (state = initialState, action) => {
             return {...newState}
         case LOAD_SPOT:
             // console.log('in single spot reducer')
-            const newSpotState = {...state,...action.spot};
+            const newSpotState = {...action.spot};
             // console.log(newSpotState, 'jere',action.spot)
             // console.log(action.spot, 'ss', newSpotState)
             return newSpotState

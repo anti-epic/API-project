@@ -16,10 +16,12 @@ let sessionUser = useSelector(state => state.session.user);
 const spotObj = useSelector(state => state.spots)
 const reviewObj = useSelector(state=> state.reviews)
 
+const spots = Object.values(spotObj)
 const reviews = Object.values(reviewObj)
 
-const reviewLength = reviews.length;
-// console.log(reviewLength, 'review length')
+let alreadyReviewed = false;
+
+
 
 if(!sessionUser) sessionUser = 'not logged in';
 
@@ -47,7 +49,12 @@ for(let i = 0; i < 5; i++){
 
 }
 
+for(let i = 0; i < reviews.length; i++){
+    if(reviews[i].User && reviews[i].User.id === sessionUser.id){
+   alreadyReviewed = true;
+    }
 
+}
 
 
 if(spotImages.length < 1){
@@ -56,10 +63,14 @@ if(spotImages.length < 1){
 useEffect(() => {
     dispatch(getSpot(spotId))
     dispatch(getReviews(spotId))
+    console.log(alreadyReviewed, ' in dispatch bbefore')
+
+
+    console.log(alreadyReviewed, ' in dispatch after')
 
 
 
-},[spotId,reviews.length])
+},[spotId,reviews.length, alreadyReviewed])
 if(!spotObj){
     return null
 }
@@ -67,9 +78,12 @@ if(!reviews){
     return null
 }
 
+const handleClick = (e) => {
+  e.preventDefault()
+}
 
-// console.log(sessionUser.id, 'here with sessionid')
-return(
+
+return spotObj && (
     <div className='singleContainer'>
         <div>
        <h1 className='spotName'>{spotObj.name}</h1>
@@ -79,10 +93,10 @@ return(
        </div>
         </div>
 
-        {(sessionUser.id === spotObj[spotId].ownerId) ?
+        {(sessionUser.id === spotObj.ownerId) ?
             (<div className='userUpdateDeleteSection'>
-              <NavLink className='updateButton' to={`/spots/${spotId}/edit`}>Update</NavLink>
-                <NavLink  className='deleteButton' to={`/spots/${spotId}/delete`}>Delete</NavLink>
+              <NavLink className='updateButton' to={`/spots/${spotId}/edit`}>Update Information</NavLink>
+                <NavLink  className='deleteButton' to={`/spots/${spotId}/delete`}>Delete Location</NavLink>
                 </div>
                 ) :
                 (
@@ -108,13 +122,18 @@ return(
     <div className='reviewsContainer'>
         <div className='createReviewContainer'>
             <div className='singlePrice'>${spotObj.price} Night</div>
-        <NavLink to={`/spots/${spotId}/reviews`} className='addReviewText'>Create a review</NavLink>
+     {alreadyReviewed === false ?(
+
+     <NavLink to={`/spots/${spotId}/reviews`} disabled='true' className='addReviewText'>Create a review</NavLink>
+     )
+     :
+     <NavLink to={`/spots/${spotId}/reviews`} style={{backgroundColor: "grey"}}   onClick={handleClick} disabled='true'  className='addReviewText'>Create a review</NavLink>}
         </div>
 
         <div className='reviews'>
         {reviews.map((review) => (
             review ?(
-            <div className='individualReview'>
+            <div  key={review.id} className='individualReview'>
                  <div className='userNameReview'>  <i class="fa-solid fa-user  fa-xl"> </i>
                  {review.User ? (review.User.firstName) : ('user')}
                  </div>
@@ -131,7 +150,7 @@ return(
     <div className='reviewsLoggedOut'>
     {reviews.map((review) => (
          review ?(
-        <div className='individualReview'>
+        <div key={review.id}  className='individualReview'>
              <div className='userNameReview'>  <i class="fa-solid fa-user  fa-xl"> </i> {review.User.firstName}</div>
        <div className='descriptionReview'>  {review.review} </div>
 

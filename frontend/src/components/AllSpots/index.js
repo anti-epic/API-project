@@ -14,7 +14,6 @@ const AllSpots = () => {
     })
 
 
-    // const spotsObj = dispatch(getSpots());
     const spots = Object.values(spotsObj);
     useEffect(() => {
         dispatch(getSpots())
