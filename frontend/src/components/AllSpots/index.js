@@ -17,7 +17,7 @@ const AllSpots = () => {
     const spots = Object.values(spotsObj);
     useEffect(() => {
         dispatch(getSpots())
-      },[dispatch])
+      },[dispatch, spots.length])
     if(!spots) return null
 
 
