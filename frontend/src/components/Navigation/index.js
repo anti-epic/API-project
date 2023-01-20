@@ -17,7 +17,7 @@ function Navigation({ isLoaded }){
 
         <NavLink exact to="/" style={{ textDecoration: 'none', fontSize: '28px', fontWeight: 'bold' }}>
        <div className='imgLogo'style={{display: 'inline'}}>
-       <i class="fa-solid fa-house-crack"></i>
+       <i className="fa-solid fa-house-crack"></i>
        </div>
   <div className='logoText'>Airbrb</div>
         </NavLink>

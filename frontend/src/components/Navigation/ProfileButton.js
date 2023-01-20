@@ -61,7 +61,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <button className='menuButton' onClick={openMenu}>
-      <i class="fa-solid fa-bars fa-xl"></i>
+      <i className="fa-solid fa-bars fa-xl"></i>
         <i className="fas fa-user-circle fa-2xl" style={{borderColor: '1px solid blue'}} />
 
       </button>
