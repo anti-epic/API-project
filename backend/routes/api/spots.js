@@ -885,10 +885,15 @@ router.get('/:spotId', async (req, res, next) => {
                 attributes: ['id', 'url', 'preview']
             }, {
                 model: User,
-                attributes: ['id', 'firstName', 'lastName']
+                attributes: ['id', 'firstName', 'lastName'],
+
             }
         ]
     })
+
+    console.log(spot.userId, 'here')
+
+
 
     if (! spot) {
         res.statusCode = 404
