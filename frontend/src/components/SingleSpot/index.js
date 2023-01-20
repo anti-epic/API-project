@@ -118,12 +118,18 @@ return spotObj && (
 
 
     </div>
-        <div className='spotDescription'>{spotObj.description}</div>
-        {(sessionUser.id !== undefined) ? (
+
+
     <div className='reviewsContainer'>
+    <div className='spotDescription'>
+       <h3> {spotObj.name} hosted by {spotObj.Owner ? (spotObj.Owner.firstName) : ('Owner')}</h3>
+      <p className='info'>  { Math.floor(Math.random() * (10 - 4) + 4)} guests |   { Math.floor(Math.random() * (10 - 2) + 2)} bedrooms |   { Math.floor(Math.random() * (10 - 4) + 4)} beds |   { Math.floor(Math.random() * (4 - 2) + 2)} bath </p>
+        <br></br>
+        {spotObj.description}</div>
         <div className='createReviewContainer'>
-            <div className='singlePrice'>${spotObj.price} Night</div>
-     {alreadyReviewed === false ?(
+          <div className='priceReviewsLine'>  <div className='singlePrice'>${spotObj.price} Night</div> <div className='reviewsRatingBottom'>  <i className="fa-solid fa-star fa-xs"></i> {(typeof (spotObj.avgStarRating) === 'number') ?  Number(spotObj.avgStarRating).toFixed(2) : 'new'}</div>{spotObj.numReviews} reviews</div>
+
+     {(alreadyReviewed === false) && (sessionUser.id !== undefined)  ?(
 
      <NavLink to={`/spots/${spotId}/reviews`} className='addReviewText'>Create a review</NavLink>
      )
@@ -133,33 +139,20 @@ return spotObj && (
 
         <div className='reviews'>
         {reviews.map((review) => (
-            review ?(
+
             <div  key={review.id} className='individualReview'>
                  <div className='userNameReview'>  <i class="fa-solid fa-user  fa-xl"> </i>
+                 
                  {review.User ? (review.User.firstName) : ('user')}
                  </div>
            <div className='descriptionReview'>  {review.review} </div>
 
-            </div>) : <div></div>
+            </div>
         ))}
         </div>
-    </div>)
-    : (  <div className='reviewsContainerLoggedOut'>
-
-        <div className='singlePriceLoggedOut'>${spotObj.price} Night</div>
-
-    <div className='reviewsLoggedOut'>
-    {reviews.map((review) => (
-         review ?(
-        <div key={review.id}  className='individualReview'>
-             <div className='userNameReview'>  <i class="fa-solid fa-user  fa-xl"> </i> {review.User.firstName}</div>
-       <div className='descriptionReview'>  {review.review} </div>
-
-        </div>) : (<div></div>)
-    ))}
     </div>
-</div>)}
 </div>
+
 )
 
 }
