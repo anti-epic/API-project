@@ -53,16 +53,9 @@ const handleSubmit = async (e) => {
     }
 
 
-   const newSpot = await dispatch(createSpotThunk(payload, imgPayload));
+ dispatch(createSpotThunk(payload, imgPayload));
 
 
-//     console.log(newSpot, 'here')
-
-//  const newImage = await  dispatch(createImageForSpotThunk(imgPayload, newSpot.id))
-//  .catch(async (res) => {
-//   const data = await res.json();
-
-// })
  history.push(`/`);
 
 }
