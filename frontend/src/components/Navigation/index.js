@@ -24,7 +24,7 @@ function Navigation({ isLoaded }){
       </li>
       <div className='createSpotContainer'>
       {sessionUser ? (
-        <NavLink className='createSpotButton' to='/spots/create'> Airbnb your home</NavLink>
+        <NavLink className='createSpotButton' to='/spots/create'> Airbrb your home</NavLink>
       ) : (
 <div> </div>
       )

@@ -85,18 +85,6 @@
     background-color: #FF385C;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 .priceReviewsLine{
     display:grid;
     grid-template-columns: 2fr 1fr 1fr;
@@ -255,4 +243,24 @@ padding: 2%;
 .formUser {
     font-size: 12px;
     font-weight: bolder;
+}
+
+
+
+.yo {
+    border: 1px solid black;
+    height: 6em;
+}
+
+.disabledCreateReview li {
+    text-decoration: none;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    width: 18em;
+    margin-right:50%;
+    height: 3em;
+    border-radius: 12px;
+    background-color: gray;
 }

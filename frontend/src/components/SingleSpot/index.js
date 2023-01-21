@@ -6,8 +6,15 @@ import {getSpot} from '../../store/spots';
 import './SingleSpot.css';
 import notFound from './not-found.png'
 import { getReviews } from '../../store/reviews';
-
+import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
+import LoginFormModal from '../LoginFormModal';
+import { useModal } from "../../context/Modal";
 const SingleSpot = () => {
+
+
+
+
+
 
 const dispatch = useDispatch();
 const {spotId} = useParams();
@@ -137,7 +144,16 @@ return spotObj && reviews && (
      <NavLink to={`/spots/${spotId}/reviews`} className='addReviewText'>Create a review</NavLink>
      )
      :
-     <NavLink to={`/spots/${spotId}/reviews`} style={{backgroundColor: "grey"}}   onClick={handleClick}  className='addReviewText'>Login to create a review</NavLink>}
+
+<div className='disabledCreateReview'>
+     <OpenModalMenuItem  itemText="Create a review"  modalComponent={<LoginFormModal />}>
+
+     </OpenModalMenuItem>
+
+        </div>
+
+
+     }
         </div>
 
         <div className='reviews'>
