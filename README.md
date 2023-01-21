@@ -57,7 +57,7 @@ Home Page allows users to see all spots created with their prices and locations.
   add user profile page
       will have reviews, spots, ratings info for individual users.
       
-## Wiki Links
+##Wiki Links
   https://github.com/anti-epic/API-project/wiki/API-docs
   https://github.com/anti-epic/API-project/wiki/airbnb_dbdiagram.png
   https://github.com/anti-epic/API-project/wiki/Redux-Store-Shape
