@@ -33,3 +33,10 @@
     Redux
     PostgreSQL
     Sequelize
+    
+    
+    
+    Home Page allows users to see all spots created with thier prices and locations. When logged in the "create spot" feature is added. top right navbar button allows users to signup, login or use the quick feature demouser to login with demo data.
+    
+    ![image](https://user-images.githubusercontent.com/110782272/213840176-ca571ce4-e54f-4cee-a6af-caf5c7e6b693.png)
+
