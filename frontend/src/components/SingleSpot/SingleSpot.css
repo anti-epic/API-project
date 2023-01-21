@@ -14,7 +14,7 @@
 .imageLayout {
     display: grid;
     grid-template-columns: repeat(13, 1fr);
-    grid-template-rows: repeat(5, 5vw);
+    grid-template-rows: repeat(5, 4vw);
     grid-gap: 10px;
     margin-left: 20%;
 }
