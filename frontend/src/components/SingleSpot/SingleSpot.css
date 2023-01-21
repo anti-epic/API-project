@@ -264,3 +264,19 @@ padding: 2%;
     border-radius: 12px;
     background-color: gray;
 }
+
+.deleteReviewButton {
+    background-color: white;
+    display: grid;
+    color:#FF385C;;
+    justify-content: start;
+    margin-top: -2%;
+
+}
+
+.deleteReviewButton li {
+    text-decoration: none;
+    display: grid;
+margin-bottom: 20%;
+
+}

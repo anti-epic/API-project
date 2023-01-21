@@ -6,15 +6,16 @@ import { useParams } from 'react-router-dom';
 import { deleteReviewThunk } from '../../store/reviews';
 import { useHistory } from 'react-router-dom';
 import './deleteReview.css';
+import { useModal } from "../../context/Modal";
 
-const DeleteReview = ({}) => {
+
+const DeleteReview = ({reviewId}) => {
     const history = useHistory();
     const dispatch = useDispatch();
-   const {reviewId} =  useParams();
     const spotObj = useSelector(state => state.spots);
 
 
-
+    const { closeModal } = useModal();
 
 
 
@@ -25,7 +26,7 @@ if(!spotObj){
 const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(deleteReviewThunk(reviewId));
-
+    closeModal();
     history.push(`/spots/${spotObj.id}`);
 }
 
@@ -35,10 +36,12 @@ const handleSubmit = async (e) => {
 
 
         <form className='deleteForm' onSubmit={handleSubmit}>
-       <h1 className='deleteHeader'> Are you sure you want to delete this review? </h1>
+       <h1 className='deleteHeader'> Delete this review? </h1>
         <input className='deleteReviewButtonConfirm'type='submit' value="DELETE" />
         </form>
+        <p>
 
+        </p>
 
 
     </div>
