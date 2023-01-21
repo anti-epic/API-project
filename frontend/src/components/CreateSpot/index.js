@@ -62,7 +62,7 @@ const handleSubmit = async (e) => {
 
     return(
 
-    <div className='editContainer'>
+    <div className='createContainer'>
 
 
         <form className='createForm' onSubmit={handleSubmit}>
@@ -125,7 +125,7 @@ const handleSubmit = async (e) => {
           onChange={(e) => setPrice(e.target.value)}
           />
 
-        <input className='submitCreateInfo' type='submit' value='create Spot'></input>
+        <input className='submitCreateInfo' type='submit' value='Create Spot'></input>
 
         </form>
 

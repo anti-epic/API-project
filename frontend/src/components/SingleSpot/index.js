@@ -84,6 +84,9 @@ const handleClick = (e) => {
 }
 
 
+
+
+
 return spotObj && (
     <div className='singleContainer'>
         <div>
@@ -147,7 +150,7 @@ return spotObj && (
                  </div>
            <div className='descriptionReview'>  {review.review} </div>
            {sessionUser.id === review.userId ? (
-               <NavLink className='deleteButton' to={`/reviews/${review.id}`}>delete review</NavLink>
+               <NavLink className='deleteReviewButton' to={`/reviews/${review.id}`}>delete review</NavLink>
            ) : <div></div>}
             </div>
         ))}

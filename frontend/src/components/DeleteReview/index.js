@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { deleteReviewThunk } from '../../store/reviews';
 import { useHistory } from 'react-router-dom';
-// import './deleteSpot.css';
+import './deleteReview.css';
 
 const DeleteReview = ({}) => {
     const history = useHistory();
@@ -36,7 +36,7 @@ const handleSubmit = async (e) => {
 
         <form className='deleteForm' onSubmit={handleSubmit}>
        <h1 className='deleteHeader'> Are you sure you want to delete this review? </h1>
-        <input className='deleteSpotButton'type='submit' value="DELETE FOREVER" />
+        <input className='deleteReviewButtonConfirm'type='submit' value="DELETE" />
         </form>
 
 
