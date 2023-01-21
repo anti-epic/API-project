@@ -137,7 +137,7 @@ return spotObj && reviews && (
      <NavLink to={`/spots/${spotId}/reviews`} className='addReviewText'>Create a review</NavLink>
      )
      :
-     <NavLink to={`/spots/${spotId}/reviews`} style={{backgroundColor: "grey"}}   onClick={handleClick} disabled='true'  className='addReviewText'>Create a review</NavLink>}
+     <NavLink to={`/spots/${spotId}/reviews`} style={{backgroundColor: "grey"}}   onClick={handleClick}  className='addReviewText'>Login to create a review</NavLink>}
         </div>
 
         <div className='reviews'>
