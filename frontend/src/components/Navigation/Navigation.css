@@ -6,7 +6,7 @@
 display: grid;
 border-top: 1px solid grey;
 border-bottom: 1px solid gray;
-grid-template-columns: .1fr 1fr .1fr .1fr;
+grid-template-columns: .1fr 1fr .05fr;
 grid-template-areas : "logo . createSpot login";
 justify-content: space-between;
 padding: 1%;
@@ -71,6 +71,7 @@ right:5%;
 top: 2.5%;
 position: absolute;
 
+
 }
 
 .menuButton button:hover {
@@ -115,6 +116,7 @@ width: 13em;
 height: 14em;
 background-color: white;
 
+
 }
 
 
@@ -158,6 +160,9 @@ background-color: white;
     height: 2em;
     justify-content:end;
     align-content: center;
+    padding-left: 80%;
     color: gray;
+    cursor:pointer;
+
 
 }
