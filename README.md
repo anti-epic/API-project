@@ -58,9 +58,9 @@ Home Page allows users to see all spots created with their prices and locations.
       will have reviews, spots, ratings info for individual users.
       
 ##Wiki Links
-  https://github.com/anti-epic/API-project/wiki/API-docs
-  https://github.com/anti-epic/API-project/wiki/airbnb_dbdiagram.png
-  https://github.com/anti-epic/API-project/wiki/Redux-Store-Shape
+  >https://github.com/anti-epic/API-project/wiki/API-docs
+  >https://github.com/anti-epic/API-project/wiki/airbnb_dbdiagram.png
+  >https://github.com/anti-epic/API-project/wiki/Redux-Store-Shape
       
  ## Contact info
     https://www.linkedin.com/in/chase-donahoe/
