@@ -145,6 +145,20 @@
     align-items: center;
     color:white;
     font-size: .9em;
+    list-style-type: none;
+}
+.deleteReviewButton{
+    text-decoration: none;
+    display: grid;
+
+    background-color: #FF385C;
+    border-radius: 25px;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    width: 50%;
+    list-style-type: none;
+
 }
 
 

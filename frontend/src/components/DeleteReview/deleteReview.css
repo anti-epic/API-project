@@ -7,7 +7,7 @@
  display: grid;
  justify-content: center;
 width:100%;
-    height: 250%;
+    height: 150%;
 
 
 }
@@ -25,14 +25,7 @@ width:100%;
 } */
 
 
-.deleteSpotButton {
+.deleteReviewButtonConfirm {
     background-color: #FF385C;
     color:white;
 }
-
-
-.deleteContainer{
-    display: grid;
-}
-
-

@@ -6,9 +6,8 @@
 .editForm {
  display: grid;
  justify-content: center;
-width:75%;
     height: 250%;
-
+margin-right:25%;
 
 }
 
@@ -19,4 +18,5 @@ width:75%;
 
 .submitUpdatedInfo {
     background-color: #FF385C;
+    color: white;
 }

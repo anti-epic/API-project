@@ -58,7 +58,7 @@ const handleSubmit = async (e) => {
           onChange={(e) => setStars(e.target.value)}
           />
 
-        <input className='submitCreateInfo' type='submit' value='create Review'></input>
+        <input className='submitCreateInfo' type='submit' value='Create Review'></input>
 
         </form>
 

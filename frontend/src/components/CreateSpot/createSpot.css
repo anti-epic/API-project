@@ -1,0 +1,23 @@
+.createContainer{
+    display: grid;
+}
+
+
+.createForm {
+    display: grid;
+    justify-content: center;
+       height: 250%;
+   margin-right:25%;
+
+
+}
+
+.createForm input {
+    width: 450%;
+}
+
+
+.submitCreateInfo {
+    background-color: #FF385C;
+    color: white;
+}
