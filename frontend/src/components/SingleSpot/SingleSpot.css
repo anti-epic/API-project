@@ -2,7 +2,7 @@
 .spotName {
     display: block;
     text-align: start;
-    margin-left: 20%;
+    margin-left: 19.9%;
     border-bottom: 0px;
     font-size: 28px;
 }
@@ -223,7 +223,8 @@ padding: 2%;
 
 .spotData {
     display:inline-block;
-    margin-left:20%;
+    margin-left:19%;
+    margin-top: -2%;
     column-gap: 20em;
     padding-left:1%;
     width:50%;
@@ -286,12 +287,4 @@ margin-bottom: 20%;
     width:50%;
     height: 20%;;
     display: grid;
-}
-
-
-
-.y {    display: grid;
-    width:50%;
-    height: 20%;
-
 }

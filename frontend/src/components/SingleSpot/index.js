@@ -147,9 +147,9 @@ return spotObj && reviews && (
 
     <div className='disabledCreateReview'>
         {isLoggedIn ? (
-            <OpenModalMenuItem className='y'  itemText="Create a review" />
+            <OpenModalMenuItem   itemText="Create a review" />
         ) : (
-<OpenModalMenuItem className='y' itemText="Create a review" modalComponent={<LoginFormModal />} />
+<OpenModalMenuItem  itemText="Create a review" modalComponent={<LoginFormModal />} />
         )}
 
 
