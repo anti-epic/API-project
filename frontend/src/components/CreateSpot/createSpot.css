@@ -1,7 +1,12 @@
 .createContainer{
     display: grid;
 }
-
+.formTitle{
+    display: grid;
+    justify-content: center;
+    margin-top: 2%;
+    font-weight: bold;
+}
 
 .createForm {
     display: grid;

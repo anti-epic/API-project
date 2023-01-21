@@ -49,7 +49,7 @@ console.log(spotObj, 'here')
 
     <div className='editContainer'>
 
-
+<div className='formTitle'>Edit A Spot</div>
         <form className='editForm' onSubmit={handleSubmit}>
         <input
           type="text"
@@ -101,7 +101,7 @@ console.log(spotObj, 'here')
           onChange={(e) => setPrice(e.target.value)}
           />
 
-        <input className='submitUpdatedInfo' type='submit' value='Update Spot'></input>
+        <input className='submitUpdatedInfo' type='submit' value='Updates Spot'></input>
 
         </form>
 
@@ -114,7 +114,7 @@ console.log(spotObj, 'here')
 
     ) : (
       <div className='editContainer'>
-
+<div className='formTitle'> Edit A Spot</div>
 
       <form className='editForm' onSubmit={handleSubmit}>
       <input

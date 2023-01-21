@@ -63,7 +63,7 @@ const handleSubmit = async (e) => {
     return(
 
     <div className='createContainer'>
-
+      <div className='formTitle'> Create A Spot</div>
 
         <form className='createForm' onSubmit={handleSubmit}>
         <input
