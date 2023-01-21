@@ -31,10 +31,10 @@ const handleSubmit = async (e) => {
 
     return(
 
-    <div className='deleteContainer'>
+    <div className='deleteSpotContainer'>
 
 
-        <form className='deleteForm' onSubmit={handleSubmit}>
+        <form className='deleteSpotForm' onSubmit={handleSubmit}>
        <h1 className='deleteHeader'> Once deleted you can never recover the spot </h1>
         <input className='deleteSpotButton'type='submit' value="DELETE FOREVER" />
         </form>

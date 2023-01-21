@@ -1,9 +1,9 @@
-.deleteContainer{
+.deleteSpotContainer{
     display: grid;
 }
 
 
-.deleteForm {
+.deleteSpotForm {
  display: grid;
  justify-content: center;
 width:100%;
@@ -28,11 +28,5 @@ width:100%;
 .deleteSpotButton {
     background-color: #FF385C;
     color:white;
+    height: 50%;
 }
-
-
-.deleteContainer{
-    display: grid;
-}
-
-
