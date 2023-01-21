@@ -51,16 +51,17 @@ Home Page allows users to see all spots created with their prices and locations.
 
 
 
-##Road Map
-  add bookings feature (completed in backend need to implement in front end
-  add google maps feature
-  add user profile page
+ ## Road Map
+    add bookings feature (completed in backend need to implement in front end
+    add google maps feature
+    add user profile page
       will have reviews, spots, ratings info for individual users.
       
  ## Wiki Links
-    https://github.com/anti-epic/API-project/wiki/API-docs
-    https://github.com/anti-epic/API-project/wiki/airbnb_dbdiagram.png
-    https://github.com/anti-epic/API-project/wiki/Redux-Store-Shape
+ [API-docs](https://github.com/anti-epic/API-project/wiki/API-docs)
+ [DB Diagram](https://github.com/anti-epic/API-project/wiki/airbnb_dbdiagram.png)
+ [Redux Store Shape](https://github.com/anti-epic/API-project/wiki/Redux-Store-Shape)
+
       
  ## Contact info
     https://www.linkedin.com/in/chase-donahoe/
