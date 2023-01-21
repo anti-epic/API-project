@@ -124,12 +124,11 @@
 
 .userUpdateDeleteSection {
     display: grid;
-    grid-template-columns: 10em 10em;
+    grid-template-columns: 1fr 1fr;
     gap: 20%;
     justify-content: space-around;
-    margin-right: 20%;
-    border-radius: 25px;
-    margin-left: 50%;
+    margin-right: 12.5%;
+    margin-left: 51%;
     margin-bottom: .2%;
     height: 2em;
 
@@ -145,8 +144,7 @@
     justify-content: center;
     align-items: center;
     color:white;
-    width:20em;
-
+    font-size: .9em;
 }
 
 
