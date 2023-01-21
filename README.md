@@ -1,7 +1,6 @@
 
 <h1 align="center">
   <br>
-  <a href="http://www.amitmerchant.com/electron-markdownify"><img src="https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.png" alt="Markdownify" width="200"></a>
   <br>
  Airbrb
   <br>
@@ -38,5 +37,5 @@
     
     Home Page allows users to see all spots created with thier prices and locations. When logged in the "create spot" feature is added. top right navbar button allows users to signup, login or use the quick feature demouser to login with demo data.
     
-    ![image](https://user-images.githubusercontent.com/110782272/213840176-ca571ce4-e54f-4cee-a6af-caf5c7e6b693.png)
+   ![image](https://user-images.githubusercontent.com/110782272/213884071-ffbeaf42-2f19-43b7-baea-591b0efc572b.png)
 
