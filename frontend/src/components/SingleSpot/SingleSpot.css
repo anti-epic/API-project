@@ -280,3 +280,18 @@ padding: 2%;
 margin-bottom: 20%;
 
 }
+
+
+.OpenModalMenuItem {
+    width:50%;
+    height: 20%;;
+    display: grid;
+}
+
+
+
+.y {    display: grid;
+    width:50%;
+    height: 20%;
+
+}

@@ -1,32 +1,14 @@
-.deleteContainer{
-    display: grid;
-    margin-top: 40%;
-height:50%;
-    justify-content: center;
-    align-items: center;
-
-}
-
-
-.deleteForm {
- display: grid;
-
- justify-content: center;
-     align-items: center;
-
-
-
-}
-.deleteHeader {
-    display: grid;
-}
-
-
-
-
 .deleteReviewButtonConfirm {
     background-color: #FF385C;
     color:white;
-    display: grid;
+}
 
+
+#modal-content:has(.deleteContainer){
+    height: 30%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    border-radius: 25px;
 }

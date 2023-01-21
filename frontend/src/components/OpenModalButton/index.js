@@ -1,7 +1,6 @@
 // frontend/src/components/OpenModalButton/index.js
 import React from 'react';
 import { useModal } from '../../context/Modal';
-import { USEdIASDASD } from '../../../public/airbnb-1'
 function OpenModalButton({
   modalComponent, // component to render inside the modal
   buttonText, // text of the button that opens the modal
@@ -17,7 +16,7 @@ function OpenModalButton({
   };
 
   return (
-    <button onClick={onClick}>{buttonText}</button>
+    <button  onClick={onClick}>{buttonText}</button>
   );
 }
 
