@@ -101,7 +101,8 @@ const reviewReducer = (state = initialState, action) => {
                 addReviewState[action.review.id] = action.review;
                 return addReviewState
             case DELETE_REVIEW:
-                    const deleteReviewState = {...state}
+                    const deleteReviewState = {}
+
                    return deleteReviewState
             default:
                 return state

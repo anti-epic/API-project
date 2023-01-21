@@ -87,7 +87,7 @@ const handleClick = (e) => {
 
 
 
-return spotObj && (
+return spotObj && reviews && (
     <div className='singleContainer'>
         <div>
        <h1 className='spotName'>{spotObj.name}</h1>
