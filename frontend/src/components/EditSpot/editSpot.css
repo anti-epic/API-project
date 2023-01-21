@@ -1,22 +1,15 @@
 .editContainer{
     display: grid;
 }
-
-
 .editForm {
- display: grid;
- justify-content: center;
-    height: 250%;
-margin-right:25%;
+    display: grid;
+    grid-template-columns: .5fr;
+    justify-content: center;
 
 }
-
-.editForm input {
-    width: 450%;
-}
-
-
 .submitUpdatedInfo {
     background-color: #FF385C;
     color: white;
+    display: grid;
+    width: 100%;
 }
