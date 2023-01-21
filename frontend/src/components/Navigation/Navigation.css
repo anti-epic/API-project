@@ -6,7 +6,8 @@
 display: grid;
 border-top: 1px solid grey;
 border-bottom: 1px solid gray;
-grid-template-areas : "logo createSpot . login";
+grid-template-columns: 1fr 1fr .1fr .1fr;
+grid-template-areas : "logo . createSpot login";
 justify-content: space-between;
 padding: 1%;
 margin: 0%;
@@ -122,18 +123,19 @@ background-color: white;
 .createSpotButton {
     display: grid;
     grid-area: createSpot;
-    color: white;
     border-radius: 25px;
-    width: 20em;
     height: 2em;
-    justify-content: center;
+    justify-content:end;
     align-content: center;
-    background-color: #FF385C;
-    margin-left: 50%;
+    color: gray;
+
+
 }
 
 .createSpotContainer {
     display: grid;
+
+
 }
 
 
