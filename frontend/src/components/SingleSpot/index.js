@@ -4,11 +4,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import { useEffect, useState } from 'react';
 import {getSpot} from '../../store/spots';
 import './SingleSpot.css';
-import notFound from './not-found.png'
+import notFound from './not-found.png';
 import { getReviews } from '../../store/reviews';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import { useModal } from "../../context/Modal";
+import DeleteReview from '../DeleteReview'
 const SingleSpot = () => {
 
 
@@ -19,7 +20,6 @@ const SingleSpot = () => {
 const dispatch = useDispatch();
 const {spotId} = useParams();
 let sessionUser = useSelector(state => state.session.user);
-
 const spotObj = useSelector(state => state.spots)
 const reviewObj = useSelector(state=> state.reviews)
 
@@ -27,6 +27,11 @@ const spots = Object.values(spotObj)
 const reviews = Object.values(reviewObj)
 
 let alreadyReviewed = false;
+let isLoggedIn = false
+
+if(sessionUser){
+ isLoggedIn = true
+}
 
 
 
@@ -58,7 +63,7 @@ for(let i = 0; i < 5; i++){
 
 for(let i = 0; i < reviews.length; i++){
     if(reviews[i].User && reviews[i].User.id === sessionUser.id){
-   alreadyReviewed = true;
+   alreadyReviewed = 'modalComponent';
     }
 
 }
@@ -70,12 +75,6 @@ if(spotImages.length < 1){
 useEffect(() => {
     dispatch(getSpot(spotId))
     dispatch(getReviews(spotId))
-    // console.log(alreadyReviewed, ' in dispatch bbefore')
-
-
-    // console.log(alreadyReviewed, ' in dispatch after')
-
-
 
 },[spotId,reviews.length, alreadyReviewed])
 if(!spotObj){
@@ -138,19 +137,25 @@ return spotObj && reviews && (
         {spotObj.description}</div>
         <div className='createReviewContainer'>
           <div className='priceReviewsLine'>  <div className='singlePrice'>${spotObj.price} Night</div> <div className='reviewsRatingBottom'>  <i className="fa-solid fa-star fa-xs"></i> {(typeof (spotObj.avgStarRating) === 'number') ?  Number(spotObj.avgStarRating).toFixed(2) : 'new'}</div>{spotObj.numReviews} reviews</div>
+          {(alreadyReviewed === false) && (sessionUser.id !== undefined)  ?(
 
-     {(alreadyReviewed === false) && (sessionUser.id !== undefined)  ?(
+<NavLink to={`/spots/${spotId}/reviews`} className='addReviewText'>Create a review</NavLink>
+)
+:
 
-     <NavLink to={`/spots/${spotId}/reviews`} className='addReviewText'>Create a review</NavLink>
-     )
-     :
+(
 
-<div className='disabledCreateReview'>
-     <OpenModalMenuItem  itemText="Create a review"  modalComponent={<LoginFormModal />}>
+    <div className='disabledCreateReview'>
+        {isLoggedIn ? (
+            <OpenModalMenuItem  itemText="Create a review" />
+        ) : (
+<OpenModalMenuItem  itemText="Create a review" modalComponent={<LoginFormModal />} />
+        )}
 
-     </OpenModalMenuItem>
 
-        </div>
+   </div>
+    )
+
 
 
      }
@@ -166,7 +171,12 @@ return spotObj && reviews && (
                  </div>
            <div className='descriptionReview'>  {review.review} </div>
            {sessionUser.id === review.userId ? (
-               <NavLink className='deleteReviewButton' to={`/reviews/${review.id}`}>delete review</NavLink>
+            <div className='deleteReviewButton'>
+                <OpenModalMenuItem  itemText="Delete Review"  modalComponent={<DeleteReview reviewId={review.id} />}>
+
+                </OpenModalMenuItem>
+                </div>
+
            ) : <div></div>}
             </div>
         ))}

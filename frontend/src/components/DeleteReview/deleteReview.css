@@ -1,31 +1,32 @@
 .deleteContainer{
     display: grid;
+    margin-top: 40%;
+height:50%;
+    justify-content: center;
+    align-items: center;
+
 }
 
 
 .deleteForm {
  display: grid;
+
  justify-content: center;
-width:100%;
-    height: 150%;
+     align-items: center;
+
 
 
 }
-
-/* .deleteHeader {
-    width:200%;
+.deleteHeader {
     display: grid;
-
-    justify-content: center;
-  border: 1px solid black;
 }
 
-.deleteForm input {
-    width: 200%;
-} */
+
 
 
 .deleteReviewButtonConfirm {
     background-color: #FF385C;
     color:white;
+    display: grid;
+
 }
