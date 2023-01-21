@@ -102,7 +102,6 @@ const reviewReducer = (state = initialState, action) => {
                 return addReviewState
             case DELETE_REVIEW:
                     const deleteReviewState = {}
-
                    return deleteReviewState
             default:
                 return state
