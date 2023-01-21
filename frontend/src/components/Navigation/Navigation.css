@@ -6,7 +6,7 @@
 display: grid;
 border-top: 1px solid grey;
 border-bottom: 1px solid gray;
-grid-template-columns: 1fr 1fr .1fr .1fr;
+grid-template-columns: .1fr 1fr .1fr .1fr;
 grid-template-areas : "logo . createSpot login";
 justify-content: space-between;
 padding: 1%;
@@ -147,4 +147,17 @@ background-color: white;
     background-color: white;
     font-size: 15px;
     font-weight: bold;
+}
+
+
+
+.createSpotContainer li {
+    display: grid;
+    grid-area: createSpot;
+    border-radius: 25px;
+    height: 2em;
+    justify-content:end;
+    align-content: center;
+    color: gray;
+
 }

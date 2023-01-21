@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import OpenModalMenuItem from './OpenModalMenuItem';
+import SignupFormModal from '../SignupFormModal';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
@@ -26,7 +28,7 @@ function Navigation({ isLoaded }){
       {sessionUser ? (
         <NavLink className='createSpotButton' to='/spots/create'> Airbrb your home</NavLink>
       ) : (
-<div> </div>
+<OpenModalMenuItem className='createSpotButtonLoggedOut' itemText="Airbrb your home" modalComponent={<SignupFormModal />} />
       )
 
     }
