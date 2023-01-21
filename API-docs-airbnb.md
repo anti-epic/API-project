@@ -1,4 +1,4 @@
-# `<name of application here>`
+# `Airbbrb`
 
 ## Database Schema Design
 
