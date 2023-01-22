@@ -36,6 +36,7 @@ margin: 0%;
 .navBar li {
     display: grid;
 
+
 }
 html, body {
 
@@ -135,8 +136,10 @@ background-color: white;
 }
 
 .createSpotContainer {
-    display: grid;
-
+    display: inline-block;
+    width: .1em;
+    margin-left: 93%;
+    margin-top: .5%;
 
 }
 
@@ -156,11 +159,11 @@ background-color: white;
 .createSpotContainer li {
     display: grid;
     grid-area: createSpot;
-    border-radius: 25px;
+
     height: 2em;
+    width: 8em;
     justify-content:end;
     align-content: center;
-    padding-left: 80%;
     color: gray;
     cursor:pointer;
 
