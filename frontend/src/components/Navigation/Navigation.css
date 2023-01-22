@@ -188,7 +188,7 @@ background-color: white;
 
 .logo {
      display:grid;
-    width:15%;
+    width:17%;
      grid-area: logo;
 }
 
@@ -196,6 +196,8 @@ background-color: white;
 
 
 @media screen and (max-width: 1500px) {
+
+
 
     .logo {
 
