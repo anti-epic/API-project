@@ -31,7 +31,7 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+    <div className="signupFormContainer">
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
        <h2>Welcome to Airbrb</h2>
@@ -96,7 +96,7 @@ function SignupFormModal() {
         </label>
         <button type="submit">Continue</button>
       </form>
-    </>
+    </div>
   );
 }
 
