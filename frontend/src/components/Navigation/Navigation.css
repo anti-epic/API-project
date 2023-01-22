@@ -6,7 +6,7 @@
 display: grid;
 border-top: 1px solid grey;
 border-bottom: 1px solid gray;
-grid-template-columns: .1fr 1fr .05fr;
+grid-template-columns: 1fr 1fr .05fr;
 grid-template-areas : "logo createSpot login";
 justify-content: space-between;
 padding: 1%;
@@ -155,7 +155,7 @@ background-color: white;
     display: grid;
     width: 8em;
     justify-content: center;
-    margin-left: 86%;
+    margin-left: 80%;
 
 
 
@@ -165,7 +165,6 @@ background-color: white;
     grid-area: createSpot;
     height: 2em;
     width: 8em;
-
     align-content: center;
     color: gray;
     cursor:pointer;
@@ -185,3 +184,101 @@ background-color: white;
     border: 1px solid black;
 
 } */
+
+
+
+.logo {
+
+     display:grid;
+    width:11%;
+     grid-area: logo;
+}
+
+
+
+
+@media screen and (max-width: 1500px) {
+
+    .logo {
+
+        display:grid;
+       width:26%;
+        grid-area: logo;
+   }
+
+
+
+   .createSpotContainer {
+    display: grid;
+    width: 8em;
+    justify-content: center;
+    margin-left: 65%;
+
+
+
+}
+
+
+
+  }
+
+
+
+
+
+@media screen and (max-width: 1023px) {
+
+
+    .logo {
+
+        display:grid;
+        width:50%;
+
+        grid-area: logo;
+   }
+
+
+
+   .createSpotContainer {
+    display: grid;
+    width: 8em;
+    justify-content: center;
+    margin-left: 65%;
+
+
+
+}
+
+
+
+  }
+
+
+
+  @media screen and (max-width: 600px) {
+
+
+
+    .logo {
+
+        display:grid;
+       width:100%;
+
+        grid-area: logo;
+   }
+
+
+
+   .createSpotContainer {
+    display: grid;
+    width: 8em;
+    justify-content: center;
+    margin-left: 45%;
+
+
+
+}
+
+
+
+  }
