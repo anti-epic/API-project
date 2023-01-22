@@ -69,6 +69,7 @@ for(let i = 0; i < reviews.length; i++){
 }
 
 
+
 if(spotImages.length < 1){
     spotImages[0] = notFound
 }
@@ -76,7 +77,7 @@ useEffect(() => {
     dispatch(getSpot(spotId))
     dispatch(getReviews(spotId))
 
-},[spotId,reviews.length, alreadyReviewed])
+},[spotId,reviews.length, alreadyReviewed, spotObj.name, spotObj.price, spotObj.city, spotObj.address, spotObj.state, spotObj.description, spotObj.country])
 if(!spotObj){
     return null
 }
@@ -147,7 +148,7 @@ return spotObj && reviews && (
 
     <div className='disabledCreateReview'>
         {isLoggedIn ? (
-            <OpenModalMenuItem   itemText="Create a review" />
+            <OpenModalMenuItem  itemText="Create a review" />
         ) : (
 <OpenModalMenuItem  itemText="Create a review" modalComponent={<LoginFormModal />} />
         )}
