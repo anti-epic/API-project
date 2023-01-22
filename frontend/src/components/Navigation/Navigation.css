@@ -7,7 +7,7 @@ display: grid;
 border-top: 1px solid grey;
 border-bottom: 1px solid gray;
 grid-template-columns: .1fr 1fr .05fr;
-grid-template-areas : "logo . createSpot login";
+grid-template-areas : "logo createSpot login";
 justify-content: space-between;
 padding: 1%;
 margin: 0%;
@@ -120,30 +120,6 @@ background-color: white;
 
 }
 
-
-.createSpotButton:link, .createSpotButton:active, .createSpotButton:hover  { text-decoration: none; }
-
-.createSpotButton {
-    display: grid;
-    grid-area: createSpot;
-    border-radius: 25px;
-    height: 2em;
-    justify-content:end;
-    align-content: center;
-    color: gray;
-
-
-}
-
-.createSpotContainer {
-    display: inline-block;
-    width: .1em;
-    margin-left: 93%;
-    margin-top: .5%;
-
-}
-
-
 .logoutButton button, .logoutButton button:hover {
     display: grid;
     border:0px;
@@ -155,17 +131,57 @@ background-color: white;
 }
 
 
+.createSpotButton:link, .createSpotButton:active, .createSpotButton:hover  { text-decoration: none; }
 
+
+
+
+
+
+
+
+.createSpotButton {
+    display: grid;
+    grid-area: createSpot;
+    border-radius: 25px;
+    height: 2em;
+
+    align-content: center;
+    color: gray;
+
+}
+
+.createSpotContainer {
+    display: grid;
+    width: 8em;
+    justify-content: center;
+    margin-left: 86%;
+
+
+
+}
 .createSpotContainer li {
     display: grid;
     grid-area: createSpot;
-
     height: 2em;
     width: 8em;
-    justify-content:end;
+
     align-content: center;
     color: gray;
     cursor:pointer;
 
 
 }
+
+
+/* .createSpotButtonLoggedOut {
+    display: grid;
+    grid-area: createSpot;
+    border-radius: 25px;
+    height: 2em;
+    justify-content:end;
+    align-content: center;
+    color: gray;
+    border: 1px solid black;
+
+} */

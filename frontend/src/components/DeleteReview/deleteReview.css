@@ -1,14 +1,17 @@
 .deleteReviewButtonConfirm {
     background-color: #FF385C;
     color:white;
+    border-radius: 25px;
 }
 
 
-#modal-content:has(.deleteContainer){
-    height: 30%;
+
+.deleteContainer{
+    border-radius: 25px;
+
     display: grid;
     justify-content: center;
     align-items: center;
-    width: 20%;
-    border-radius: 25px;
+    width:100%;
+    margin-left: 5%;
 }
