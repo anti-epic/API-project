@@ -139,7 +139,6 @@ background-color: white;
 
 
 
-
 .createSpotButton {
     display: grid;
     grid-area: createSpot;
@@ -155,7 +154,7 @@ background-color: white;
     display: grid;
     width: 8em;
     justify-content: center;
-    margin-left: 80%;
+    margin-left: 70%;
 
 
 
@@ -188,9 +187,8 @@ background-color: white;
 
 
 .logo {
-
      display:grid;
-    width:11%;
+    width:15%;
      grid-area: logo;
 }
 
