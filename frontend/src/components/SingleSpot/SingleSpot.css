@@ -269,7 +269,7 @@ padding: 2%;
 .deleteReviewButton {
     background-color: white;
     display: grid;
-    color:#FF385C;;
+    color:#FF385C;
     justify-content: start;
     margin-top: -2%;
 
@@ -287,4 +287,26 @@ margin-bottom: 20%;
     width:50%;
     height: 20%;;
     display: grid;
+}
+
+
+
+.createSingleReviewButton {
+    display: grid;
+
+}
+
+
+
+.createSingleReviewButton li {
+    text-decoration: none;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    width: 18em;
+    margin-right:50%;
+    height: 3em;
+    border-radius: 12px;
+    background-color: #FF385C;
 }
