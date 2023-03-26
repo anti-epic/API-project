@@ -10,6 +10,7 @@ import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import { useModal } from "../../context/Modal";
 import DeleteReview from '../DeleteReview'
+import CreateBookings from '../CreateBookings';
 const SingleSpot = () => {
 
 
@@ -129,9 +130,9 @@ return spotObj && reviews && (
 
     </div>
 
-
     <div className='reviewsContainer'>
     <div className='spotDescription'>
+                    <CreateBookings />
        <h3> {spotObj.name} hosted by {spotObj.Owner ? (spotObj.Owner.firstName) : ('Owner')}</h3>
       <div className='info'>  { Math.floor(Math.random() * (10 - 4) + 4)} guests |   { Math.floor(Math.random() * (10 - 2) + 2)} bedrooms |   { Math.floor(Math.random() * (10 - 4) + 4)} beds |   { Math.floor(Math.random() * (4 - 2) + 2)} bath </div>
         <br></br>

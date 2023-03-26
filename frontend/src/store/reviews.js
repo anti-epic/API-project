@@ -4,7 +4,7 @@ import { csrfFetch } from "./csrf";
 
 const LOAD_REVIEWS = '/reviews/LOAD';
 const ADD_REVIEW = '/review/ADD';
-const DELETE_REVIEW = '/review/DELETE'
+const DELETE_REVIEW = '/review/DELETE';
 const loadReviews = (reviews) => {
     return {
         type: LOAD_REVIEWS,
