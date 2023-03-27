@@ -13,8 +13,12 @@ const {spotId} = useParams()
 const history = useHistory();
 const [value, onChange] = useState(new Date());
 
-const bookings = useSelector((state) => state.bookings.personalBookings);
+const bookingsObj = useSelector((state) => state.bookings.personalBookings);
+let bookings = []
 
+if(bookingsObj){
+    bookings = Object.keys(bookingsObj)
+}
 // const tileDisabled = ({ bookings }) => {
 //   // Disable the tile if the date already has a booking
 //   bookings.forEach((booking) => booking.startDate.toDateString() === booking.startDate.toDateString() && booking.endDate.toDateString() === booking.endDate.toDateString() )
@@ -57,12 +61,24 @@ const handleBooking = async (e) => {
 const payload = {
     startDate,endDate
 }
-dispatch(createBookingThunk(spotId,payload)).catch(async (res) => {
+
+
+// try{
+//     dispatch(createBookingThunk(spotId,payload)).then((data) =>    history.push(`/bookings`) )
+
+// }
+// catch(res){
+//     const data = await res.json();
+//     setErrors(data.message);
+// }
+
+dispatch(createBookingThunk(spotId,payload)).then((res) =>  history.push(`/bookings`)).catch(async (res) => {
     const data = await res.json();
         setErrors(data.message);
 })
- history.push(`/bookings`);
+
  setErrors('')
+
 }
 
 

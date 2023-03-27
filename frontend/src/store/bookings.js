@@ -67,15 +67,16 @@ const bookingReducer = (state = initialState, action) => {
     switch(action.type){
         case LOAD_BOOKINGS:
             const newState={...state}
-            console.log(action.bookings.Bookings, ' in load bookings')
             action.bookings.Bookings.forEach(booking => {
-                console.log(booking.id,'erere')
-                newState.personalBookings[booking.id] = booking
+                if(booking.id !== undefined){
+                    newState.personalBookings[booking.id] = booking
+                }
+
             })
             return newState
         case CREATE_BOOKING:
             const addBookingState ={}
-            console.log(action, ' in create booking')
+
             return addBookingState
         default:
             return state

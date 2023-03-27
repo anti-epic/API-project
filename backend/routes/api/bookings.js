@@ -430,20 +430,21 @@ router.post('/:spotId',  validateBookings, requireAuth, async (req, res, next) =
 }
 
     if( errorChecker === true){
-        console.log(' in here')
+        console.log(' in here with true')
         const confirmedNewBookings = await Booking.create({startDate: newStart, endDate: newEnd, spotId: Number(spotId), userId: userId})
-
-        return res.json(confirmedNewBookings)
+        res.statusCode = 200;
+        res.json({
+            "message": "booking confirmed"
+        })
+        return
     }
 
-    res.status(403).send({
-        message: "Sorry, this spot is already booked for the specified dates"
-        // errors: [
-        //    "Start date conflicts with an existing booking",
-        //  "End date conflicts with an existing booking"
-        // ]
-    })
-    return
+    res.statusCode = 403;
+    errorChecker = false;
+    err.title = "Validation error";
+    err.statusCode = 403;
+    err.message = "Unkown Error, please retry";
+    return next(err)
 
 });
 
