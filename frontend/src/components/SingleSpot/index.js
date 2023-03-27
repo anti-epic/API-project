@@ -8,9 +8,9 @@ import notFound from './not-found.png';
 import { getReviews } from '../../store/reviews';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
-import { useModal } from "../../context/Modal";
 import DeleteReview from '../DeleteReview'
 import CreateBookings from '../CreateBookings';
+import { getAllBookingsThunk } from '../../store/bookings';
 const SingleSpot = () => {
 
 
@@ -78,6 +78,7 @@ useEffect(() => {
     dispatch(getSpot(spotId))
     dispatch(getReviews(spotId))
 
+
 },[spotId,reviews.length, alreadyReviewed, spotObj.name, spotObj.price, spotObj.city, spotObj.address, spotObj.state, spotObj.description, spotObj.country])
 if(!spotObj){
     return null
@@ -132,13 +133,13 @@ return spotObj && reviews && (
 
     <div className='reviewsContainer'>
     <div className='spotDescription'>
-                    <CreateBookings />
        <h3> {spotObj.name} hosted by {spotObj.Owner ? (spotObj.Owner.firstName) : ('Owner')}</h3>
       <div className='info'>  { Math.floor(Math.random() * (10 - 4) + 4)} guests |   { Math.floor(Math.random() * (10 - 2) + 2)} bedrooms |   { Math.floor(Math.random() * (10 - 4) + 4)} beds |   { Math.floor(Math.random() * (4 - 2) + 2)} bath </div>
         <br></br>
         {spotObj.description}</div>
         <div className='createReviewContainer'>
           <div className='priceReviewsLine'>  <div className='singlePrice'>${spotObj.price} Night</div> <div className='reviewsRatingBottom'>  <i className="fa-solid fa-star fa-xs"></i> {(typeof (spotObj.avgStarRating) === 'number') ?  Number(spotObj.avgStarRating).toFixed(2) : 'new'}</div>{spotObj.numReviews} reviews</div>
+          <CreateBookings />
           {(alreadyReviewed === false) && (sessionUser.id !== undefined)  ?(
 
 <NavLink to={`/spots/${spotId}/reviews`} className='addReviewText'>Create a review</NavLink>

@@ -56,95 +56,28 @@ if (!isProduction) {
 
 
   const { ValidationError } = require('sequelize');
-
-  // ...
-
-  // Process sequelize errors
+  
   app.use((err, _req, _res, next) => {
     // check if error is a Sequelize error:
     if (err instanceof ValidationError) {
-      err.errors = err.errors.map((e) => e.message);
-      err.title = 'Validation error';
+        err.errors = err.errors.map((e) => e.message);
+        err.title = 'Validation error';
     }
     next(err);
-  });
+});
+
 
   app.use((err, _req, res, _next) => {
-
-    res.status(err.status || 403);
-
-
-    let resBody = {}
-
-
-    // if(!err.status){
-    //   // err.errors = []
-    //   resBody.message = "User already exists";
-    //   resBody.statusCode = 403;
-    //   // console.log(err)
-    //   resBody.errors = {[err.fields]: err.errors[0]};
-    //   // console.log(resBody.errors.email)
-    //   let errors = {}
-    //   if(resBody.errors.email){
-    //     // console.log('in')
-    //     errors = {"email" :resBody.errors.email}
-
-    //   }
-    //   if(resBody.errors.username){
-    //     // console.log('in')
-    //     errors = {"username" : resBody.errors.username}
-    //   }
-    //   resBody.errors = {errors}
-    //   // console.log('herer',resBody.errors)
-    //       return     res.json({
-    //     "message" : resBody.message,
-    //     "statusCode" : resBody.statusCode,
-    //     // errorsstack: isProduction ? null : err.stack
-    //   });
-    // }
-
-
-
-    // console.log(err)
-    let errors = []
-    // console.log('start',errors,'end')
-
-
-
-    for(let i = 0; i < err.errors.length; i++){
-
-
-    if(err.errors[i].includes('Validation max on stars failed') || err.errors[i].includes('Validation min on stars failed') ){
-      errors.push('Stars must be an integer from 1 to 5')
-    }
-
-   else if(!err.errors[i].includes('Invalid value')){
-        errors.push(err.errors[i])
-      }
-
-    }
-
-
-    if(err.status === 401){
-
-      return res.json({
-        "message": "Invalid credentials",
-        "statusCode" : err.status
-      })
-    }
-
-
-
-
-    return res.json({
-      // title: err.title || 'Server Error',
-      // message: err.message,
-      message: "Validation error",
-      statusCode: res.statusCode,
-      errors
+    res.status(err.status || 500);
+    console.error(err);
+    res.json({
+        title: err.title || 'Server Error',
+        message: err.message,
+        statusCode: err.status,
+        errors: err.errors,
+        // stack: isProduction ? null : err.stack
     });
-
-  });
+});
 
 
 

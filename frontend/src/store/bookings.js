@@ -18,25 +18,34 @@ const createBooking = (booking) => {
 }
 
 export const createBookingThunk = (spotId, payload) => async dispatch => {
-    console.log(' in thunk to create', spotId, payload, ' there' , JSON.stringify(payload))
-    const response = await csrfFetch(`/api/bookings/${spotId}`, {
-        method: 'POST',
-        headers: {"Content-Type" : "application/json"},
-        body: JSON.stringify(payload)
-    })
-    if(response.ok){
 
-        const data = await response.json();
-       console.log(data, 'good')
-       dispatch(createBooking(data))
+
+       const response = await csrfFetch(`/api/bookings/${spotId}`, {
+           method: 'POST',
+           headers: {"Content-Type" : "application/json"},
+           body: JSON.stringify(payload)
+        })
+        if(response.ok){
+            const data = await response.json();
+            dispatch(createBooking(data));
+        }
     }
-    // else {
 
-    //     const data = await response.json();
-    //     console.log(data, 'bad')
-    // }
 
-}
+
+
+export const handleFetchError = (response) => {
+    if (!response.ok) {
+      if (response.status === 403) {
+        console.log('error');
+      }
+      throw Error(response.statusText);
+    }
+    return response;
+  };
+
+
+
 
 export const getAllBookingsThunk = () => async dispatch => {
     // console.log(id, 'by payload');
@@ -50,14 +59,19 @@ export const getAllBookingsThunk = () => async dispatch => {
 
 
 const initialState = {
-
+personalBookings:[],
+spotBookings:[]
 }
 
 const bookingReducer = (state = initialState, action) => {
     switch(action.type){
         case LOAD_BOOKINGS:
-            const newState={}
-            console.log(action, ' in load bookings')
+            const newState={...state}
+            console.log(action.bookings.Bookings, ' in load bookings')
+            action.bookings.Bookings.forEach(booking => {
+                console.log(booking.id,'erere')
+                newState.personalBookings[booking.id] = booking
+            })
             return newState
         case CREATE_BOOKING:
             const addBookingState ={}

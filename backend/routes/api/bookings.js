@@ -318,13 +318,18 @@ return res.json({
 
 
 
-router.post('/:spotId/',  validateBookings, requireAuth, async (req, res, next) => {
-    console.log(userId, 'user', ' spotId', spotId, ' ssss   ', req.body)
+router.post('/:spotId',  validateBookings, requireAuth, async (req, res, next) => {
     const {spotId} = req.params;
     const userId = req.user.id
+
+
+    let err = {};
+    err.errors = [];
+
     let errorChecker = true
     const spot = await Spot.findByPk(spotId)
     if (! spot) {
+        // console.log(' in here')
         res.statusCode = 404;
         return res.json({"message": "Spot couldn't be found", "statusCode": res.statusCode})
     }
@@ -333,6 +338,7 @@ router.post('/:spotId/',  validateBookings, requireAuth, async (req, res, next) 
     const ownerId = spotParsed.ownerId
 
     if (userId === ownerId) {
+        // console.log(' in here')
         res.statusCode = 400;
         return res.json({"message": "You can not book a spot you own", "statusCode": res.statusCode})
     }
@@ -359,6 +365,7 @@ router.post('/:spotId/',  validateBookings, requireAuth, async (req, res, next) 
     // console.log(bookings)
 
     if (newStartExactTime > newEndExactTime) {
+        // console.log(' in here')
         res.statusCode = 400;
         errorChecker = false;
         return res.json({
@@ -370,8 +377,9 @@ router.post('/:spotId/',  validateBookings, requireAuth, async (req, res, next) 
         })
     }
 
+    for(let i = 0; i < bookings.length; i++) {
+        let booking = bookings[i]
 
-    bookings.forEach(booking => {
 
         if (booking.dataValues.startDate) { // console.log(booking.dataValues)
             const bookedStart = booking.dataValues.startDate.getTime()
@@ -379,72 +387,63 @@ router.post('/:spotId/',  validateBookings, requireAuth, async (req, res, next) 
 
             const bookedEnd = booking.dataValues.endDate.getTime()
 
-            // console.log(bookedEnd,bookedStart, newStartExactTime)
-
             if(newStartExactTime <= bookedStart && newEndExactTime >= bookedEnd){
-                errorChecker = false;
-                res.statusCode = 403;
-                return res.json({
-                    "message": "Sorry, this spot is already booked for the specified dates",
-                    "statusCode": res.statusCode,
-                    "errors": [
-                       "Start date conflicts with an existing booking",
-                     "End date conflicts with an existing booking"
-                    ]
-                })
+            errorChecker = false;
+            console.log(' in here3')
+            errorChecker = false;
+            err.title = "Validation error";
+            err.statusCode = 403;
+            err.message = "Sorry, this booking wont work due to another exisiting booking being in the middle of your request";
+            return next(err)
             }
             if (newStartExactTime >= bookedStart && newEndExactTime <= bookedEnd) {
                 errorChecker = false;
-                res.statusCode = 403;
-                return res.json({
-                    "message": "Sorry, this spot is already booked for the specified dates",
-                    "statusCode": res.statusCode,
-                    "errors": [
-                       "Start date conflicts with an existing booking",
-                     "End date conflicts with an existing booking"
-                    ]
-                })
+                errorChecker = false;
+                err.title = "Validation error";
+                err.statusCode = 403;
+                err.message = "the booking start and end date are in the middle of an existing booking";
+                return next(err)
             }
 
 
             if (newStartExactTime >= bookedStart && newStartExactTime<= bookedEnd){
                 errorChecker = false;
-                        res.statusCode = 403;
-                      return res.json({
-                        "message": "Sorry, this spot is already booked for the specified dates",
-                        "statusCode": res.statusCode,
-                        "errors": [
-                        "Start date conflicts with an existing boosking"
-
-                        ]
-                    })
-
-
+                console.log(' in here5')
+                    errorChecker = false;
+                    err.title = "Validation error";
+                    err.statusCode = 403;
+                    err.message = "this booking start date is in the middle of an existing booking";
+                    return next(err)
                     }
 
                     if(newEndExactTime >= bookedStart && newEndExactTime <= bookedEnd) {
                 res.statusCode = 403;
                 errorChecker = false;
-                return res.json({
-                    "message": "Sorry, this spot is already booked for the specified dates",
-                    "statusCode": res.statusCode,
-                    "errors": [
-                        "End date conflicts with an existing booking"
-                    ]
-                })
-
-
+                err.title = "Validation error";
+                err.statusCode = 403;
+                err.message = "Sorry, this end date is in the middle of an existing booking";
+                return next(err)
             }
 
         }
-        // console.log(booking.dataValues.startDate,'in a booking')
-    })
-    // console.log(startDate,endDate)
+
+}
+
     if( errorChecker === true){
+        console.log(' in here')
         const confirmedNewBookings = await Booking.create({startDate: newStart, endDate: newEnd, spotId: Number(spotId), userId: userId})
 
         return res.json(confirmedNewBookings)
     }
+
+    res.status(403).send({
+        message: "Sorry, this spot is already booked for the specified dates"
+        // errors: [
+        //    "Start date conflicts with an existing booking",
+        //  "End date conflicts with an existing booking"
+        // ]
+    })
+    return
 
 });
 
