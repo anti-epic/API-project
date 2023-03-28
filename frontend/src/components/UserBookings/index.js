@@ -38,25 +38,6 @@ const  UserBookings = () => {
     }, [dispatch, bookings.length])
 
 
-    const onEdit = async (e) => {
-        var startDateObj = new Date(value[0]);
-        let smonth = startDateObj.getUTCMonth() + 1;
-        let sday = startDateObj.getUTCDate();
-        let syear = startDateObj.getUTCFullYear();
-
-        var endDateObj = new Date(value[1]);
-        let dmonth = endDateObj.getUTCMonth() + 1;
-        let dday = endDateObj.getUTCDate() -1;
-        let dyear = endDateObj.getUTCFullYear();
-
-       let startDate = syear + "-" + smonth + "-" + sday;
-       let endDate = dyear + "-" + dmonth + "-" + dday;
-    const payload = {
-        startDate,endDate
-    }
-
-
-    }
 
 
     return isLoaded && (<div>
@@ -74,16 +55,16 @@ const  UserBookings = () => {
           <div className="booking-card__date">
             <div className="booking-card-date">Check-out Date: {formatDate(booking.endDate)}</div>
           </div>
-          <div className='booking-house-name'>Location:{booking.Spot.name} | {booking.Spot.city} {booking.Spot.state}</div>
+          {/* <div className='booking-house-name'>Location:{booking.Spot.name} | {booking.Spot.city} {booking.Spot.state}</div> */}
         </div>
         <div className="booking-card__buttons">
-          <button   onClick={() => onEdit(booking)}  className="booking-card__button booking-card__button--delete">
+          <button    className="booking-card__button booking-card__button--delete">
           <OpenModalButton
 				buttonText={'DELETE'}
 				modalComponent={<DeleteBooking  bookId={booking.id}/>}
 			/>
           </button>
-          <button  onClick={() => onEdit(booking)} className="booking-card__button booking-card__button--edit">
+          <button  className="booking-card__button booking-card__button--edit">
           <OpenModalButton
 				buttonText={'EDIT'}
 				modalComponent={<EditBooking  bookId={booking.id}/>}

@@ -2,10 +2,11 @@ import {useParams,  useHistory } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-// import './CreateBookings.css'
+import { useModal } from "../../context/Modal";
 import { editBookingThunk, getAllUserBookingsThunk} from '../../store/bookings';
 import { useDispatch, useSelector } from 'react-redux';
 export default function EditBooking({bookId}) {
+const { closeModal } = useModal();
 const dispatch = useDispatch()
 const [ errors, setErrors ] = useState([]);
 const [isLoaded, setIsLoaded] = useState(false)
@@ -48,7 +49,7 @@ const payload = {
 }
 
 
-dispatch(editBookingThunk(bookId,payload)).then((res) =>  history.push(`/bookings`)).catch(async (res) => {
+dispatch(editBookingThunk(bookId,payload)).then((res) =>  history.push(`/bookings`)).then((res) =>  closeModal()).catch(async (res) => {
     const data = await res.json();
         setErrors(data.message);
 })
