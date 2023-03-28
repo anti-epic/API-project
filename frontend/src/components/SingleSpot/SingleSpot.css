@@ -327,6 +327,8 @@ grid-area: userName;
     text-decoration: none;
     display: grid;
     justify-content: center;
+    width:17.2em;
+    height: 2.4em;
     align-items: center;
     background-color: gray;
 }
