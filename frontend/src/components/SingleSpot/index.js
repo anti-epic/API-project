@@ -10,13 +10,8 @@ import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import DeleteReview from '../DeleteReview'
 import CreateBookings from '../CreateBookings';
-import { getAllBookingsThunk } from '../../store/bookings';
+
 const SingleSpot = () => {
-
-
-
-
-
 
 const dispatch = useDispatch();
 const {spotId} = useParams();
@@ -137,9 +132,15 @@ return spotObj && reviews && (
       <div className='info'>  { Math.floor(Math.random() * (10 - 4) + 4)} guests |   { Math.floor(Math.random() * (10 - 2) + 2)} bedrooms |   { Math.floor(Math.random() * (10 - 4) + 4)} beds |   { Math.floor(Math.random() * (4 - 2) + 2)} bath </div>
         <br></br>
         {spotObj.description}</div>
+
         <div className='createReviewContainer'>
           <div className='priceReviewsLine'>  <div className='singlePrice'>${spotObj.price} Night</div> <div className='reviewsRatingBottom'>  <i className="fa-solid fa-star fa-xs"></i> {(typeof (spotObj.avgStarRating) === 'number') ?  Number(spotObj.avgStarRating).toFixed(2) : 'new'}</div>{spotObj.numReviews} reviews</div>
-          <CreateBookings />
+          <div className='calanderContainer'><CreateBookings /></div>
+
+
+        </div>
+
+        <div className='reviews'>
           {(alreadyReviewed === false) && (sessionUser.id !== undefined)  ?(
 
 <NavLink to={`/spots/${spotId}/reviews`} className='addReviewText'>Create a review</NavLink>
@@ -158,13 +159,7 @@ return spotObj && reviews && (
 
    </div>
     )
-
-
-
      }
-        </div>
-
-        <div className='reviews'>
         {reviews.map((review) => (
 
             <div  key={review.id} className='individualReview'>

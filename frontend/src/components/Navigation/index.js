@@ -24,9 +24,11 @@ function Navigation({ isLoaded }){
   <div className='logoText'>Airbrb</div>
         </NavLink>
       </li>
-      <div className='createSpotContainer'>
-      {sessionUser ? (
+      <div className='buttonsContainer'>
+      {sessionUser ? (<>
+          <NavLink className='bookingsButton' to='/bookings'> Bookings</NavLink>
         <NavLink className='createSpotButton' to='/spots/create'> Airbrb your home</NavLink>
+      </>
       ) : (
 <OpenModalMenuItem className='createSpotButtonLoggedOut' itemText="Airbrb your home" modalComponent={<SignupFormModal />} />
       )

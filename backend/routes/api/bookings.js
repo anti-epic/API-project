@@ -125,6 +125,7 @@ router.put('/:bookingId',validateBookings, requireAuth, async (req ,res ,next) =
 
 const {bookingId} = req.params;
 const {startDate, endDate} = req.body
+console.log(bookingId, 'bookingid', startDate, 'startdata', endDate, 'endDate')
     const updateBooking = await Booking.findByPk(bookingId)
 
     if(!updateBooking){
@@ -150,7 +151,8 @@ const {startDate, endDate} = req.body
     const date = new Date();
 
     const currentEndDate = updateBooking.endDate
-    if(currentEndDate.getTime() < date.getTime()){
+    if(endDate < date.getTime()){
+        console.log(currentEndDate.getTime(), ' yo  ', date.getTime() )
         res.statusCode = 403;
       return  res.json({
 
@@ -250,7 +252,7 @@ const {startDate, endDate} = req.body
 
     // console.log(allBookingsForSpot)
 
-return res.json(updateBooking)
+return res.json({"message" :"edit updated"})
 
 })
 

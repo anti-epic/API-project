@@ -6,14 +6,19 @@
 display: grid;
 border-top: 1px solid grey;
 border-bottom: 1px solid gray;
-grid-template-columns: 1fr 1fr .05fr;
-grid-template-areas : "logo createSpot login";
-justify-content: space-between;
+grid-template-columns: 3fr 1fr .5fr;
+grid-template-areas : "logo buttons login";
+justify-content:  center;
+align-content: center;
 padding: 1%;
 margin: 0%;
 }
 
+.logo{
+    display:grid;
 
+     grid-area: logo;
+}
 
 .logoText {
     margin-top:.4em ;
@@ -22,8 +27,33 @@ margin: 0%;
 }
 
 
+.bookingsButton {
+    display: grid;
+    grid-area: bookings;
+    border-radius: 25px;
+    height: 2em;
+
+    align-content: center;
+    justify-content: center;
+    color: gray;
+
+}
+
+.createSpotButton {
+    display: grid;
+    grid-area: createSpot;
+    border-radius: 25px;
+    height: 2em;
+    justify-content: center;
+    align-content: center;
+    color: gray;
 
 
+}
+.createSpotButton:hover, .bookingsButton:hover {
+    background-color: grey;
+    color:white;
+}
 
 
 
@@ -133,33 +163,27 @@ background-color: white;
 
 .createSpotButton:link, .createSpotButton:active, .createSpotButton:hover  { text-decoration: none; }
 
+.bookingsButton:link, .bookingsButton:active, .bookingsButton:hover {
+    text-decoration: none;
+
+}
 
 
-
-
-
-
-.createSpotButton {
+.buttonsContainer {
     display: grid;
-    grid-area: createSpot;
-    border-radius: 25px;
-    height: 2em;
-
+    grid-template-columns: .5fr .5fr;
+    /* width: 20em; */
+    grid-area: buttons;
+    /* grid-area: createSpot; */
+    grid-template-areas : "bookings createSpot";
+    justify-content: space-around;
     align-content: center;
-    color: gray;
-
-}
-
-.createSpotContainer {
-    display: grid;
-    width: 8em;
-    justify-content: center;
-    margin-left: 70%;
+    /* margin-left: 70%; */
 
 
 
 }
-.createSpotContainer li {
+/* .createSpotContainer li {
     display: grid;
     grid-area: createSpot;
     height: 2em;
@@ -169,7 +193,7 @@ background-color: white;
     cursor:pointer;
 
 
-}
+} */
 
 
 /* .createSpotButtonLoggedOut {
@@ -186,11 +210,6 @@ background-color: white;
 
 
 
-.logo {
-     display:grid;
-    width:17%;
-     grid-area: logo;
-}
 
 
 
