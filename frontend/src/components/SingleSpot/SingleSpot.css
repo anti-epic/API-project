@@ -66,23 +66,43 @@
     grid-row-end: 6;
 
 }
+.reviews {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-bottom: 2em;
+
+}
 
 
-
-
-
-
-.addReviewText, .addReviewText:active, .addReviewText:hover {
+.disabledCreateReview {
+    cursor: pointer;
+    margin-top:2em;
     text-decoration: none;
     display: grid;
     justify-content: center;
     align-items: center;
     color:white;
     width: 18em;
-    margin-right:50%;
+    height: 3em;
+    margin-left:6em;
+    border-radius: 12px;
+    background-color: gray;
+}
+
+
+.addReviewText, .addReviewText:active, .addReviewText:hover {
+    text-decoration: none;
+    display: grid;
+    margin-top:2em;
+    justify-content: center;
+    align-content: center;
+    color:white;
+    margin-left:6em;
+    width: 18em;
     height: 3em;
     border-radius: 12px;
     background-color: #FF385C;
+    cursor: pointer;
 }
 
 .priceReviewsLine{
@@ -150,6 +170,7 @@
 
 .spotDescription {
     display: grid;
+    grid-template-columns: 16em;
     grid-template-rows: 5em 4em 3em;
     row-gap: 0em;
     grid-area: spotDescription;
@@ -172,23 +193,15 @@
 .reviewsContainer {
     grid-template-columns: .333fr .333fr .333fr;
     grid-template-rows: 1fr;
-    grid-template-areas: "spotDescription  reviews createReview";
+    grid-template-areas: "spotDescription reviews createReview";
     display: grid;
     width:75%;
-    margin-bottom:20em;
     margin-left:20%;
     justify-content: center;
     margin-top: 0%;
 }
 
-.reviews {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-content: center;
-    align-content: center;
-    margin-bottom: 2em;
 
-}
 
 .createReviewContainer {
     display: grid;
@@ -197,8 +210,9 @@
     border: 1px solid grey;
     border-radius: 25px;
     width: 100%;
+    width:26em;
     justify-content: center;
-    height: 35em;
+    height: 30em;
 
 }
 .calanderContainer{
@@ -210,26 +224,76 @@ justify-content: center;
 align-content: center;
 }
 
+
+
 .individualReview{
     display: grid;
-
+    overflow: auto;
+    align-content: center;
+    justify-content: center;
+    background-color: lightgray;
+    border:1px solid darkgray;
+    height: 7em;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "profileImage userName descriptionReview deleteButton";
 }
 
-.userNameReview{
-display: inline-block;
-
-padding: 2%;
-
+.userNameImage{
+display: grid;
+position: absolute;
+margin-top:1em;
+grid-area: profileImage;
 }
 
-
+.userNameDisplay{
+    display: grid;
+    margin-left:1em;
+    margin-top: -.5em;
+grid-area: userName;
+}
 .descriptionReview{
-    display: inline-block;
+  display: grid;
+  position:relative;
+
+
+  margin-top:3em;
+  width:26em;
     grid-template-columns: 1fr;
     margin-left: 2%;
     margin-bottom: 5%;
 }
 
+.deleteReviewButton {
+    background-color: white;
+    cursor: pointer;
+    display: grid;
+    margin-top:-1em;
+    margin-right:6em;
+    margin-bottom: 3em;
+    grid-area: deleteButton;
+    color:#FF385C;
+    justify-content: start;
+
+    width:10em;
+    justify-content: center;
+    align-content: center;
+
+
+}
+.deleteReviewButton:hover {
+    color:white;
+    background-color: #FF385C;
+
+}
+
+
+.deleteReviewButton li {
+    text-decoration: none;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+
+}
 
 
 .spotData {
@@ -260,20 +324,6 @@ padding: 2%;
 
 
 
-.disabledCreateReview {
-    text-decoration: none;
-    display: grid;
-    margin-top:-10em;
-    justify-content: center;
-    align-items: center;
-    color:white;
-    width: 18em;
-    height: 3em;
-    border-radius: 12px;
-    background-color: gray;
-    cursor: pointer;
-    margin-left:10em;
-}
 
 .disabledCreateReview li {
     text-decoration: none;
@@ -283,21 +333,6 @@ padding: 2%;
     background-color: gray;
 }
 
-.deleteReviewButton {
-    background-color: white;
-    display: grid;
-    color:#FF385C;
-    justify-content: start;
-    margin-top: -2%;
-
-}
-
-.deleteReviewButton li {
-    text-decoration: none;
-    display: grid;
-margin-bottom: 20%;
-
-}
 
 
 .OpenModalMenuItem {

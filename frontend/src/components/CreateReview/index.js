@@ -42,7 +42,7 @@ const handleSubmit = async (e) => {
 
         <form className='createForm' onSubmit={handleSubmit}>
         <input
-          type="text"
+          type="textarea"
           placeholder='Review'
           required
           value={review}

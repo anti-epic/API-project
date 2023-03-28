@@ -115,11 +115,33 @@ return spotObj && reviews && (
 
     <div className='imageLayout'>
 
-<img  className='singleSpotImage item1'src={spotImages[0]}></img>
-<img  className='singleSpotImage item2'src={spotImages[1]}></img>
-<img  className='singleSpotImage item3'src={spotImages[2]}></img>
-<img  className='singleSpotImage item4'src={spotImages[3]}></img>
-<img  className='singleSpotImage item5'src={spotImages[4]}></img>
+<img  className='singleSpotImage item1'src={spotImages[0]}
+onError={({ currentTarget }) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src=notFound;
+  }}>
+
+</img>
+<img  className='singleSpotImage item2'src={spotImages[1]}
+onError={({ currentTarget }) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src=notFound;
+  }}></img>
+<img  className='singleSpotImage item3'src={spotImages[2]}
+onError={({ currentTarget }) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src=notFound;
+  }}></img>
+<img  className='singleSpotImage item4'src={spotImages[3]}
+onError={({ currentTarget }) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src=notFound;
+  }}></img>
+<img  className='singleSpotImage item5'src={spotImages[4]}
+onError={({ currentTarget }) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src=notFound;
+  }}></img>
 
 
 
@@ -163,9 +185,9 @@ return spotObj && reviews && (
         {reviews.map((review) => (
 
             <div  key={review.id} className='individualReview'>
-                 <div className='userNameReview'>  <i class="fa-solid fa-user  fa-xl"> </i>
+                 <div className='userNameImage'>  <i class="fa-solid fa-user  fa-xl"> </i>
 
-                 {review.User ? (review.User.firstName) : ('user')}
+                 <div className='userNameDisplay'>{review.User ? (review.User.firstName) : ('user')}</div>
                  </div>
            <div className='descriptionReview'>  {review.review} </div>
            {sessionUser.id === review.userId ? (

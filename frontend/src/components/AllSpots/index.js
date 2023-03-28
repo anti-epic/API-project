@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { useEffect, useState } from 'react';
 import {getSpots} from '../../store/spots';
 import './AllSpots.css';
-
+import notFound from './not-found.png';
 const AllSpots = () => {
 
     const dispatch = useDispatch();
@@ -32,7 +32,11 @@ const AllSpots = () => {
                    <NavLink key={spot.id} to={`/spots/${spot.id}`}>
                     <button  className="spotButton">
                     <div className='cards'>
-                        <img  className="cardImage" src={spot.previewImage}/>
+                        <img  className="cardImage" src={spot.previewImage}
+                        onError={({ currentTarget }) => {
+                            currentTarget.onerror = null; // prevents looping
+                            currentTarget.src=notFound;
+                          }}/>
                         <div className='cardInfo' >
                             <div className="cityState">  {spot.city},{spot.state}</div>
                             <div className="avgRating">     <i className="fa-solid fa-star fa-2xs"></i>
