@@ -8,14 +8,10 @@ import notFound from './not-found.png';
 import { getReviews } from '../../store/reviews';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
-import { useModal } from "../../context/Modal";
 import DeleteReview from '../DeleteReview'
+import CreateBookings from '../CreateBookings';
+
 const SingleSpot = () => {
-
-
-
-
-
 
 const dispatch = useDispatch();
 const {spotId} = useParams();
@@ -53,7 +49,7 @@ if(spotImages.length < 5){
 
 for(let i = 0; i < 5; i++){
     if(!spotImages[i]){
-        spotImages[i] = ('https://cdn.pixabay.com/photo/2016/08/11/23/48/mountains-1587287_960_720.jpg');
+        spotImages[i] = ('https://images.unsplash.com/photo-1628744876497-eb30460be9f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
     }
 }
 }
@@ -76,6 +72,7 @@ if(spotImages.length < 1){
 useEffect(() => {
     dispatch(getSpot(spotId))
     dispatch(getReviews(spotId))
+
 
 },[spotId,reviews.length, alreadyReviewed, spotObj.name, spotObj.price, spotObj.city, spotObj.address, spotObj.state, spotObj.description, spotObj.country])
 if(!spotObj){
@@ -118,17 +115,45 @@ return spotObj && reviews && (
 
     <div className='imageLayout'>
 
-<img  className='singleSpotImage item1'src={spotImages[0]}></img>
-<img  className='singleSpotImage item2'src={spotImages[1]}></img>
-<img  className='singleSpotImage item3'src={spotImages[2]}></img>
-<img  className='singleSpotImage item4'src={spotImages[3]}></img>
-<img  className='singleSpotImage item5'src={spotImages[4]}></img>
+<img  className='singleSpotImage item1'src={spotImages[0]}
+onError={({ currentTarget }) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src=notFound;
+  }}>
+
+</img>
+<img  className='singleSpotImage item2'src={spotImages[1]}
+onError={({ currentTarget }) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src=notFound;
+  }}></img>
+<img  className='singleSpotImage item3'
+// src={spotImages[2]}
+src='https://images.unsplash.com/photo-1628745423010-bfb4df95f3eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
+onError={({ currentTarget }) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src=notFound;
+  }}></img>
+<img  className='singleSpotImage item4'
+// src={spotImages[3]}
+src='https://images.unsplash.com/photo-1628745277866-ff9305ac52cc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
+
+onError={({ currentTarget }) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src=notFound;
+  }}></img>
+<img  className='singleSpotImage item5'
+// src={spotImages[4]}
+src='https://images.unsplash.com/photo-1628746041543-f27904c01cd2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
+onError={({ currentTarget }) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src=notFound;
+  }}></img>
 
 
 
 
     </div>
-
 
     <div className='reviewsContainer'>
     <div className='spotDescription'>
@@ -136,8 +161,15 @@ return spotObj && reviews && (
       <div className='info'>  { Math.floor(Math.random() * (10 - 4) + 4)} guests |   { Math.floor(Math.random() * (10 - 2) + 2)} bedrooms |   { Math.floor(Math.random() * (10 - 4) + 4)} beds |   { Math.floor(Math.random() * (4 - 2) + 2)} bath </div>
         <br></br>
         {spotObj.description}</div>
+
         <div className='createReviewContainer'>
           <div className='priceReviewsLine'>  <div className='singlePrice'>${spotObj.price} Night</div> <div className='reviewsRatingBottom'>  <i className="fa-solid fa-star fa-xs"></i> {(typeof (spotObj.avgStarRating) === 'number') ?  Number(spotObj.avgStarRating).toFixed(2) : 'new'}</div>{spotObj.numReviews} reviews</div>
+          <div className='calanderContainer'><CreateBookings /></div>
+
+
+        </div>
+
+        <div className='reviews'>
           {(alreadyReviewed === false) && (sessionUser.id !== undefined)  ?(
 
 <NavLink to={`/spots/${spotId}/reviews`} className='addReviewText'>Create a review</NavLink>
@@ -156,19 +188,13 @@ return spotObj && reviews && (
 
    </div>
     )
-
-
-
      }
-        </div>
-
-        <div className='reviews'>
         {reviews.map((review) => (
 
             <div  key={review.id} className='individualReview'>
-                 <div className='userNameReview'>  <i class="fa-solid fa-user  fa-xl"> </i>
+                 <div className='userNameImage'>  <i class="fa-solid fa-user  fa-xl"> </i>
 
-                 {review.User ? (review.User.firstName) : ('user')}
+                 <div className='userNameDisplay'>{review.User ? (review.User.firstName) : ('user')}</div>
                  </div>
            <div className='descriptionReview'>  {review.review} </div>
            {sessionUser.id === review.userId ? (

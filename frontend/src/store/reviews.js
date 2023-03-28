@@ -4,7 +4,7 @@ import { csrfFetch } from "./csrf";
 
 const LOAD_REVIEWS = '/reviews/LOAD';
 const ADD_REVIEW = '/review/ADD';
-const DELETE_REVIEW = '/review/DELETE'
+const DELETE_REVIEW = '/review/DELETE';
 const loadReviews = (reviews) => {
     return {
         type: LOAD_REVIEWS,
@@ -31,7 +31,6 @@ const deleteReview = (review) => {
 
 
 export const createReviewThunk = (payload, id) => async dispatch => {
-    // console.log(payload, id, ' in create review thunk')
     const response = await csrfFetch(`/api/spots/${id}/reviews`, {
         method: 'POST',
         headers: {"Content-Type" : "application/json"},
@@ -58,14 +57,10 @@ export const getReviews = (id) => async dispatch => {
 
         dispatch(loadReviews(reviews));
       }
-    //   console.log('im down here')
-    //  const responseUser = await csrfFetch(``)
-
 };
 
 
 export const deleteReviewThunk = (id) => async dispatch => {
-    console.log(id, ' in delete review')
     const response = await csrfFetch(`/api/reviews/${id}`, {
         method: 'DELETE',
     })
@@ -89,7 +84,6 @@ const reviewReducer = (state = initialState, action) => {
         switch(action.type){
             case LOAD_REVIEWS:
                 const newState={}
-                // console.log(action, 'in action review reducer')
                 if(action.reviews.Reviews){
                     action.reviews.Reviews.forEach(review => {
                         newState[review.id] = review

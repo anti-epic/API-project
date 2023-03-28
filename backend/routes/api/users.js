@@ -43,7 +43,6 @@ router.post('/', validateSignup, async (req, res) => {
 
       await setTokenCookie(res, user);
 
-  // console.log(cookie)
 
   let cookie = req.cookies.token
 

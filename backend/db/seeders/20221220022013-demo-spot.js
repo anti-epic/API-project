@@ -19,32 +19,30 @@ module.exports = {
         country: "USA",
         lat: 34.037740,
         lng: -118.711670,
-        name: "The Stark Mansion",
-        description:"The Stark Mansion, also known as Tony Stark's Malibu Mansion, or simply the Malibu Mansion, is an advanced and modernized mansion created and owned by Tony Stark.",
-        price: 500
+        name: "The Old Corner Shop",
+        description:"The Old Corner Shop is a unique and charming property and was once an old corner shop, but has been lovingly restored and renovated to offer all the modern amenities while still retaining its historic charm.",   price: 500
       },
       {
-        ownerId: "1",
+        ownerId: "2",
         address: "1600 Pennsylvania Avenue NW",
         city: "D.C.",
         state: "WA",
         country: "USA",
         lat: 38.898819,
         lng: -77.036690,
-        name: "The White House",
-        description:"The White House is the official residence and workplace of the president of the United States. It is located at 1600 Pennsylvania Avenue NW in Washington, D.C., and has been the residence of every U.S. president since John Adams in 1800.",
-        price: 1000
+        name: "The Ivies",
+        description:"Welcome to our beautiful and stylish house, located in a serene and peaceful location, surrounded by nature's lush greenery. This charming and cozy home has everything you need for a comfortable and relaxing stay.",  price: 1000
       },
       {
         ownerId: "3",
         address: "20 Ingram St.",
-        city: "New York City",
-        state: "NY",
+        city: "Honolulu",
+        state: "HI",
         country: "USA",
         lat: 40.712970,
         lng: -73.843210,
-        name: "The SpiderMan Hangout Crib",
-        description:"Peter Parker's residence is 20 Ingram St. in Queens, a fake address in Forest Hills, but numerous places get the protection of Spider-Man in New York City.",
+        name: "Zlatan's House",
+        description:`Welcome to our stunning beachfront villa, located on the beautiful coast of Hawaii. This luxurious property is the perfect vacation home for those seeking a private and peaceful retreat with breathtaking ocean views.`,
         price: 200
       },
       {
@@ -55,20 +53,20 @@ module.exports = {
         country: "USA",
         lat: 34.037740,
         lng: -118.711670,
-        name: "The Stark Mansion",
-        description:"The Stark Mansion, also known as Tony Stark's Malibu Mansion, or simply the Malibu Mansion, is an advanced and modernized mansion created and owned by Tony Stark.",
+        name: "Ashley Lodge",
+        description:`Welcome to your dream vacation home, where you can experience the ultimate luxury retreat in the heart of nature. This stunning property is nestled in a tranquil setting surrounded by breathtaking scenery that is sure to take your breath away.`,
         price: 500
       },
       {
-        ownerId: "1",
+        ownerId: "3",
         address: "1600 Pennsylvania Avenue NW",
         city: "D.C.",
         state: "WA",
         country: "USA",
         lat: 38.898819,
         lng: -77.036690,
-        name: "The White House",
-        description:"The White House is the official residence and workplace of the president of the United States. It is located at 1600 Pennsylvania Avenue NW in Washington, D.C., and has been the residence of every U.S. president since John Adams in 1800.",
+        name: "Rose End",
+        description:`A  perfect getaway for those looking to escape the hustle and bustle of city life. This beautifully designed house is located in the heart of the Joshua Tree National Park area, surrounded by breathtaking natural beauty and unique desert landscape.`,
         price: 1000
       },
       {
@@ -79,8 +77,8 @@ module.exports = {
         country: "USA",
         lat: 40.712970,
         lng: -73.843210,
-        name: "The SpiderMan Hangout Crib",
-        description:"Peter Parker's residence is 20 Ingram St. in Queens, a fake address in Forest Hills, but numerous places get the protection of Spider-Man in New York City.",
+        name: "Sea View",
+        description:`Welcome to our beautiful and modern beachfront villa, located in the heart of Santa Barbara, California. This stunning property is the perfect retreat for those looking for a luxurious getaway with breathtaking views of the ocean.`,
         price: 200
       },
       {
@@ -91,20 +89,20 @@ module.exports = {
         country: "USA",
         lat: 34.037740,
         lng: -118.711670,
-        name: "The Stark Mansion",
-        description:"The Stark Mansion, also known as Tony Stark's Malibu Mansion, or simply the Malibu Mansion, is an advanced and modernized mansion created and owned by Tony Stark.",
+        name: "South House",
+        description:`This stunning villa boasts five bedrooms, each with its own private en-suite bathroom, making it perfect for larger families or groups of friends.`,
         price: 500
       },
       {
-        ownerId: "1",
+        ownerId: "3",
         address: "1600 Pennsylvania Avenue NW",
         city: "D.C.",
         state: "WA",
         country: "USA",
         lat: 38.898819,
         lng: -77.036690,
-        name: "The White House",
-        description:"The White House is the official residence and workplace of the president of the United States. It is located at 1600 Pennsylvania Avenue NW in Washington, D.C., and has been the residence of every U.S. president since John Adams in 1800.",
+        name: "Seaways",
+        description:`Welcome to our stunning beachfront house, located on the picturesque coast of California. This beautiful property offers panoramic ocean views and direct access to the beach, making it the perfect destination for your next getaway.`,
         price: 1000
       },
       {
@@ -115,8 +113,8 @@ module.exports = {
         country: "USA",
         lat: 40.712970,
         lng: -73.843210,
-        name: "The SpiderMan Hangout Crib",
-        description:"Peter Parker's residence is 20 Ingram St. in Queens, a fake address in Forest Hills, but numerous places get the protection of Spider-Man in New York City.",
+        name: "Roselands",
+        description:`Welcome to our beautiful coastal home, located in the picturesque town of Cannon Beach, Oregon. This stunning property boasts a prime location just steps away from the sandy beach, offering breathtaking ocean views and easy access to all the seaside fun.`,
         price: 200
       },
 

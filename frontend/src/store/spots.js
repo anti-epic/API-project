@@ -11,17 +11,14 @@ const ADD_IMAGE = '/spot/image/ADD';
 
 export const getSpots = () => async dispatch => {
     const response = await csrfFetch('/api/spots')
-    // console.log('in')
     if (response.ok) {
         const spots = await response.json();
-        // console.log(spots, 'here')
         dispatch(loadSpots(spots));
       }
 
 };
 
 export const getSpot = (id) => async dispatch => {
-    // console.log(id, 'by payload');
     const response = await csrfFetch(`/api/spots/${id}`)
     if(response.ok) {
 
@@ -31,7 +28,6 @@ export const getSpot = (id) => async dispatch => {
 }
 
 export const editSpotThunk = (payload, id) => async dispatch => {
-    // console.log(id, ' in edit')
     const response = await csrfFetch(`/api/spots/${id}`, {
         method: 'PUT',
         headers: {"Content-Type" : "application/json"},
@@ -48,7 +44,6 @@ export const editSpotThunk = (payload, id) => async dispatch => {
 
 
 export const deleteSpotThunk = (id) => async dispatch => {
-    // console.log(id, ' in delete')
     const response = await csrfFetch(`/api/spots/${id}`, {
         method: 'DELETE',
     })
@@ -67,7 +62,6 @@ export const deleteSpotThunk = (id) => async dispatch => {
 
 
 export const createSpotThunk = (payload, url) => async dispatch => {
-    // console.log(payload, ' in add spot thunk')
     const response = await csrfFetch(`/api/spots`, {
         method: 'POST',
         headers: {"Content-Type" : "application/json"},
@@ -77,7 +71,6 @@ export const createSpotThunk = (payload, url) => async dispatch => {
 
         const data = await response.json();
         dispatch(createSpot(data))
-       console.log('testing double thunking', data)
 
         const secondResponse = await csrfFetch(`/api/spots/${data.id}/images`, {
             method: 'POST',
@@ -99,7 +92,6 @@ export const createSpotThunk = (payload, url) => async dispatch => {
 
 
 export const createImageForSpotThunk= (payload, id) => async dispatch => {
-    console.log(payload, id, ' in add image spot thunk')
     const response = await csrfFetch(`/api/spots/${id}/images`, {
         method: 'POST',
         headers: {"Content-Type" : "application/json"},
@@ -118,7 +110,6 @@ export const createImageForSpotThunk= (payload, id) => async dispatch => {
 
 
 const addImage = (image) => {
-    console.log(image, 'in image not thunk');
     return {
         type: ADD_IMAGE,
         image
@@ -171,32 +162,21 @@ const initialState = {
 const spotReducer = (state = initialState, action) => {
     switch(action.type){
         case LOAD_SPOTS:
-            // console.log('in reducer')
             const newState = {}
-
-            // console.log(action.spots, 'next');
             action.spots.spots.forEach(spot => {
                 newState[spot.id] = spot
             })
-            // console.log('newState', newState)
             return {...newState}
         case LOAD_SPOT:
-            // console.log('in single spot reducer')
             const newSpotState = {...action.spot};
-            // console.log(newSpotState, 'jere',action.spot)
-            // console.log(action.spot, 'ss', newSpotState)
             return newSpotState
         case EDIT_SPOT:
-            // console.log('edit spot before', state)
             const editState = {...state};
             editState[action.spot.id] = action.spot;
-            // console.log('edit spot after', editState)
             return editState
         case DELETE_SPOT:
-            // console.log('in delete state');
             const deleteState = {...state}
             delete deleteState.spots[action.spotId]
-
             return deleteState
         case ADD_SPOT:
             const addSpotState = {...state};

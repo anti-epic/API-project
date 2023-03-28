@@ -26,14 +26,7 @@ const CreateSpot = () => {
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(  'start',      address,
-        city,
-        state,
-        country,
 
-        name,
-        description,
-        price, 'end')
 
 
 

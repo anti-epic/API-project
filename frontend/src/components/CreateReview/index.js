@@ -19,10 +19,7 @@ const CreateReview = () => {
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(  'start',
-    review,
-    stars,
-    'end', spotId)
+
 
 
 
@@ -42,7 +39,7 @@ const handleSubmit = async (e) => {
 
         <form className='createForm' onSubmit={handleSubmit}>
         <input
-          type="text"
+          type="textarea"
           placeholder='Review'
           required
           value={review}
