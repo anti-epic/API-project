@@ -76,7 +76,7 @@
 
 .disabledCreateReview {
     cursor: pointer;
-    margin-top:2em;
+
     text-decoration: none;
     display: grid;
     justify-content: center;
@@ -84,7 +84,7 @@
     color:white;
     width: 18em;
     height: 3em;
-    margin-left:6em;
+
     border-radius: 12px;
     background-color: gray;
 }
@@ -93,11 +93,11 @@
 .addReviewText, .addReviewText:active, .addReviewText:hover {
     text-decoration: none;
     display: grid;
-    margin-top:2em;
+
     justify-content: center;
     align-content: center;
     color:white;
-    margin-left:6em;
+
     width: 18em;
     height: 3em;
     border-radius: 12px;
@@ -170,14 +170,15 @@
 
 .spotDescription {
     display: grid;
-    grid-template-columns: 16em;
+    grid-template-columns: 23em;
     grid-template-rows: 5em 4em 3em;
     row-gap: 0em;
     grid-area: spotDescription;
     justify-content: start;
     width: 100%;
+    font-weight: 500;
     margin-top :2%;
-    border-bottom: 1px solid grey;
+
 
 }
 .info {
@@ -254,10 +255,7 @@ grid-area: userName;
 .descriptionReview{
   display: grid;
   position:relative;
-
-
   margin-top:3em;
-  width:26em;
     grid-template-columns: 1fr;
     margin-left: 2%;
     margin-bottom: 5%;

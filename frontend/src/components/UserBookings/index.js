@@ -76,6 +76,7 @@ const  UserBookings = () => {
           <div className="booking-card__date">
             <div className="booking-card-date">Check-out Date: {formatDate(booking.endDate)}</div>
           </div>
+          <div className='booking-house-name'>Location:{booking.Spot.name} | {booking.Spot.city} {booking.Spot.state}</div>
         </div>
         <div className="booking-card__buttons">
           <button   onClick={() => onEdit(booking)}  className="booking-card__button booking-card__button--delete">

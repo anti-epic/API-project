@@ -49,7 +49,7 @@ if(spotImages.length < 5){
 
 for(let i = 0; i < 5; i++){
     if(!spotImages[i]){
-        spotImages[i] = ('https://cdn.pixabay.com/photo/2016/08/11/23/48/mountains-1587287_960_720.jpg');
+        spotImages[i] = ('https://images.unsplash.com/photo-1628744876497-eb30460be9f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
     }
 }
 }
@@ -127,17 +127,24 @@ onError={({ currentTarget }) => {
     currentTarget.onerror = null; // prevents looping
     currentTarget.src=notFound;
   }}></img>
-<img  className='singleSpotImage item3'src={spotImages[2]}
+<img  className='singleSpotImage item3'
+// src={spotImages[2]}
+src='https://images.unsplash.com/photo-1628745423010-bfb4df95f3eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
 onError={({ currentTarget }) => {
     currentTarget.onerror = null; // prevents looping
     currentTarget.src=notFound;
   }}></img>
-<img  className='singleSpotImage item4'src={spotImages[3]}
+<img  className='singleSpotImage item4'
+// src={spotImages[3]}
+src='https://images.unsplash.com/photo-1628745277866-ff9305ac52cc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
+
 onError={({ currentTarget }) => {
     currentTarget.onerror = null; // prevents looping
     currentTarget.src=notFound;
   }}></img>
-<img  className='singleSpotImage item5'src={spotImages[4]}
+<img  className='singleSpotImage item5'
+// src={spotImages[4]}
+src='https://images.unsplash.com/photo-1628746041543-f27904c01cd2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
 onError={({ currentTarget }) => {
     currentTarget.onerror = null; // prevents looping
     currentTarget.src=notFound;
