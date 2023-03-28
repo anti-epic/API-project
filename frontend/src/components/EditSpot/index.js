@@ -44,7 +44,6 @@ const handleSubmit = async (e) => {
 
  history.push(`/spots/${spotObj.id}`);
 }
-console.log(spotObj, 'here')
     return spotObj.length ? (
 
     <div className='editContainer'>

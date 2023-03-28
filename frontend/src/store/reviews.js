@@ -31,7 +31,6 @@ const deleteReview = (review) => {
 
 
 export const createReviewThunk = (payload, id) => async dispatch => {
-    // console.log(payload, id, ' in create review thunk')
     const response = await csrfFetch(`/api/spots/${id}/reviews`, {
         method: 'POST',
         headers: {"Content-Type" : "application/json"},
@@ -58,9 +57,6 @@ export const getReviews = (id) => async dispatch => {
 
         dispatch(loadReviews(reviews));
       }
-    //   console.log('im down here')
-    //  const responseUser = await csrfFetch(``)
-
 };
 
 

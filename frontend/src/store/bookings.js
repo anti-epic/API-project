@@ -21,7 +21,6 @@ const deleteBooking = (booking) => {
 }
 
 export const deleteBookingThunk = (id) => async dispatch => {
-    console.log(id, ' in delete booking')
     const response = await csrfFetch(`/api/bookings/${id}`, {
         method: 'DELETE',
     })
@@ -35,7 +34,6 @@ export const deleteBookingThunk = (id) => async dispatch => {
 
 
 export const editBookingThunk = (spotId, payload) => async dispatch => {
-    console.log(payload, ' payload')
     const response = await csrfFetch(`api/bookings/${spotId}`, {
         method: 'PUT',
         headers: {
@@ -44,7 +42,6 @@ export const editBookingThunk = (spotId, payload) => async dispatch => {
         body: JSON.stringify(payload)
     })
     if (response.ok) {
-        console.log('herererere in good')
         const data = await response.json();
         dispatch(editBooking(data));
     }
@@ -69,7 +66,7 @@ export const createBookingThunk = (spotId, payload) => async dispatch => {
 
 
 
-export const getAllUserBookingsThunk = () => async dispatch => { // console.log(id, 'by payload');
+export const getAllUserBookingsThunk = () => async dispatch => {
     const response = await csrfFetch(`/api/bookings/current`)
     if (response.ok) {
 

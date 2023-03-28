@@ -31,12 +31,11 @@ useEffect(() => {
 
 const handleBooking = async (e) => {
     e.preventDefault();
-    console.log(bookId, 'yoooo delete')
+
 
 
 dispatch(deleteBookingThunk(bookId)).then((res) =>  closeModal()).then((data) => history.push('/bookings')).catch(async (res) => {
     const data = await res.json();
-    console.log('bad')
         setErrors(data.message);
 })
 

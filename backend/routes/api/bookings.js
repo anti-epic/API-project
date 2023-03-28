@@ -69,16 +69,14 @@ Spots[i] = await Spot.findAll({
 
 for(let i = 0; i < Bookings.length; i++){
     Bookings[i].dataValues.Spot = Spots[i][0];
-    // console.log(Spots[i])
+
 
 
     if(Spots[i][0].SpotImages){
 
 
         Spots[i][0].SpotImages.forEach(image => {
-        // console.log('init',typeof image.preview )
-        // console.log(image.dataValues, 'init')
-        // console.log(Bookings[i].dataValues.Spot.dataValues)
+
 
         if(image.dataValues.preview === false){
             Bookings[i].dataValues.Spot.dataValues.previewImage = 'No preview Image available'
@@ -87,7 +85,7 @@ for(let i = 0; i < Bookings.length; i++){
             Bookings[i].dataValues.Spot.dataValues.previewImage = image.url
 
         }
-        // console.log(Spots[i][0].SpotImages)
+
 
     })
     if(!Bookings[i].dataValues.Spot.dataValues.previewImage){
@@ -97,23 +95,7 @@ for(let i = 0; i < Bookings.length; i++){
 }
 }
 
-//     console.log(Bookings)
-//     if(!Bookings){
-//         res.send(
-//             "you have no bookings yet"
-//         )
-//     }
 
-//     let bookingsList = [];
-//     Bookings.forEach(booking => {
-//         bookingsList.push(booking.toJSON())
-//     })
-//     bookingsList.forEach(booking => {
-
-
-//  })
-//  Bookings = bookingsList
-//  console.log(Bookings, 'here')
     return res.json({
         Bookings,
 
@@ -125,7 +107,7 @@ router.put('/:bookingId',validateBookings, requireAuth, async (req ,res ,next) =
 
 const {bookingId} = req.params;
 const {startDate, endDate} = req.body
-console.log(bookingId, 'bookingid', startDate, 'startdata', endDate, 'endDate')
+
     const updateBooking = await Booking.findByPk(bookingId)
 
     if(!updateBooking){
@@ -136,9 +118,9 @@ console.log(bookingId, 'bookingid', startDate, 'startdata', endDate, 'endDate')
           })
     }
     const  {spotId, userId} = updateBooking.toJSON()
-    console.log(spotId, userId)
+
     const currentUser = req.user.id
-    // console.log(currentUser, 'herer')
+
     if(userId !== currentUser){
         res.statusCode = 401;
        return res.json({
@@ -152,7 +134,6 @@ console.log(bookingId, 'bookingid', startDate, 'startdata', endDate, 'endDate')
 
     const currentEndDate = updateBooking.endDate
     if(endDate < date.getTime()){
-        console.log(currentEndDate.getTime(), ' yo  ', date.getTime() )
         res.statusCode = 403;
       return  res.json({
 
@@ -184,24 +165,20 @@ console.log(bookingId, 'bookingid', startDate, 'startdata', endDate, 'endDate')
 
 
 
-    // if(!allBookingsForSpot){
-    //     res.json({err:'no bookings here'})
-    // }
-
 
 
     allBookingsForSpot.forEach(booking => {
 
-        // console.log(bookedEnd,bookedStart)
+
         if(booking.dataValues.startDate){
-            // console.log(booking.dataValues)
+
         const bookedStart = booking.dataValues.startDate.getTime()
 
 
 
         const bookedEnd = booking.dataValues.endDate.getTime()
 
-        // console.log(bookedEnd,bookedStart, newStartExactTime)
+
 
 
         if(startDateNumber < bookedStart && endDateNumber > bookedEnd){
@@ -250,7 +227,7 @@ console.log(bookingId, 'bookingid', startDate, 'startdata', endDate, 'endDate')
     updateBooking.endDate = endDate;
     await updateBooking.save()
 
-    // console.log(allBookingsForSpot)
+
 
 return res.json({"message" :"edit updated"})
 
@@ -261,8 +238,7 @@ return res.json({"message" :"edit updated"})
 
 router.delete('/:bookingId',requireAuth, async (req, res, next) => {
 const {bookingId} = req.params;
-console.log(bookingId);
-console.log(req.user.id)
+
 const deleteBooking = await Booking.findByPk(bookingId);
 if(!deleteBooking){
     res.statusCode = 404;
@@ -278,7 +254,6 @@ const spotOwner = spot.dataValues.ownerId
 const currentUser = req.user.id
 const bookingUserId = deleteBooking.userId
 
-// console.log(spotOwner, currentUser, bookingUserId)
 if(bookingUserId !== currentUser && currentUser !== spotOwner){
     res.statusCode = 401;
   return  res.json({
@@ -291,7 +266,6 @@ if(bookingUserId !== currentUser && currentUser !== spotOwner){
 }
     const startDate = deleteBooking.startDate.getTime()
     const currentDate = new Date().getTime();
-    // console.log(currentDate), 'HERE'
     if(startDate < currentDate){
         res.statusCode = 403;
       return  res.json({
@@ -301,8 +275,6 @@ if(bookingUserId !== currentUser && currentUser !== spotOwner){
     }
 
 
-
-console.log(spotOwner, currentUser, deleteBooking.userId)
 deleteBooking.destroy()
 res.statusCode = 200;
 return res.json({
@@ -331,7 +303,6 @@ router.post('/:spotId',  validateBookings, requireAuth, async (req, res, next) =
     let errorChecker = true
     const spot = await Spot.findByPk(spotId)
     if (! spot) {
-        // console.log(' in here')
         res.statusCode = 404;
         return res.json({"message": "Spot couldn't be found", "statusCode": res.statusCode})
     }
@@ -340,34 +311,30 @@ router.post('/:spotId',  validateBookings, requireAuth, async (req, res, next) =
     const ownerId = spotParsed.ownerId
 
     if (userId === ownerId) {
-        // console.log(' in here')
         res.statusCode = 400;
         return res.json({"message": "You can not book a spot you own", "statusCode": res.statusCode})
     }
 
 
     const {startDate, endDate} = req.body
-    // console.log(startDate, endDate)
     startDateParsed = startDate.split('-')
     endDateParsed = endDate.split('-')
     const newStart = new Date(startDateParsed[0], startDateParsed[1], startDateParsed[2])
 
-    // console.log(newStart.toDateString(), 'newstart')
     const newStartExactTime = newStart.getTime()
-    // console.log(newStart)
+
     const newEnd = new Date(endDateParsed[0], endDateParsed[1], endDateParsed[2])
     const newEndExactTime = newEnd.getTime()
 
-    // console.log(typeof startDate,newStartExactTime,newEndExactTime)
     const bookings = await Booking.findAll({
         where: {
             spotId: spotId
         }
     })
-    // console.log(bookings)
+
 
     if (newStartExactTime > newEndExactTime) {
-        // console.log(' in here')
+
         res.statusCode = 400;
         errorChecker = false;
         return res.json({
@@ -383,7 +350,7 @@ router.post('/:spotId',  validateBookings, requireAuth, async (req, res, next) =
         let booking = bookings[i]
 
 
-        if (booking.dataValues.startDate) { // console.log(booking.dataValues)
+        if (booking.dataValues.startDate) {
             const bookedStart = booking.dataValues.startDate.getTime()
 
 
@@ -391,7 +358,7 @@ router.post('/:spotId',  validateBookings, requireAuth, async (req, res, next) =
 
             if(newStartExactTime <= bookedStart && newEndExactTime >= bookedEnd){
             errorChecker = false;
-            console.log(' in here3')
+
             errorChecker = false;
             err.title = "Validation error";
             err.statusCode = 403;
@@ -410,7 +377,7 @@ router.post('/:spotId',  validateBookings, requireAuth, async (req, res, next) =
 
             if (newStartExactTime >= bookedStart && newStartExactTime<= bookedEnd){
                 errorChecker = false;
-                console.log(' in here5')
+
                     errorChecker = false;
                     err.title = "Validation error";
                     err.statusCode = 403;
@@ -432,7 +399,7 @@ router.post('/:spotId',  validateBookings, requireAuth, async (req, res, next) =
 }
 
     if( errorChecker === true){
-        console.log(' in here with true')
+
         const confirmedNewBookings = await Booking.create({startDate: newStart, endDate: newEnd, spotId: Number(spotId), userId: userId})
         res.statusCode = 200;
         res.json({

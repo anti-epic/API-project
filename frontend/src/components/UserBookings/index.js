@@ -32,7 +32,6 @@ const  UserBookings = () => {
 
     if (bookingsObj) {
         bookings = Object.values(bookingsObj)
-        console.log(bookings)
     }
     useEffect(() => {
         dispatch((getAllUserBookingsThunk())).then((data) => setIsLoaded(true))
@@ -52,7 +51,6 @@ const  UserBookings = () => {
 
        let startDate = syear + "-" + smonth + "-" + sday;
        let endDate = dyear + "-" + dmonth + "-" + dday;
-        console.log(startDate, ' ',endDate, ' ', value)
     const payload = {
         startDate,endDate
     }

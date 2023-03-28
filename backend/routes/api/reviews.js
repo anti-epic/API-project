@@ -45,7 +45,6 @@ router.get('/', async(req,res,next) =>{
 
 router.get('/current', requireAuth, async(req,res,next) =>{
 const {id} = req.user
-console.log(id)
     const Reviews = await Review.findAll({
         where: {userId: id},
         include: {model: ReviewImage,
@@ -67,7 +66,6 @@ console.log(id)
 
 
     })
-    // console.log(spotsIds)
 let spots
     for(let i = 0; i < spotsIds.length; i++){
         let spotId = spotsIds[i]
@@ -79,14 +77,6 @@ let spots
     })
 
 
-    // if(image.dataValues.preview === true){
-    //     spot.dataValues.previewImage = image.url
-    // }
-    // else {
-    //     let none ="no preview image found"
-    //     spot.dataValues.previewImage = none
-    // }
-
 
 
 
@@ -95,7 +85,6 @@ let spots
 
 
         Reviews[i].dataValues.Spot.SpotImages.forEach(image =>{
-            console.log('testing', image.dataValues)
             if(!Reviews[i].dataValues.Spot.dataValues.previewImage){
              if(image.dataValues.preview === true){
             Reviews[i].dataValues.Spot.dataValues.previewImage = image.url
@@ -114,15 +103,6 @@ let spots
         })
 
 
-
-
-
-
-
-
-
-
-        // console.log(Reviews[i].dataValues.Spot.SpotImages)
     }
 
    return res.json({Reviews})
@@ -132,7 +112,6 @@ let spots
 router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
     const {reviewId} = req.params;
     const {url} = req.body;
-    console.log(reviewId)
 
     let review = await Review.findByPk(reviewId)
     if(!review){
@@ -151,7 +130,6 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
             "statusCode": res.statusCode
           })
     }
-    // console.log(typeof review.userId,typeof req.user.id)
     let reviewImages = await ReviewImage.findAll({
         where: {reviewId: reviewId},
     })
@@ -183,7 +161,6 @@ router.put('/:reviewId', validateUpdatedReview, requireAuth, async(req, res, nex
     const { reviewId } = req.params
     const {review, stars} = req.body
     const currentUser = req.user.id
-    console.log(reviewId, currentUser)
         let updateReview = await Review.findByPk(reviewId);
 
         if(!updateReview){
@@ -194,7 +171,6 @@ router.put('/:reviewId', validateUpdatedReview, requireAuth, async(req, res, nex
             })
         }
         let reviewOwner = updateReview.dataValues.userId
-        // console.log(updateReview.dataValues.userId)
         if(currentUser !==  reviewOwner){
             res.statusCode = 403;
            return res.json({
@@ -213,7 +189,6 @@ return res.json(updateReview)
 router.delete('/:reviewId',requireAuth, async(req,res,next)=> {
     const {reviewId} = req.params;
     const currUser = req.user.id;
-    console.log(currUser)
     let review = await Review.findByPk(reviewId)
 
     if(!review){

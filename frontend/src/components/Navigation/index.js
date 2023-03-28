@@ -9,7 +9,6 @@ import SignupFormModal from '../SignupFormModal';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
-  // console.log(sessionUser, 'sessionuser')
   return (
     <div className='container'>
 

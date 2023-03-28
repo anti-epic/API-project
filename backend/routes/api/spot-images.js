@@ -10,7 +10,7 @@ const { Spot, Review, SpotImage, User, Booking, ReviewImage } = require('../../d
 
 
 router.get('/', async(req, res ,next) => {
-    // console.log('in get')
+
     res.send('in get')
 })
 
@@ -18,7 +18,6 @@ router.get('/', async(req, res ,next) => {
 
 router.delete('/:imageId', requireAuth, async(req, res, next) => {
   const {imageId} = req.params;
-    // console.log('in',typeof imageId)
     let spotImage = await SpotImage.findByPk(imageId)
     if(!spotImage){
       res.statusCode = 404;
@@ -29,7 +28,6 @@ router.delete('/:imageId', requireAuth, async(req, res, next) => {
   }
   let currUser = req.user.id;
   let spotsId = spotImage.dataValues.spotId
-  console.log(spotImage.dataValues.spotId)
   let spot = await Spot.findByPk(spotsId)
   let spotsOwner = spot.dataValues.ownerId
 

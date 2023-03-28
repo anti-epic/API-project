@@ -57,20 +57,11 @@ const handleBooking = async (e) => {
 
    let startDate = syear + "-" + smonth + "-" + sday;
    let endDate = dyear + "-" + dmonth + "-" + dday;
-    console.log(startDate, ' ',endDate, ' ', value)
 const payload = {
     startDate,endDate
 }
 
 
-// try{
-//     dispatch(createBookingThunk(spotId,payload)).then((data) =>    history.push(`/bookings`) )
-
-// }
-// catch(res){
-//     const data = await res.json();
-//     setErrors(data.message);
-// }
 
 dispatch(createBookingThunk(spotId,payload)).then((res) =>  history.push(`/bookings`)).catch(async (res) => {
     const data = await res.json();

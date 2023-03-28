@@ -31,7 +31,6 @@ useEffect(() => {
 
 const handleBooking = async (e) => {
     e.preventDefault();
-    console.log(bookId, 'yoooo')
     var startDateObj = new Date(value[0]);
     let smonth = startDateObj.getUTCMonth() + 1;
     let sday = startDateObj.getUTCDate();
@@ -44,7 +43,6 @@ const handleBooking = async (e) => {
 
    let startDate = syear + "-" + smonth + "-" + sday;
    let endDate = dyear + "-" + dmonth + "-" + dday;
-    console.log(startDate, ' ',endDate, ' ', value)
 const payload = {
     startDate,endDate
 }
@@ -52,7 +50,6 @@ const payload = {
 
 dispatch(editBookingThunk(bookId,payload)).then((res) =>  history.push(`/bookings`)).catch(async (res) => {
     const data = await res.json();
-    console.log('bad')
         setErrors(data.message);
 })
 

@@ -19,10 +19,7 @@ const CreateReview = () => {
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(  'start',
-    review,
-    stars,
-    'end', spotId)
+
 
 
 

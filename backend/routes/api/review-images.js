@@ -12,7 +12,6 @@ const { Spot, Review, SpotImage, User, Booking, ReviewImage } = require('../../d
 
 
 router.get('/', async(req, res ,next) => {
-    // console.log('in get')
     res.send('in get')
 })
 
@@ -45,7 +44,6 @@ router.delete('/:imageId',requireAuth, async(req, res, next)=> {
             "statusCode": res.statusCode
         })
     }
-console.log(imageId, currUser)
     reviewImage.destroy();
     res.statusCode = 200;
 return res.json({
