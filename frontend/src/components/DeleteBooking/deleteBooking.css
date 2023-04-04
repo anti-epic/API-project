@@ -1,6 +1,15 @@
 .deleteBookingContainer {
-    width:25em;
+    width:40em;
 }
 .deleteText{
-    width:19em;
+    width:35em;
+    text-align: center;
+    display: inline-block;
+
+}
+.label{
+    text-align: center;
+}
+.bookingContainerEdit {
+    margin-left:1em;
 }

@@ -2,6 +2,7 @@ import {useParams,  useHistory } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import './editBooking.css';
 import { useModal } from "../../context/Modal";
 import { editBookingThunk, getAllUserBookingsThunk} from '../../store/bookings';
 import { useDispatch, useSelector } from 'react-redux';
@@ -61,20 +62,40 @@ dispatch(editBookingThunk(bookId,payload)).then((res) =>  history.push(`/booking
 
 
 return isLoaded && (
-    <><div>
-     <ul className="createBooking-errors">
+    <>
 
-                        <div className='errorsContainer'>{errors}</div>
+<div className='reservation-card card'>
+      <div className='card-content'>
+        <ul className='createBooking-errors'>
+          <li className='errorsContainer'>{errors}</li>
+        </ul>
 
-                </ul>
+        <form className='bookingContainerEdit' onSubmit={handleBooking}>
+          <div className='field'>
+            <label className='label'>Select the dates to change your booking</label>
+            <div className='control'>
+              <Calendar
+                goToRangeStartOnSelect={false}
+                selectRange={true}
+                onChange={onChange}
+                value={value}
+              />
+            </div>
+          </div>
 
-        <form className='createForm' onSubmit={handleBooking}>
-<Calendar goToRangeStartOnSelect={false} selectRange={true}onChange={onChange} value={value}/>
-<input className='submitBookingInfo' type='submit' value='Book'></input>
-
+          <div className='field'>
+            <div className='control'>
+              <input
+                className='button is-danger submitBookingInfo'
+                type='submit'
+                value='Book'
+              />
+            </div>
+          </div>
         </form>
-
-        </div></>
+      </div>
+    </div>
+        </>
 )
 
 }

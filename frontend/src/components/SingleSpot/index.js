@@ -10,6 +10,7 @@ import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import DeleteReview from '../DeleteReview'
 import CreateBookings from '../CreateBookings';
+import { Box, Content, Media, Image, Level, Heading, Tag, Columns, Column, Button } from 'react-bulma-components';
 
 const SingleSpot = () => {
 
@@ -155,61 +156,100 @@ onError={({ currentTarget }) => {
 
     </div>
 
-    <div className='reviewsContainer'>
-    <div className='spotDescription'>
-       <h3> {spotObj.name} hosted by {spotObj.Owner ? (spotObj.Owner.firstName) : ('Owner')}</h3>
-      <div className='info'>  { Math.floor(Math.random() * (10 - 4) + 4)} guests |   { Math.floor(Math.random() * (10 - 2) + 2)} bedrooms |   { Math.floor(Math.random() * (10 - 4) + 4)} beds |   { Math.floor(Math.random() * (4 - 2) + 2)} bath </div>
-        <br></br>
-        {spotObj.description}</div>
 
-        <div className='createReviewContainer'>
-          <div className='priceReviewsLine'>  <div className='singlePrice'>${spotObj.price} Night</div> <div className='reviewsRatingBottom'>  <i className="fa-solid fa-star fa-xs"></i> {(typeof (spotObj.avgStarRating) === 'number') ?  Number(spotObj.avgStarRating).toFixed(2) : 'new'}</div>{spotObj.numReviews} reviews</div>
-          <div className='calanderContainer'><CreateBookings /></div>
-
-
-        </div>
-
-        <div className='reviews'>
-          {(alreadyReviewed === false) && (sessionUser.id !== undefined)  ?(
-
-<NavLink to={`/spots/${spotId}/reviews`} className='addReviewText'>Create a review</NavLink>
-)
-:
-
-(
-
-    <div className='disabledCreateReview'>
-        {isLoggedIn ? (
-            <OpenModalMenuItem  itemText="Create a review" />
+    <div class="columns">
+      <div class="column is-offset-one-fifth is-5">
+      <div className='title'>{spotObj.name} hosted by {spotObj.Owner ? (spotObj.Owner.firstName) : ('Owner')}</div>
+      </div>
+      <div class="column is-2 ">
+      <div className='reviews'>
+      {(alreadyReviewed === false) && (sessionUser.id !== undefined) ? (
+        <NavLink to={`/spots/${spotId}/reviews`} className='button is-danger is-normal'>Create a review</NavLink>
         ) : (
-<OpenModalMenuItem  itemText="Create a review" modalComponent={<LoginFormModal />} />
-        )}
-
-
-   </div>
-    )
-     }
-        {reviews.map((review) => (
-
-            <div  key={review.id} className='individualReview'>
-                 <div className='userNameImage'>  <i class="fa-solid fa-user  fa-xl"> </i>
-
-                 <div className='userNameDisplay'>{review.User ? (review.User.firstName) : ('user')}</div>
-                 </div>
-           <div className='descriptionReview'>  {review.review} </div>
-           {sessionUser.id === review.userId ? (
-            <div className='deleteReviewButton'>
-                <OpenModalMenuItem  itemText="Delete Review"  modalComponent={<DeleteReview reviewId={review.id} />}>
-
-                </OpenModalMenuItem>
-                </div>
-
-           ) : <div></div>}
-            </div>
-        ))}
+          <div className='button is-danger is-normal'disabled>
+          {isLoggedIn ? (
+            <OpenModalMenuItem itemText="Create a review" />
+            ) : (
+              <OpenModalMenuItem itemText="Create a review" modalComponent={<LoginFormModal />} />
+              )}
         </div>
+      )}
+      </div>
     </div>
 </div>
+
+
+
+    <div className='columns'>
+  <div className='column is-half is-offset-one-fifth'>
+    <div className='subtitle'>{ Math.floor(Math.random() * (10 - 4) + 4)} guests |   { Math.floor(Math.random() * (10 - 2) + 2)} bedrooms |   { Math.floor(Math.random() * (10 - 4) + 4)} beds |   { Math.floor(Math.random() * (4 - 2) + 2)} bath</div>
+    <div className='price-reviews-line '>
+      <div className='single-price'>${spotObj.price} Night   <i className="fa-solid fa-star fa-xs"></i>  {(typeof (spotObj.avgStarRating) === 'number') ?  Number(spotObj.avgStarRating).toFixed(2) : 'new'} |
+       { spotObj.numReviews} reviews
+      </div>
+      </div>
+    <br></br>
+    <div class="columns">
+    <div class="columns is-mobile">
+      <div class="column is-11">
+        <p>{spotObj.description}</p>
+      </div>
+      <div class="column">
+        {(sessionUser.id !== undefined) ? (
+
+          <p><CreateBookings /></p>
+        )
+      :(<div></div>)}
+      </div>
+    </div>
+</div>
+
+
+ <Box>
+      <Content>
+        <Heading size={4}>Reviews</Heading>
+        {reviews.map((review) => (
+          <Media key={review.id}>
+            <Media.Item renderAs="figure"  >
+              <i className="fa-solid fa-user  fa-xl"></i>
+            </Media.Item>
+            <Media.Item>
+              <Level>
+                <Level.Side align="left">
+                  <Level.Item>
+                    <Heading size={6}>{review.User ? review.User.firstName : 'User'}</Heading>
+                    <Tag size={6}>{new Date(review.createdAt).toLocaleDateString()}</Tag>
+                  </Level.Item>
+                </Level.Side>
+                {sessionUser.id === review.userId &&
+                  <Level.Side align="right">
+                    <Level.Item className="button is-danger" >
+                    <OpenModalMenuItem itemText="Delete Review" modalComponent={<DeleteReview reviewId={review.id} />} />
+                    </Level.Item>
+                  </Level.Side>
+                }
+              </Level>
+              <Content style={{ overflow: 'auto', maxWidth: '50em' }}>
+                {review.review}
+              </Content>
+            </Media.Item>
+          </Media>
+        ))}
+      </Content>
+    </Box> 
+
+
+
+
+  </div>
+</div>
+
+
+
+
+
+
+    </div>
 
 )
 

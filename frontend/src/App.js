@@ -12,6 +12,7 @@ import CreateSpot from './components/CreateSpot';
 import CreateReview from './components/CreateReview';
 import DeleteReview from "./components/DeleteReview";
 import  UserBookings  from "./components/UserBookings";
+import 'bulma/css/bulma.min.css';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);

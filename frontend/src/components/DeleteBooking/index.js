@@ -4,6 +4,7 @@ import { useModal } from "../../context/Modal";
 import { deleteBookingThunk, getAllUserBookingsThunk} from '../../store/bookings';
 import { useDispatch, useSelector } from 'react-redux';
 import './deleteBooking.css';
+import 'bulma/css/bulma.min.css';
 export default function DeleteBooking({bookId}) {
     const dispatch = useDispatch()
     const [ errors, setErrors ] = useState([]);
@@ -46,22 +47,18 @@ dispatch(deleteBookingThunk(bookId)).then((res) =>  closeModal()).then((data) =>
 
 
 return isLoaded && (
-    <><div className='deleteBookingContainer'>
-     <ul className="createBooking-errors">
+    <>
+<div className="deleteBookingContainer">
+  <ul className="createBooking-errors">
+    <div className="errorsContainer">{errors}</div>
+  </ul>
 
-                        <div className='errorsContainer'>{errors}</div>
-
-                </ul>
-
-        <form className='createForm' onSubmit={handleBooking}>
-   <h4 className='deleteText'>
-     are you sure you wanna delete the booking?
-    </h4>
-<input className='submitBookingInfo' type='submit'
-value='DELETE'></input>
-        </form>
-
-        </div></>
+  <form className="createForm" onSubmit={handleBooking}>
+    <div className="deleteText">Are you sure you want to delete the booking?</div>
+    <input className="submitBookingInfo button is-danger" type="submit" value="DELETE" />
+  </form>
+</div>
+        </>
 )
 
 }
