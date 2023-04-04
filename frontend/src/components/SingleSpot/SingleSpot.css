@@ -1,15 +1,13 @@
 
-.spotName {
-    display: block;
-    text-align: start;
-    margin-left: 19.9%;
-    border-bottom: 0px;
-    font-size: 28px;
-}
+    .spotName {
+        display: block;
+        text-align: start;
+        margin-left: 19.9%;
+        border-bottom: 0px;
+        font-size: 28px;
+    }
 
-.reviewCount {
-    margin-left: 20%;
-}
+
 
 .imageLayout {
     display: grid;
@@ -25,12 +23,6 @@
     object-fit: cover;
 
 }
-
-
-
-
-
-
 .item1 {
     grid-column-start: 1;
     grid-column-end: 6;
@@ -66,95 +58,8 @@
     grid-row-end: 6;
 
 }
-.reviews {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin-bottom: 2em;
-
-}
 
 
-.disabledCreateReview {
-    cursor: pointer;
-
-    text-decoration: none;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    color:white;
-    width: 18em;
-    height: 3em;
-
-    border-radius: 12px;
-    background-color: gray;
-}
-
-
-.addReviewText, .addReviewText:active, .addReviewText:hover {
-    text-decoration: none;
-    display: grid;
-
-    justify-content: center;
-    align-content: center;
-    color:white;
-
-    width: 18em;
-    height: 3em;
-    border-radius: 12px;
-    background-color: #FF385C;
-    cursor: pointer;
-}
-
-.priceReviewsLine{
-    display:grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    justify-content: center;
-    align-items: center;
-    font-weight: 100;
-}
-
-
-.singlePrice {
-    display: grid;
-
-    font-size: 20px;
-    font-weight: bold;
-    font-size: 20px;
-
-}
-.reviewsRatingBottom{
-    display: inline-block;
-    margin-left:20%;
-    /* margin-left: 70%;
-    margin-bottom: 88%; */
-}
-
-
-.userUpdateDeleteSection {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20%;
-    justify-content: space-around;
-    margin-right: 12.5%;
-    margin-left: 51%;
-    margin-bottom: .2%;
-    height: 2em;
-
-}
-
-
-.updateButton, .updateButton:hover, .updateButton:active, .updateButton:link, .updateButton:visited .deleteButton, .deleteButton:hover, .deleteButton:active, .deleteButton:link, .deleteButton:visited {
-    text-decoration: none;
-    display: grid;
-    column-gap: 1%;
-    background-color: #FF385C;
-    border-radius: 25px;
-    justify-content: center;
-    align-items: center;
-    color:white;
-    font-size: .9em;
-    list-style-type: none;
-}
 .deleteReviewButton{
     text-decoration: none;
     display: grid;
@@ -168,131 +73,18 @@
 }
 
 
-.spotDescription {
-    display: grid;
-    grid-template-columns: 23em;
-    grid-template-rows: 5em 4em 3em;
-    row-gap: 0em;
-    grid-area: spotDescription;
-    justify-content: start;
-    width: 100%;
-    font-weight: 500;
-    margin-top :2%;
-
-
-}
-.info {
-    display: grid;
-    font-size: 16px;
-    margin-top: -1%;
-    padding-bottom: 2%;
-    border-bottom: 1px solid grey;
-    width: 100%;
-}
-
-
-.reviewsContainer {
-    grid-template-columns: .333fr .333fr .333fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "spotDescription reviews createReview";
-    display: grid;
-    width:75%;
-    margin-left:20%;
-    justify-content: center;
-    margin-top: 0%;
-}
-
-
-
-.createReviewContainer {
-    display: grid;
-    grid-area: createReview;
-    align-items: center;
-    border: 1px solid grey;
-    border-radius: 25px;
-    width: 100%;
-    width:26em;
-    justify-content: center;
-    height: 30em;
-
-}
-.calanderContainer{
-
-display: grid;
-margin-left:1em;
-grid-template-columns: 1fr;
-justify-content: center;
-align-content: center;
-}
-
-
-
-.individualReview{
-    display: grid;
-    overflow: auto;
-    align-content: center;
-    justify-content: center;
-    background-color: lightgray;
-    border:1px solid darkgray;
-    height: 7em;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-areas: "profileImage userName descriptionReview deleteButton";
-}
-
-.userNameImage{
-display: grid;
-position: absolute;
-margin-top:1em;
-grid-area: profileImage;
-}
-
-.userNameDisplay{
-    display: grid;
-    margin-left:1em;
-    margin-top: -.5em;
-grid-area: userName;
-}
-.descriptionReview{
-  display: grid;
-  position:relative;
-  margin-top:3em;
-    grid-template-columns: 1fr;
-    margin-left: 2%;
-    margin-bottom: 5%;
-}
-
-.deleteReviewButton {
-    background-color: white;
-    cursor: pointer;
-    display: grid;
-    margin-top:-1em;
-    margin-right:6em;
-    margin-bottom: 3em;
-    grid-area: deleteButton;
-    color:#FF385C;
-    justify-content: start;
-
-    width:10em;
-    justify-content: center;
-    align-content: center;
-
-
-}
-.deleteReviewButton:hover {
-    color:white;
-    background-color: #FF385C;
-
-}
-
-
 .deleteReviewButton li {
     text-decoration: none;
     display: grid;
     justify-content: center;
     align-content: center;
+    border:1px solid grey;
 
 }
-
+.Content {
+    max-width:10em;
+    overflow: hidden;
+}
 
 .spotData {
     display:inline-block;
@@ -319,46 +111,21 @@ grid-area: userName;
     font-weight: bolder;
 }
 
-
-
-
-
-.disabledCreateReview li {
-    text-decoration: none;
-    display: grid;
-    justify-content: center;
-    width:17.2em;
-    height: 2.4em;
-    align-items: center;
-    background-color: gray;
-}
-
-
-
-.OpenModalMenuItem {
-    width:50%;
-    height: 20%;;
-    display: grid;
-}
-
-
-
-.createSingleReviewButton {
-    display: grid;
-
-}
-
-
-
-.createSingleReviewButton li {
-    text-decoration: none;
-    display: grid;
-    justify-content: center;
-    align-items: center;
+.booking-delete button {
+    background-color: #d9596a;
+    border:0px;
     color:white;
-    width: 18em;
-    margin-right:50%;
-    height: 3em;
-    border-radius: 12px;
-    background-color: #FF385C;
+    text-shadow: 1px 1px 2px black;
+    cursor: pointer;
 }
+.booking-edit button {
+    background-color: #f8e191;
+    border:0px;
+    color:white;
+    text-shadow: 1px 1px 2px black;
+    cursor: pointer;
+}
+/* .button {
+    cursor: wait;
+    margin-left:2em
+} */

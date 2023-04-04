@@ -7,7 +7,7 @@ import { deleteReviewThunk } from '../../store/reviews';
 import { useHistory } from 'react-router-dom';
 import './deleteReview.css';
 import { useModal } from "../../context/Modal";
-
+import { Modal, Box, Button, Heading } from 'react-bulma-components';
 
 const DeleteReview = ({reviewId}) => {
     const history = useHistory();
@@ -32,22 +32,25 @@ const handleSubmit = async (e) => {
 
     return(
 
-    <div className='deleteContainer'>
+    // <div className='deleteContainer'>
 
 
-        <form className='deleteForm' onSubmit={handleSubmit}>
-       <h1 className='deleteHeader'> Delete this review? </h1>
-        <input className='deleteReviewButtonConfirm'type='submit' value="DELETE" />
-        </form>
-        <p>
-
-        </p>
-
-
-    </div>
+    //     <form className='deleteForm' onSubmit={handleSubmit}>
+    //    <h1 className='deleteHeader'> Delete this review? </h1>
+    //     <input className='deleteReviewButtonConfirm'type='submit' value="DELETE" />
+    //     </form>
 
 
 
+    // </div>
+
+
+<div className='deleteContainer'>
+  <form className='deleteForm' onSubmit={handleSubmit}>
+    <h1 className='deleteHeader title is-4'>Delete this review?</h1>
+    <button className='button is-danger' type='submit'>DELETE</button>
+  </form>
+</div>
 
     );
 }

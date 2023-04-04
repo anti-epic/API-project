@@ -2,80 +2,37 @@
     display:none;
 }
 
-.navBar{
-display: grid;
-border-top: 1px solid grey;
-border-bottom: 1px solid gray;
-grid-template-columns: 3fr 1fr .5fr;
-grid-template-areas : "logo buttons login";
-justify-content:  center;
-align-content: center;
-padding: 1%;
-margin: 0%;
-}
-
-.logo{
-    display:grid;
-
-     grid-area: logo;
-}
-
 .logoText {
-    margin-top:.4em ;
     display: inline-block;
     color: #FF385C;
 }
 
-
 .bookingsButton {
-    display: grid;
-    grid-area: bookings;
     border-radius: 25px;
     height: 2em;
-
-    align-content: center;
-    justify-content: center;
     color: gray;
-
+    width:6em;
 }
-
-.createSpotButton {
-    display: grid;
-    grid-area: createSpot;
+ .createSpotButton {
     border-radius: 25px;
     height: 2em;
-    justify-content: center;
-    align-content: center;
+    width:12em;
     color: gray;
 
 
 }
 .createSpotButton:hover, .bookingsButton:hover {
-    background-color: grey;
-    color:white;
+    border:1px solid grey;
+    cursor: pointer;
 }
 
-
-
-.container {
-    margin: 0%;
-    padding: 0%;
-    display: grid;
+.level{
+ border-top:1px solid gray;
+ border-bottom:1px solid gray;
+ height: 5em;
 }
-
-.navBar li {
-    display: grid;
-
-
-}
-html, body {
-
-    margin: 0;
-}
-
 
 .menuButton {
-    /* border: 2px solid blue; */
 display: grid;
 width: 6.5em;
 height: 3.3em;
@@ -85,6 +42,9 @@ background-color: white;
 align-content: center;
 
 
+}
+li {
+    list-style-type: none;
 }
 
 .fa-house-crack {
@@ -96,28 +56,20 @@ align-content: center;
 .menuButton button {
     border:1px solid gray;
     cursor:pointer;
-    /* border: 5px solid green; */
     border-radius: 25px;
-right:5%;
-top: 2.5%;
-position: absolute;
-
 
 }
 
 .menuButton button:hover {
-
     box-shadow: 1px 1px grey;
 }
 
 .fa-user-circle {
-    justify-content: space-around;
     display: grid;
     justify-content: right;
 margin-bottom: 10%;
 color:grey;
 padding-right: 3%;
-
 }
 .fa-bars {
         display: grid;
@@ -144,7 +96,6 @@ overflow: hidden;
 padding: 1%;
 border-radius: 25px;
 width: 13em;
-height: 14em;
 background-color: white;
 
 
@@ -153,151 +104,9 @@ background-color: white;
 .logoutButton button, .logoutButton button:hover {
     display: grid;
     border:0px;
+    margin-left:2em;
     box-shadow: 0px 0px;
-    position: relative;
     background-color: white;
     font-size: 15px;
     font-weight: bold;
 }
-
-
-.createSpotButton:link, .createSpotButton:active, .createSpotButton:hover  { text-decoration: none; }
-
-.bookingsButton:link, .bookingsButton:active, .bookingsButton:hover {
-    text-decoration: none;
-
-}
-
-
-.buttonsContainer {
-    display: grid;
-    grid-template-columns: .5fr .5fr;
-    /* width: 20em; */
-    grid-area: buttons;
-    /* grid-area: createSpot; */
-    grid-template-areas : "bookings createSpot";
-    justify-content: space-around;
-    align-content: center;
-    /* margin-left: 70%; */
-
-
-
-}
-/* .createSpotContainer li {
-    display: grid;
-    grid-area: createSpot;
-    height: 2em;
-    width: 8em;
-    align-content: center;
-    color: gray;
-    cursor:pointer;
-
-
-} */
-
-
-/* .createSpotButtonLoggedOut {
-    display: grid;
-    grid-area: createSpot;
-    border-radius: 25px;
-    height: 2em;
-    justify-content:end;
-    align-content: center;
-    color: gray;
-    border: 1px solid black;
-
-} */
-
-
-
-
-
-
-
-@media screen and (max-width: 1500px) {
-
-
-
-    .logo {
-
-        display:grid;
-       width:26%;
-        grid-area: logo;
-   }
-
-
-
-   .createSpotContainer {
-    display: grid;
-    width: 8em;
-    justify-content: center;
-    margin-left: 65%;
-
-
-
-}
-
-
-
-  }
-
-
-
-
-
-@media screen and (max-width: 1023px) {
-
-
-    .logo {
-
-        display:grid;
-        width:50%;
-
-        grid-area: logo;
-   }
-
-
-
-   .createSpotContainer {
-    display: grid;
-    width: 8em;
-    justify-content: center;
-    margin-left: 65%;
-
-
-
-}
-
-
-
-  }
-
-
-
-  @media screen and (max-width: 600px) {
-
-
-
-    .logo {
-
-        display:grid;
-       width:100%;
-
-        grid-area: logo;
-   }
-
-
-
-   .createSpotContainer {
-    display: grid;
-    width: 8em;
-    justify-content: center;
-    margin-left: 45%;
-
-
-
-}
-
-
-
-  }

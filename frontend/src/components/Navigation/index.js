@@ -10,39 +10,52 @@ import SignupFormModal from '../SignupFormModal';
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
   return (
-    <div className='container'>
 
 
-    <ul className='navBar'>
-      <li className="logo">
+<nav class="level">
+  {/* <!-- Left side --> */}
+  <div class="level-left">
+    <div class="level-item pl-6">
 
-        <NavLink exact to="/" style={{ textDecoration: 'none', fontSize: '28px', fontWeight: 'bold' }}>
+      <NavLink exact to="/" style={{ textDecoration: 'none', fontSize: '28px', fontWeight: 'bold' }}>
        <div className='imgLogo'style={{display: 'inline'}}>
        <i className="fa-solid fa-house-crack"></i>
        </div>
   <div className='logoText'>Airbrb</div>
         </NavLink>
-      </li>
-      <div className='buttonsContainer'>
+
+    </div>
+    <div class="level-item">
+      <div class="field has-addons">
+      </div>
+    </div>
+  </div>
+
+  {/* <!-- Right side --> */}
+  <div class="level-right has-text-centered pr-6">
       {sessionUser ? (<>
-          <NavLink className='bookingsButton' to='/bookings'> Bookings</NavLink>
-        <NavLink className='createSpotButton' to='/spots/create'> Airbrb your home</NavLink>
+         <NavLink className='level-item has-text-centered  bookingsButton' to='/bookings'> Bookings</NavLink>
+       <NavLink className='level-item has-text-centered createSpotButton is-centered' to='/spots/create'> Airbrb your home</NavLink>
       </>
       ) : (
-<OpenModalMenuItem className='createSpotButtonLoggedOut' itemText="Airbrb your home" modalComponent={<SignupFormModal />} />
+        <div className='level-item has-text-centered createSpotButton'>
+
+<OpenModalMenuItem  itemText="Airbrb your home" modalComponent={<SignupFormModal />} />
+</div>
       )
 
     }
-    </div>
-      <div className='menuButton'>
+
+    <div className='menuButton'>
       {isLoaded && (
         <li className='login'>
           <ProfileButton user={sessionUser} />
         </li>
       )}
       </div>
-    </ul>
-      </div>
+  </div>
+</nav>
+
   );
 }
 
