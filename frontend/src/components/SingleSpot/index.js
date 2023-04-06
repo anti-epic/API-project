@@ -189,7 +189,7 @@ onError={({ currentTarget }) => {
       </div>
       </div>
     <br></br>
-    <div class="columns">
+
     <div class="columns is-mobile">
       <div class="column is-11">
         <p>{spotObj.description}</p>
@@ -202,7 +202,7 @@ onError={({ currentTarget }) => {
       :(<div></div>)}
       </div>
     </div>
-</div>
+
 
 
  <Box>
@@ -236,7 +236,7 @@ onError={({ currentTarget }) => {
           </Media>
         ))}
       </Content>
-    </Box> 
+    </Box>
 
 
 
