@@ -41,70 +41,14 @@ const  UserBookings = () => {
 
 
     return isLoaded && (
-    // <div>
-    //      <div className='booking-container'>
-    //         <h1>Your Bookings</h1>
-    //   {bookings.map((booking) => booking ? (
-
-
-    //     <div className="booking-card">
-    //         {booking.Spot ? ( <div className="image-container" style={{ backgroundImage: `url(${booking.Spot.previewImage})`, backgroundSize: 'cover' }}></div>) : (<div className="image-container" style={{ backgroundImage: `url(${notFound})`, backgroundSize: 'cover' }}></div>)}
-    //     <div className="booking-card__dates">
-    //       <div className="booking-card__date">
-    //         <div className="booking-card-date">Check-in Date: {formatDate(booking.startDate)}</div>
-    //       </div>
-    //       <div className="booking-card__date">
-    //         <div className="booking-card-date">Check-out Date: {formatDate(booking.endDate)}</div>
-    //       </div>
-    //       {/* <div className='booking-house-name'>Location:{booking.Spot.name} | {booking.Spot.city} {booking.Spot.state}</div> */}
-    //     </div>
-    //     <div className="booking-card__buttons">
-    //       <button    className="booking-card__button booking-card__button--delete">
-    //       <OpenModalButton
-		// 		buttonText={'DELETE'}
-		// 		modalComponent={<DeleteBooking  bookId={booking.id}/>}
-		// 	/>
-    //       </button>
-    //       <button  className="booking-card__button booking-card__button--edit">
-    //       <OpenModalButton
-		// 		buttonText={'EDIT'}
-		// 		modalComponent={<EditBooking  bookId={booking.id}/>}
-		// 	/>
-    //       </button>
-    //     </div>
-    //   </div>
-
-
-
-
-
-
-
-
-
-
-
-    //   ) : (<div> </div>))}
-    // </div>
-
-
-
-    //     </div>)
-
-
-
-
-
-
-
 
 
 
 <div className='booking-container'>
   <h1 className='title'>Your Bookings</h1>
-  <div className='columns is-multiline'>
+  <div className='columns is-multiline is-mobile is-centered'>
     {bookings.map((booking) => booking ? (
-      <div key={booking.id} className='column is-one-third'>
+      <div key={booking.id} className='column is-one-fifth'>
         <div className="card">
           {booking.Spot ? (
             <div className="card-image" style={{ backgroundImage: `url(${booking.Spot.previewImage})`, backgroundSize: 'cover' }}>
