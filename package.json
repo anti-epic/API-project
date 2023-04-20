@@ -28,5 +28,8 @@
     "url": "https://github.com/anti-epic/API-project/issues"
   },
   "homepage": "https://github.com/anti-epic/API-project#readme",
-  "description": ""
+  "description": "",
+   "engines": {
+    "node": "16.19.0"
+  }
 }
