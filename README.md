@@ -8,7 +8,7 @@
 
 <h4 align="center">A clone of Airbnb</h4>
 
- [AIRBRB](https://air-bnb-clone-vu0j.onrender.com/)
+ [AIRBRB LIVE SITE](https://airbrb-clone.herokuapp.com/)
 ## Key Features
 
 * Create A Spot
